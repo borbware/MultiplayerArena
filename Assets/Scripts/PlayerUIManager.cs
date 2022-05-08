@@ -13,7 +13,7 @@ public class PlayerUIManager : MonoBehaviour
     Text scoreText;
     void Start()
     {
-        hpBar = transform.Find("HP/Green").gameObject;
+        hpBar = transform.Find("HP/bar").gameObject;
         hpBarRT = hpBar.GetComponent<RectTransform>();
 
         scoreGameObj = transform.Find("Score").gameObject;
@@ -25,7 +25,7 @@ public class PlayerUIManager : MonoBehaviour
         hp = Mathf.Clamp(hp, 0, 100);
         if (hp == 0)
             StageManager.instance.LosePlayer(player);
-        hpBarRT.sizeDelta = new Vector2(60 * hp / 100, 11);
+        hpBarRT.sizeDelta = new Vector2(hpBarRT.rect.width * hp / 100, hpBarRT.rect.height);
     }
     public void addScore(int newScore)
     {

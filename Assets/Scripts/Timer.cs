@@ -8,6 +8,15 @@ public class Timer : MonoBehaviour
     void Start()
     {
         _text = GetComponent<Text>();
+        SetTimerText(time);
+    }
+
+    void SetTimerText(float time)
+    {
+        var mins = Mathf.Floor( time / 60 );
+        var secs = Mathf.Floor( time % 60 );
+        var secsString = secs < 10 ? "0" + secs.ToString() : secs.ToString();
+        _text.text = mins.ToString() + ":" + secsString;
     }
 
     void Update()
@@ -15,16 +24,12 @@ public class Timer : MonoBehaviour
         if (StageManager.instance.stageState == "play")
         {
             time -= Time.deltaTime;
-            var mins = Mathf.Floor( time / 60 );
-            var secs = Mathf.Floor( time % 60 );
-            var secsString = secs < 10 ? "0" + secs.ToString() : secs.ToString();
-            _text.text = mins.ToString() + ":" + secsString;
             if (time <= 0)
             {
                 time = 0;
                 StageManager.instance.TimeUp();
             }
+            SetTimerText(time);
         }
-
     }
 }

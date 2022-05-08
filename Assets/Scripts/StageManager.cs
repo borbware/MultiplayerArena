@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    [SerializeField] List<PlayerUIManager> UIManagers;
+    public List<PlayerUIManager> UIManagers;
     public static StageManager instance;
     public List<int> activePlayers;
     public string stageState = "ready"; // ready, play, end
@@ -38,7 +38,6 @@ public class StageManager : MonoBehaviour
         // GameManager.instance.wins[player] += 1;
     }
 
-
     public void TimeUp()
     {
         stageState = "end";
@@ -46,6 +45,8 @@ public class StageManager : MonoBehaviour
             WinPlayer(MostHP());
         else if (winCondition == "MostScore")
             WinPlayer(MostScore());
+        else
+            WinPlayer(0);
 
     }
     public int MostHP()

@@ -6,6 +6,7 @@ public class Rotate : MonoBehaviour
     
     void Update()
     {
-        transform.Rotate(new Vector3(0,rotationSpeed * Time.deltaTime,0));
+		if (StageManager.instance.stageState != "play")
+            return;
     }
 }

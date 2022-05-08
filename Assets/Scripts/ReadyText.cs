@@ -16,16 +16,22 @@ public class ReadyText : MonoBehaviour
         {
             time -= Time.deltaTime;
             if (time > 2)
-                _text.text = "READY";
+                _text.text = "3";
             else if (time > 1)
-                _text.text = "SET";
+                _text.text = "2";
             else if (time > 0)
-                _text.text = "GO!";
+                _text.text = "1";
             else
+            {
+                _text.text = "GO!";
+                Invoke("HideText",1.0f);
                 StageManager.instance.StartPlay();
-        } else {
-            _text.enabled = false;
+            }
         }
-        
+    }
+
+    void HideText()
+    {
+        _text.enabled = false;
     }
 }

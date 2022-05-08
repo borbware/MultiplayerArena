@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 4997407868383470306}
   m_Layer: 0
   m_Name: PlayerPlaftormer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,9 +158,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
+  state: active
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  UIManager: {fileID: 0}
 --- !u!114 &4997407868383470306
 MonoBehaviour:
   m_ObjectHideFlags: 0
