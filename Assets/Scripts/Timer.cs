@@ -4,10 +4,10 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     [SerializeField] float time = 120;
-    Text timerText;
+    Text _text;
     void Start()
     {
-        timerText = GetComponent<Text>();
+        _text = GetComponent<Text>();
     }
 
     void Update()
@@ -17,7 +17,8 @@ public class Timer : MonoBehaviour
             time -= Time.deltaTime;
             var mins = Mathf.Floor( time / 60 );
             var secs = Mathf.Floor( time % 60 );
-            timerText.text = mins.ToString() + ":" + secs.ToString();
+            var secsString = secs < 10 ? "0" + secs.ToString() : secs.ToString();
+            _text.text = mins.ToString() + ":" + secsString;
             if (time <= 0)
             {
                 time = 0;

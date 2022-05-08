@@ -8,6 +8,7 @@ public class StageManager : MonoBehaviour
     public List<int> activePlayers;
     public string stageState = "ready"; // ready, play, end
     public string winCondition = "mostScore"; // "mostHP",
+    public int winner = 0;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class StageManager : MonoBehaviour
     public void WinPlayer(int player)
     {
         // player can be 0 if no one wins
+        winner = player;
         stageState = "end";
         // GameManager.instance.wins[player] += 1;
     }
@@ -65,5 +67,10 @@ public class StageManager : MonoBehaviour
             playerWithMostScore = (manager.score > maxScore) ? manager.player : playerWithMostScore;
         }
         return playerWithMostScore;
+    }
+
+    public void StartPlay()
+    {
+        stageState = "play";
     }
 }
