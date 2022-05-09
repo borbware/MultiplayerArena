@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     void Update()
 	{
-		if (StageManager.instance.stageState != "play")
+		if (StageManager.instance.stageState != StageManager.StageState.Play) // heittää error win	
             return;
 		
 		if (state == "active")
@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
 	void Hurt(int damage)
 	{
-		UIManager.addHP(-damage);
+		UIManager.AddHP(-damage);
 		state = "hurt";
 		Invoke("Active", 1.0f);
 		InvokeRepeating("HurtFlicker",0f,0.1f);

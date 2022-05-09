@@ -3,28 +3,44 @@ using UnityEngine.UI;
 
 public class WinText : MonoBehaviour
 {
-    Text _text;
-    float time = 3;
+    Text _winText;
+    Text _continueText;
+    float _winTime;
     void Start()
     {
-        _text = GetComponent<Text>();
-        _text.enabled = false;
+        _winText = GetComponent<Text>();
+        _winText.enabled = false;
+
+        _continueText = transform.Find("ContinueText").gameObject.GetComponent<Text>();
+        _continueText.enabled = false;
     }
 
     void Update()
     {
-        if (StageManager.instance.stageState == "end")
+        if (StageManager.instance.stageState == StageManager.StageState.End)
         {
-            if (!_text.enabled)
+            if (!_winText.enabled)
             {
-                _text.enabled = true;
+                _winText.enabled = true;
+                _winTime = Time.time;
                 var winner = StageManager.instance.winner;
                 if (winner > 0)
-                    _text.text = $"PLAYER {winner} WINS";
+                    _winText.text = $"PLAYER {winner} WINS";
                 else
-                    _text.text = "NO ONE WINS";
+                    _winText.text = "NO ONE WINS";
             }
-
+            if (Time.time > _winTime + 3)
+            {
+                if (!_continueText.enabled)
+                {
+                    _continueText.enabled = true;
+                    StageManager.instance.ShowWins();
+                }
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    GameManager.instance.NextStage();
+                }
+            }
         }
         
     }

@@ -3,10 +3,11 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] float time = 120;
+    [SerializeField] float time;
     Text _text;
     void Start()
     {
+        time = StageManager.instance.stageTime;
         _text = GetComponent<Text>();
         SetTimerText(time);
     }
@@ -21,7 +22,7 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if (StageManager.instance.stageState == "play")
+        if (StageManager.instance.stageState == StageManager.StageState.Play)
         {
             time -= Time.deltaTime;
             if (time <= 0)

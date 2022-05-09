@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlatformerController : MonoBehaviour
 {
-	// Start is called before the first frame update
 	[SerializeField, Range(0.0f, 100f)] float maxSpeed = 		10f;
 	[SerializeField, Range(0.0f, 100f)] float maxAcceleration = 10f;
 	[SerializeField, Range(0f,   10f)]	float jumpHeight = 		2f;
@@ -17,15 +16,12 @@ public class PlatformerController : MonoBehaviour
 		onGround = true;
 	}
 
-	// [SerializeField] Rect allowedArea = new Rect(-5f, -5f, 10f, 10f);
-	// [SerializeField, Range(0f, 1f)] float bounciness = 0.5f;
 	void Start()
 	{
         _player = GetComponent<Player>();
 		_rigidbody = GetComponent<Rigidbody>();
 	}
 
-	// Update is called once per frame
     private void Update() {
         desiredVelocity = new Vector3(_player.axisInput.x, 0f, _player.axisInput.y) * maxSpeed;
         if (desiredVelocity.sqrMagnitude > 0.1)

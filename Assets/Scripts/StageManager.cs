@@ -3,26 +3,46 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+
+	public enum StageState
+	{
+		Ready,
+		Play,
+		End
+	};
+    public enum WinCond
+    {
+        NoWinCond,
+        MostHP,
+        MostScore
+    }
+
+    public float stageTime;
     public List<PlayerUIManager> UIManagers;
     public static StageManager instance;
     public List<int> activePlayers;
-    public string stageState = "ready"; // ready, play, end
-    public string winCondition = "mostScore"; // "mostHP",
+    public StageState stageState = StageState.Ready;
+    public WinCond winCondition = WinCond.MostHP;
     public int winner = 0;
 
-    void Start()
+    void Awake()
     {
         activePlayers = new List<int> {1, 2, 3, 4};
         instance = this;
     }
 
+    public void StartPlay()
+    {
+        stageState = StageState.Play;
+    }
+
     public void AddScore(int player, int newScore)
     {
-        UIManagers[player - 1].addScore(newScore);
+        UIManagers[player - 1].AddScore(newScore);
     }
     public void AddHP(int player, int newHP)
     {
-        UIManagers[player - 1].addHP(newHP);
+        UIManagers[player - 1].AddHP(newHP);
     }
     public void LosePlayer(int player)
     {
@@ -34,44 +54,49 @@ public class StageManager : MonoBehaviour
     {
         // player can be 0 if no one wins
         winner = player;
-        stageState = "end";
-        // GameManager.instance.wins[player] += 1;
+        stageState = StageState.End;
+        GameManager.instance.WinPlayer(player);
     }
 
     public void TimeUp()
     {
-        stageState = "end";
-        if (winCondition == "MostHP")
+        int MostHP()
+        {
+            int playerWithMostHP = 0;
+            float maxHP = 0;
+            foreach (var manager in UIManagers)
+            {
+                Debug.Log(manager.hp + " " + maxHP);
+                playerWithMostHP = (manager.hp > maxHP) ? manager.player : playerWithMostHP;
+            }
+            return playerWithMostHP;
+        }
+        int MostScore()
+        {
+            int playerWithMostScore = 0;
+            float maxScore = 0;
+            foreach (var manager in UIManagers)
+            {
+                playerWithMostScore = (manager.score > maxScore) ? manager.player : playerWithMostScore;
+            }
+            return playerWithMostScore;
+        }
+
+        stageState = StageState.End;
+        if (winCondition == WinCond.MostHP)
             WinPlayer(MostHP());
-        else if (winCondition == "MostScore")
+        else if (winCondition == WinCond.MostScore)
             WinPlayer(MostScore());
         else
             WinPlayer(0);
 
     }
-    public int MostHP()
-    {
-        int playerWithMostHP = 0;
-        float maxHP = 0;
-        foreach (var manager in UIManagers)
-        {
-            playerWithMostHP = (manager.hp > maxHP) ? manager.player : playerWithMostHP;
-        }
-        return playerWithMostHP;
-    }
-    public int MostScore()
-    {
-        int playerWithMostScore = 0;
-        float maxScore = 0;
-        foreach (var manager in UIManagers)
-        {
-            playerWithMostScore = (manager.score > maxScore) ? manager.player : playerWithMostScore;
-        }
-        return playerWithMostScore;
-    }
 
-    public void StartPlay()
+    public void ShowWins()
     {
-        stageState = "play";
+        foreach (var manager in UIManagers)
+        {
+            manager.ShowWins();
+        }
     }
 }

@@ -16,7 +16,7 @@ public class ShootProjectile : MonoBehaviour
     }
     void Update()
     {
-        if (StageManager.instance.stageState != "play")
+        if (StageManager.instance.stageState != StageManager.StageState.Play)
             return;
         if (_player != null)
         {
@@ -26,7 +26,6 @@ public class ShootProjectile : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (desiredShoot)

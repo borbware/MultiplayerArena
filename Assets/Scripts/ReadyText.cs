@@ -12,7 +12,7 @@ public class ReadyText : MonoBehaviour
 
     void Update()
     {
-        if (StageManager.instance.stageState == "ready")
+        if (StageManager.instance.stageState == StageManager.StageState.Ready)
         {
             time -= Time.deltaTime;
             if (time > 2)

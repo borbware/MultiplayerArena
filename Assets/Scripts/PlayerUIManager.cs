@@ -11,15 +11,22 @@ public class PlayerUIManager : MonoBehaviour
 
     GameObject scoreGameObj;
     Text scoreText;
-    void Start()
+
+    GameObject winCountObj;
+    Text winCountText;
+    void Awake()
     {
         hpBar = transform.Find("HP/bar").gameObject;
         hpBarRT = hpBar.GetComponent<RectTransform>();
 
         scoreGameObj = transform.Find("Score").gameObject;
         scoreText = scoreGameObj.GetComponent<Text>();
+
+        winCountObj = transform.Find("WinCount").gameObject;
+        winCountText = winCountObj.GetComponent<Text>();
+        HideWins();
     }
-    public void addHP(float newHP)
+    public void AddHP(float newHP)
     {
         hp += newHP;
         hp = Mathf.Clamp(hp, 0, 100);
@@ -27,11 +34,20 @@ public class PlayerUIManager : MonoBehaviour
             StageManager.instance.LosePlayer(player);
         hpBarRT.sizeDelta = new Vector2(hpBarRT.rect.width * hp / 100, hpBarRT.rect.height);
     }
-    public void addScore(int newScore)
+    public void AddScore(int newScore)
     {
         score += newScore;
         score = Mathf.Clamp(score, 0, 20);
         scoreText.text = newScore.ToString();
     }
-
+    public void ShowWins()
+    {
+        var wins = GameManager.instance.wins[player - 1];
+        winCountText.text = $"{wins} WINS";
+        winCountText.enabled = true;
+    }
+    public void HideWins()
+    {
+        winCountText.enabled = false;
+    }
 }
