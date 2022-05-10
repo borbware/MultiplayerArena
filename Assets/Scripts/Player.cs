@@ -17,11 +17,11 @@ public class Player : MonoBehaviour
 
     public bool hurtDisablesInput;
 
-    PlayerUIManager _UIManager;
+    public PlayerUIManager UIManager;
 
     void Start()
     {
-        _UIManager = StageManager.instance.UIManagers[player - 1];
+        UIManager = StageManager.instance.UIManagers[player - 1];
         _playerData = GameManager.instance.players[player - 1];
     }
 
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
     {
         if (state != PlayerState.Active)
             return;
-        _UIManager.AddHP(-damage);
+        UIManager.AddHP(-damage);
         state = PlayerState.Hurt;
         Invoke("Active", 1.0f);
         InvokeRepeating("HurtFlicker",0f,0.1f);
