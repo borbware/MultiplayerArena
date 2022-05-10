@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
 
     void GetInput()
     {
+        if (_playerData.controller == 0)
+            return;
         axisInput = Vector2.ClampMagnitude(
             new Vector2(
                 Input.GetAxisRaw($"P{_playerData.controller}Horizontal"),

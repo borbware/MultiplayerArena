@@ -10,6 +10,9 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     GameObject[] LaserPatterns;
 
+    [SerializeField]
+    GameObject[] SpawnPoint;
+
     GameObject SpawnedObject;
 
     float SpawnRate = 2.5f;
@@ -34,6 +37,7 @@ public class Spawner : MonoBehaviour
                 Spawntime = time;
                 RngSpawn = Random.Range(0, LaserPatterns.Length);
                 SpawnedObject = Instantiate(LaserPatterns[RngSpawn]);
+                Destroy(SpawnedObject, 5);
             }
         }
     }
