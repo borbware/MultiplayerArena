@@ -33,15 +33,17 @@ public class PlayerUIManager : MonoBehaviour
     {
         hp += newHP;
         hp = Mathf.Clamp(hp, 0, 100);
+        hpBarRT.sizeDelta = new Vector2(hpBarRT.rect.width * hp / 100, hpBarRT.rect.height);
         if (StageManager.instance.loseWhenHPZero && hp == 0)
             StageManager.instance.LosePlayer(player);
-        hpBarRT.sizeDelta = new Vector2(hpBarRT.rect.width * hp / 100, hpBarRT.rect.height);
     }
     public void AddScore(int newScore)
     {
         score += newScore;
         score = Mathf.Clamp(score, 0, 20);
         scoreText.text = score.ToString();
+        if (StageManager.instance.loseWhenScoreZero && score == 0)
+            StageManager.instance.LosePlayer(player);
     }
     public void ShowWins()
     {

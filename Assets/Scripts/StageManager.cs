@@ -26,6 +26,7 @@ public class StageManager : MonoBehaviour
     public StageState stageState = StageState.Ready;
     public WinCond winCondition = WinCond.MostHP;
     public bool loseWhenHPZero = true;
+    public bool loseWhenScoreZero = false;
     public int winner = 0;
 
     void Awake()
