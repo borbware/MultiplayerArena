@@ -5,10 +5,10 @@ public class WinText : MonoBehaviour
 {
     Text _winText;
     Text _continueText;
-    float _winTime;
+    public float _winTime;
     void Start()
     {
-        _winText = GetComponent<Text>();
+        _winText = transform.Find("WinText").gameObject.GetComponent<Text>();
         _winText.enabled = false;
 
         Transform _continue = transform.Find("ContinueText");
