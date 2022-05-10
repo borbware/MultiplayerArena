@@ -5,10 +5,10 @@ public class WinText : MonoBehaviour
 {
     Text _winText;
     Text _continueText;
-    float _winTime;
+    public float _winTime;
     void Start()
     {
-        _winText = GetComponent<Text>();
+        _winText = transform.Find("WinText").gameObject.GetComponent<Text>();
         _winText.enabled = false;
 
         _continueText = transform.Find("ContinueText").gameObject.GetComponent<Text>();
@@ -29,7 +29,7 @@ public class WinText : MonoBehaviour
                 else
                     _winText.text = "NO ONE WINS";
             }
-            if (Time.time > _winTime + 3)
+            if (Time.time > _winTime + 3f)
             {
                 if (!_continueText.enabled)
                 {
