@@ -674,6 +674,7 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  hurtDisablesInput: 0
 --- !u!1001 &634272397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -914,6 +915,7 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  hurtDisablesInput: 0
 --- !u!114 &771987604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1526,6 +1528,7 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  hurtDisablesInput: 0
 --- !u!114 &1087680719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1936,7 +1939,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2391,6 +2394,7 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  hurtDisablesInput: 0
 --- !u!114 &1810111126
 MonoBehaviour:
   m_ObjectHideFlags: 0
