@@ -7,7 +7,7 @@ public class Hurt : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         var obj = other.gameObject;
         {
-            obj.SendMessage("Hurt", damage);
+            obj.SendMessage("Hurt", damage, SendMessageOptions.DontRequireReceiver);
         }
     }
 }
