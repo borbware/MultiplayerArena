@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Death
   - Projectile
+  - Spawner1
+  - Spawner2
+  - Spawner3
+  - Spawner4
   layers:
   - Default
   - TransparentFX
