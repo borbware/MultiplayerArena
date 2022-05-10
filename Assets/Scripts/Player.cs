@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+	public enum PlayerState
+	{
+		Active,
+		Hurt,
+		Dead
+	}
     public int player;
-    public string state = "active"; // hurt, dead
+    public PlayerState state = PlayerState.Active;
     public Vector2 axisInput;
     public bool jumpInput, shootInput;
 
@@ -19,7 +25,7 @@ public class Player : MonoBehaviour
 		if (StageManager.instance.stageState != StageManager.StageState.Play) // heittää error win	
             return;
 		
-		if (state == "active")
+		if (state == PlayerState.Active)
 		{
 			axisInput = Vector2.ClampMagnitude(
 				new Vector2(
@@ -29,7 +35,7 @@ public class Player : MonoBehaviour
 			1f);
 			jumpInput = Input.GetButtonDown($"P{player}A");
 			shootInput = Input.GetButtonDown($"P{player}B");
-		} else if (state == "hurt")
+		} else if (state == PlayerState.Hurt)
 		{
 			
 		}
@@ -37,8 +43,10 @@ public class Player : MonoBehaviour
 
 	void Hurt(int damage)
 	{
+		if (state != PlayerState.Active)
+			return;
 		_UIManager.AddHP(-damage);
-		state = "hurt";
+		state = PlayerState.Hurt;
 		Invoke("Active", 1.0f);
 		InvokeRepeating("HurtFlicker",0f,0.1f);
 	}
@@ -51,6 +59,6 @@ public class Player : MonoBehaviour
 	void Active()
 	{
 		CancelInvoke("HurtFlicker");
-		state = "active";
+		state = PlayerState.Active;
 	}
 }
