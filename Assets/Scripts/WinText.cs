@@ -11,8 +11,12 @@ public class WinText : MonoBehaviour
         _winText = GetComponent<Text>();
         _winText.enabled = false;
 
-        _continueText = transform.Find("ContinueText").gameObject.GetComponent<Text>();
-        _continueText.enabled = false;
+        Transform _continue = transform.Find("ContinueText");
+        if (_continue)
+        {
+            _continueText = _continue.gameObject.GetComponent<Text>();
+            _continueText.enabled = false;
+        }
     }
 
     void Update()
@@ -29,7 +33,7 @@ public class WinText : MonoBehaviour
                 else
                     _winText.text = "NO ONE WINS";
             }
-            if (Time.time > _winTime + 3)
+            if (_continueText && Time.time > _winTime + 3)
             {
                 if (!_continueText.enabled)
                 {
