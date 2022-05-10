@@ -45,14 +45,27 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void Start()
+    {
+        if (StageManager.instance.stageState == StageManager.StageState.SetControllers)
+        {
+            foreach (var player in players)
+            {
+                player.controller = 0;
+            }
+        }
+    }
     void Update()
     {
-        if (assignedControllers.Count < players.Count)
-            DetectControllers();
-
-        if (Input.GetButtonDown("Start"))
+        if (StageManager.instance != null && StageManager.instance.stageState == StageManager.StageState.SetControllers)
         {
-            SceneManager.LoadScene(stages[currentStageIndex]);
+            if (assignedControllers.Count < players.Count)
+                DetectControllers();
+
+            if (Input.GetButtonDown("Start"))
+            {
+                SceneManager.LoadScene(stages[currentStageIndex]);
+            }
         }
     }
     public void NextStage()
