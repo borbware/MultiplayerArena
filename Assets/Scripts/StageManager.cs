@@ -8,7 +8,9 @@ public class StageManager : MonoBehaviour
 	{
 		Ready,
 		Play,
-		End
+		End,
+        Pause,
+        SetControllers,
 	};
     public enum WinCond
     {
@@ -29,6 +31,13 @@ public class StageManager : MonoBehaviour
     {
         activePlayers = new List<int> {1, 2, 3, 4};
         instance = this;
+    }
+    void Start()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            UIManagers[i] = GameObject.Find($"Player{i + 1}UI").GetComponent<PlayerUIManager>();
+        }
     }
 
     public void StartPlay()

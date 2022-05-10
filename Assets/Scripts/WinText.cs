@@ -17,6 +17,8 @@ public class WinText : MonoBehaviour
 
     void Update()
     {
+        if (StageManager.instance == null)
+            return;
         if (StageManager.instance.stageState == StageManager.StageState.End)
         {
             if (!_winText.enabled)
@@ -41,6 +43,9 @@ public class WinText : MonoBehaviour
                     GameManager.instance.NextStage();
                 }
             }
+        } else if (StageManager.instance.stageState == StageManager.StageState.SetControllers)
+        {
+            _continueText.enabled = true;
         }
         
     }
