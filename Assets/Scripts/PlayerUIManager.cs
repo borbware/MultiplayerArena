@@ -42,6 +42,7 @@ public class PlayerUIManager : MonoBehaviour
     }
     public void ShowWins()
     {
+        Debug.Log("sadf");
         var wins = GameManager.instance.wins[player - 1];
         winCountText.text = $"{wins} WINS";
         winCountText.enabled = true;

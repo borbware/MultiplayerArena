@@ -7,11 +7,11 @@ public class Player : MonoBehaviour
     public Vector2 axisInput;
     public bool jumpInput, shootInput;
 
-	[SerializeField] PlayerUIManager UIManager;
+	PlayerUIManager _UIManager;
 
-	void Awake()
+	void Start()
 	{
-		// _UImanager = StageManager.instance.UIManagers[player - 1];
+		_UIManager = StageManager.instance.UIManagers[player - 1];
 	}
 
     void Update()
@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
 	void Hurt(int damage)
 	{
-		UIManager.AddHP(-damage);
+		_UIManager.AddHP(-damage);
 		state = "hurt";
 		Invoke("Active", 1.0f);
 		InvokeRepeating("HurtFlicker",0f,0.1f);
