@@ -45,6 +45,16 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void Start()
+    {
+        if (StageManager.instance.stageState == StageManager.StageState.SetControllers)
+        {
+            foreach (var player in players)
+            {
+                player.controller = 0;
+            }
+        }
+    }
     void Update()
     {
         if (StageManager.instance != null && StageManager.instance.stageState == StageManager.StageState.SetControllers)
