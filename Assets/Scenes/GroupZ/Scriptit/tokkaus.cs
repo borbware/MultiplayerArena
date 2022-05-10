@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class tokkaus : MonoBehaviour
 {
-    float pushforce = 5;
-    int hp = 2;
+    float pushforce = 6;
+    Player player;
+    
     Vector3 spawnlocation;
     void Start()
     {
         spawnlocation = transform.position;
+        player = GetComponent<Player>();
     }
 
     
@@ -29,11 +31,10 @@ public class tokkaus : MonoBehaviour
         }    
         if(toher.tag == "fial")
         {
-            if(hp == 0)
+            if(player.UIManager.score == 0)
             {Destroy(gameObject);}
             else
-            {hp -= 1; transform.position = spawnlocation;}
-            
+            {player.UIManager.AddScore(-1); transform.position = spawnlocation;}
         }
     }
 }
