@@ -7,8 +7,13 @@ public class Timer : MonoBehaviour
     Text _text;
     void Start()
     {
-        time = StageManager.instance.stageTime;
         _text = GetComponent<Text>();
+        if (!GameManager.instance.enableTimer)
+        {
+            _text.enabled = false;
+            return;
+        }
+        time = StageManager.instance.stageTime;
         SetTimerText(time);
     }
 
@@ -22,7 +27,8 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if (StageManager.instance.stageState == StageManager.StageState.Play)
+        if (StageManager.instance != null
+        && StageManager.instance.stageState == StageManager.StageState.Play)
         {
             time -= Time.deltaTime;
             if (time <= 0)
