@@ -7,7 +7,7 @@ public class Teleport : MonoBehaviour
     void OnTriggerEnter(Collider collider)
     {
         var obj = collider.gameObject;
-        if (obj.tag == "Player" && obj.GetComponent<Player>().state == "active")
+        if (obj.tag == "Player" && obj.GetComponent<Player>().state == Player.PlayerState.Active)
         {
             Rigidbody rb = obj.GetComponent<Rigidbody>();
             rb.MovePosition(new Vector3(
