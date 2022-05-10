@@ -24,13 +24,16 @@ public class PlayerUIManager : MonoBehaviour
 
         winCountObj = transform.Find("WinCount").gameObject;
         winCountText = winCountObj.GetComponent<Text>();
+
         HideWins();
+        AddHP(0);
+        AddScore(0);
     }
     public void AddHP(float newHP)
     {
         hp += newHP;
         hp = Mathf.Clamp(hp, 0, 100);
-        if (hp == 0)
+        if (StageManager.instance.loseWhenHPZero && hp == 0)
             StageManager.instance.LosePlayer(player);
         hpBarRT.sizeDelta = new Vector2(hpBarRT.rect.width * hp / 100, hpBarRT.rect.height);
     }
@@ -38,7 +41,7 @@ public class PlayerUIManager : MonoBehaviour
     {
         score += newScore;
         score = Mathf.Clamp(score, 0, 20);
-        scoreText.text = newScore.ToString();
+        scoreText.text = score.ToString();
     }
     public void ShowWins()
     {
