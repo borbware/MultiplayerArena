@@ -47,12 +47,15 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        if (assignedControllers.Count < players.Count)
-            DetectControllers();
-
-        if (Input.GetButtonDown("Start"))
+        if (StageManager.instance != null && StageManager.instance.stageState == StageManager.StageState.SetControllers)
         {
-            SceneManager.LoadScene(stages[currentStageIndex]);
+            if (assignedControllers.Count < players.Count)
+                DetectControllers();
+
+            if (Input.GetButtonDown("Start"))
+            {
+                SceneManager.LoadScene(stages[currentStageIndex]);
+            }
         }
     }
     public void NextStage()
