@@ -460,6 +460,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LaserPatterns: []
+  SpawnPoint:
+  - {fileID: 338469053}
+  - {fileID: 1446875832}
+  - {fileID: 354526908}
+  - {fileID: 738614574}
 --- !u!1 &354526908
 GameObject:
   m_ObjectHideFlags: 0
