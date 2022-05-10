@@ -24,7 +24,10 @@ public class PlayerUIManager : MonoBehaviour
 
         winCountObj = transform.Find("WinCount").gameObject;
         winCountText = winCountObj.GetComponent<Text>();
+
         HideWins();
+        AddHP(0);
+        AddScore(0);
     }
     public void AddHP(float newHP)
     {
