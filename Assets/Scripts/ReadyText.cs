@@ -8,11 +8,14 @@ public class ReadyText : MonoBehaviour
     void Start()
     {
         _text = GetComponent<Text>();
+        if (StageManager.instance == null)
+            _text.enabled = false;
     }
 
     void Update()
     {
-        if (StageManager.instance.stageState == StageManager.StageState.Ready)
+        if (StageManager.instance != null
+        && StageManager.instance.stageState == StageManager.StageState.Ready)
         {
             time -= Time.deltaTime;
             if (time > 2)
