@@ -6,39 +6,56 @@ public class PlayerUIManager : MonoBehaviour
     public int player; 
     public float hp = 100;
     public int score = 0;
-    GameObject hpBar;
+    GameObject hpBarObj;
     RectTransform hpBarRT;
 
-    GameObject scoreGameObj;
+    GameObject scoreObj;
     Text scoreText;
 
     GameObject winCountObj;
     Text winCountText;
     void Awake()
     {
-        hpBar = transform.Find("HP/bar").gameObject;
-        hpBarRT = hpBar.GetComponent<RectTransform>();
+        hpBarObj = transform.Find("HP/bar").gameObject;
+        hpBarRT = hpBarObj.GetComponent<RectTransform>();
 
-        scoreGameObj = transform.Find("Score").gameObject;
-        scoreText = scoreGameObj.GetComponent<Text>();
+        scoreObj = transform.Find("Score").gameObject;
+        scoreText = scoreObj.GetComponent<Text>();
 
         winCountObj = transform.Find("WinCount").gameObject;
         winCountText = winCountObj.GetComponent<Text>();
+
         HideWins();
+        AddHP(0);
+        AddScore(0);
+    }
+    void Start() {
+        if (!StageManager.instance.showHP)
+        {
+            var hpObj = transform.Find("HP").gameObject;
+            hpObj.SetActive(false);
+            scoreObj.transform.position += new Vector3(0,10,0);
+        }
+        if (!StageManager.instance.showScore)
+        {
+            scoreObj.SetActive(false);
+        }
     }
     public void AddHP(float newHP)
     {
         hp += newHP;
         hp = Mathf.Clamp(hp, 0, 100);
-        if (hp == 0)
-            StageManager.instance.LosePlayer(player);
         hpBarRT.sizeDelta = new Vector2(hpBarRT.rect.width * hp / 100, hpBarRT.rect.height);
+        if (StageManager.instance.loseWhenHPZero && hp == 0)
+            StageManager.instance.LosePlayer(player);
     }
     public void AddScore(int newScore)
     {
         score += newScore;
         score = Mathf.Clamp(score, 0, 20);
-        scoreText.text = newScore.ToString();
+        scoreText.text = score.ToString();
+        if (StageManager.instance.loseWhenScoreZero && score == 0)
+            StageManager.instance.LosePlayer(player);
     }
     public void ShowWins()
     {
