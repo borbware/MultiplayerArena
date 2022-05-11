@@ -50,6 +50,24 @@ public class StageManager : MonoBehaviour
             UIManagers[i] = GameObject.Find($"Player{i + 1}UI").GetComponent<PlayerUIManager>();
         }
     }
+    void Update()
+    {
+        if (stageState == StageState.Play)
+        {
+            if (Input.GetButtonDown("Start"))
+            {
+                stageState = StageState.Pause;
+                Time.timeScale = 0;
+            }
+        } else if (stageState == StageState.Pause)
+        {
+            if (Input.GetButtonDown("Start"))
+            {
+                stageState = StageState.Play;
+                Time.timeScale = 1;
+            }
+        }
+    }
     public void StartPlay()
     {
         stageState = StageState.Play;
@@ -75,7 +93,6 @@ public class StageManager : MonoBehaviour
         stageState = StageState.End;
         GameManager.instance.WinPlayer(player);
     }
-
     public void TimeUp()
     {
         int MostHP()
@@ -97,7 +114,6 @@ public class StageManager : MonoBehaviour
             WinPlayer(0);
 
     }
-
     public void ShowWins()
     {
         foreach (var manager in UIManagers)
