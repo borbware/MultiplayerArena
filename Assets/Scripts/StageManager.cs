@@ -35,9 +35,8 @@ public class StageManager : MonoBehaviour
 
     public StageState stageState = StageState.Ready;
     public List<PlayerUIManager> UIManagers;
-    public List<int> activePlayers;
     public int winner = 0;
-
+    List<int> activePlayers;
     void Awake()
     {
         activePlayers = new List<int> {1, 2, 3, 4};
@@ -54,6 +53,12 @@ public class StageManager : MonoBehaviour
     {
         if (stageState == StageState.Play)
         {
+            stageTime -= Time.deltaTime;
+            if (stageTime <= 0)
+            {
+                stageTime = 0;
+                TimeUp();
+            }
             if (Input.GetButtonDown("Start"))
             {
                 stageState = StageState.Pause;
