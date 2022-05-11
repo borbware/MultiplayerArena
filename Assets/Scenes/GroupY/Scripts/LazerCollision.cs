@@ -6,7 +6,6 @@ public class LazerCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         var obj = other.gameObject;
-        Debug.Log("hi");
         {
             obj.SendMessage("Hurt", damage, SendMessageOptions.DontRequireReceiver);
         }
