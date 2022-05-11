@@ -496,6 +496,8 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  hurtDisablesInput: 0
+  UIManager: {fileID: 0}
 --- !u!114 &519127508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,6 +720,8 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  hurtDisablesInput: 0
+  UIManager: {fileID: 0}
 --- !u!114 &612980045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,6 +1035,8 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  hurtDisablesInput: 0
+  UIManager: {fileID: 0}
 --- !u!114 &1041915007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1637,6 +1643,8 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  hurtDisablesInput: 0
+  UIManager: {fileID: 0}
 --- !u!114 &2067494168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1807,6 +1815,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: showHP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: showScore
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: showTimer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: UIManagers.Array.data[0]
       value: 

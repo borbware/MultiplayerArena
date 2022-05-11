@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         _text = GetComponent<Text>();
-        if (!GameManager.instance.enableTimer)
+        if (!StageManager.instance.showTimer)
         {
             _text.enabled = false;
             return;
