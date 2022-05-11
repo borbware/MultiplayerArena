@@ -467,7 +467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725dd3d59ac4a6f46b001ef1fc6709e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LaserPatterns: []
+  LaserPatterns:
+  - {fileID: 5079164688972250019, guid: cda1fe6cbdc4e8645b66ed744c7cc9de, type: 3}
   SpawnPoint:
   - {fileID: 338469053}
   - {fileID: 1446875832}

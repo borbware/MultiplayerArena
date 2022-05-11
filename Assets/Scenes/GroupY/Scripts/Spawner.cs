@@ -13,6 +13,8 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     GameObject[] SpawnPoint;
 
+    float[] Rota = {180f, 0, 270f, 90f};
+
     GameObject SpawnedObject;
 
     Vector3[] Positions = new Vector3[4];
@@ -27,13 +29,13 @@ public class Spawner : MonoBehaviour
 
         for (int i=0; i<4;i++){
             Positions[i] = SpawnPoint[i].transform.position;
-            Debug.Log(Positions[i]);
         }
+
     }
 
     void Update()
     {
-        
+        SpawnLaser();
     }
 
     void SpawnLaser(){
@@ -42,8 +44,9 @@ public class Spawner : MonoBehaviour
             time -= Time.deltaTime;
             if (time < (Spawntime - SpawnRate)){
                 Spawntime = time;
-                RngSpawn = Random.Range(0, LaserPatterns.Length);
-                SpawnedObject = Instantiate(LaserPatterns[RngSpawn]);
+                RngSpawn = Random.Range(0, 4);
+                SpawnedObject = Instantiate(LaserPatterns[0], Positions[RngSpawn], 
+                Quaternion.Euler(0, Rota[RngSpawn], 0));
                 Destroy(SpawnedObject, 5);
             }
         }
