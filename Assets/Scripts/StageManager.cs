@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
@@ -19,13 +20,22 @@ public class StageManager : MonoBehaviour
         MostScore
     }
 
-    public float stageTime;
-    public List<PlayerUIManager> UIManagers;
     public static StageManager instance;
-    public List<int> activePlayers;
-    public StageState stageState = StageState.Ready;
-    public WinCond winCondition = WinCond.MostHP;
+    [Header("Stage setup")]
+    public float stageTime;
+    public WinCond timerZeroWinCondition = WinCond.MostHP;
     public bool loseWhenHPZero = true;
+    public bool loseWhenScoreZero = false;
+
+    [Header("UI elements")]
+    public bool showHP = true;
+    public bool showScore = true;
+    public bool showTimer = true;
+    [Header("Do not touch")]
+
+    public StageState stageState = StageState.Ready;
+    public List<PlayerUIManager> UIManagers;
+    public List<int> activePlayers;
     public int winner = 0;
 
     void Awake()
@@ -40,12 +50,10 @@ public class StageManager : MonoBehaviour
             UIManagers[i] = GameObject.Find($"Player{i + 1}UI").GetComponent<PlayerUIManager>();
         }
     }
-
     public void StartPlay()
     {
         stageState = StageState.Play;
     }
-
     public void AddScore(int player, int newScore)
     {
         UIManagers[player - 1].AddScore(newScore);
@@ -72,30 +80,18 @@ public class StageManager : MonoBehaviour
     {
         int MostHP()
         {
-            int playerWithMostHP = 0;
-            float maxHP = 0;
-            foreach (var manager in UIManagers)
-            {
-                Debug.Log(manager.hp + " " + maxHP);
-                playerWithMostHP = (manager.hp > maxHP) ? manager.player : playerWithMostHP;
-            }
-            return playerWithMostHP;
+            return UIManagers.OrderByDescending(manager => manager.hp).FirstOrDefault()?.player ?? 0;
         }
+
         int MostScore()
         {
-            int playerWithMostScore = 0;
-            float maxScore = 0;
-            foreach (var manager in UIManagers)
-            {
-                playerWithMostScore = (manager.score > maxScore) ? manager.player : playerWithMostScore;
-            }
-            return playerWithMostScore;
+            return UIManagers.OrderByDescending(manager => manager.score).FirstOrDefault()?.player ?? 0;
         }
 
         stageState = StageState.End;
-        if (winCondition == WinCond.MostHP)
+        if (timerZeroWinCondition == WinCond.MostHP)
             WinPlayer(MostHP());
-        else if (winCondition == WinCond.MostScore)
+        else if (timerZeroWinCondition == WinCond.MostScore)
             WinPlayer(MostScore());
         else
             WinPlayer(0);
