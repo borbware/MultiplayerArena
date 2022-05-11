@@ -20,13 +20,11 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
     public List<PlayerData> players;
-    public int numberOfPlayers = 4;
+    [Header("Add stage names here in AssignControls scene")]
     public List<string> stages;
-    public int currentStageIndex = 0;
-    public bool enableTimer = true;
-    public bool enableHP = true;
-    public bool enableScore = true;
+    int currentStageIndex = 0;
     List<int> assignedControllers;
+    int numberOfPlayers = 4; // not implemented completely yet
     void Awake()
     {
         if (instance == null)
