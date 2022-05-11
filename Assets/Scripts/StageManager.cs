@@ -35,9 +35,8 @@ public class StageManager : MonoBehaviour
 
     public StageState stageState = StageState.Ready;
     public List<PlayerUIManager> UIManagers;
-    public List<int> activePlayers;
     public int winner = 0;
-
+    List<int> activePlayers;
     void Awake()
     {
         activePlayers = new List<int> {1, 2, 3, 4};
@@ -54,6 +53,12 @@ public class StageManager : MonoBehaviour
     {
         if (stageState == StageState.Play)
         {
+            stageTime -= Time.deltaTime;
+            if (stageTime <= 0)
+            {
+                stageTime = 0;
+                TimeUp();
+            }
             if (Input.GetButtonDown("Start"))
             {
                 stageState = StageState.Pause;
@@ -99,12 +104,20 @@ public class StageManager : MonoBehaviour
     {
         int MostHP()
         {
-            return UIManagers.OrderByDescending(manager => manager.hp).FirstOrDefault()?.player ?? 0;
+            var orderedManagers = UIManagers.OrderByDescending(manager => manager.hp).ToList();
+            if (orderedManagers[0] == null || orderedManagers[0].hp == orderedManagers[1].hp)
+                return -1; // tie
+            else
+                return orderedManagers[0].player;
         }
 
         int MostScore()
         {
-            return UIManagers.OrderByDescending(manager => manager.score).FirstOrDefault()?.player ?? 0;
+            var orderedManagers = UIManagers.OrderByDescending(manager => manager.score).ToList();
+            if (orderedManagers[0] == null || orderedManagers[0].score == orderedManagers[1].score)
+                return -1; // tie
+            else
+                return orderedManagers[0].player;
         }
 
         stageState = StageState.End;
