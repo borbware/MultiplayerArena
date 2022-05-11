@@ -58,6 +58,7 @@ public class StageManager : MonoBehaviour
             {
                 stageState = StageState.Pause;
                 Time.timeScale = 0;
+                AudioListener.pause = true;
             }
         } else if (stageState == StageState.Pause)
         {
@@ -65,6 +66,7 @@ public class StageManager : MonoBehaviour
             {
                 stageState = StageState.Play;
                 Time.timeScale = 1;
+                AudioListener.pause = false;
             }
         }
     }
