@@ -10,7 +10,7 @@ public class tokkaus : MonoBehaviour
     AudioSource walking;
     [SerializeField] AudioClip slap;
     Rigidbody tisrigid;
-    float audiocd = 0;
+    float audiocd = 0, dashspeed = 500000;
     void Start()
     {
         spawnlocation = transform.position;
@@ -28,6 +28,12 @@ public class tokkaus : MonoBehaviour
             
         }
         else{walking.Stop();}
+        if(Input.GetButtonDown("Fire2"))
+        {
+            Debug.Log("podwq");
+            tisrigid.AddForce(transform.forward * Time.deltaTime * dashspeed);
+        }
+       
         
     }
     void OnTriggerEnter(Collider other) 
