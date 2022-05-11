@@ -15,6 +15,8 @@ public class Spawner : MonoBehaviour
 
     GameObject SpawnedObject;
 
+    Vector3[] Positions = new Vector3[4];
+
     float SpawnRate = 2.5f;
 
     int RngSpawn; 
@@ -22,6 +24,11 @@ public class Spawner : MonoBehaviour
     {
         time = StageManager.instance.stageTime;
         Spawntime = time;
+
+        for (int i=0; i<4;i++){
+            Positions[i] = SpawnPoint[i].transform.position;
+            Debug.Log(Positions[i]);
+        }
     }
 
     void Update()
