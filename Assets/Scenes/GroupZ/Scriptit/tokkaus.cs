@@ -10,7 +10,8 @@ public class tokkaus : MonoBehaviour
     AudioSource walking;
     [SerializeField] AudioClip slap;
     Rigidbody tisrigid;
-    float audiocd = 0, dashspeed = 500000;
+    float maxVel = 12f;
+    [SerializeField] float audiocd = 0, dashspeed = 5;
     void Start()
     {
         spawnlocation = transform.position;
@@ -28,11 +29,15 @@ public class tokkaus : MonoBehaviour
             
         }
         else{walking.Stop();}
-        if(Input.GetButtonDown("Fire2"))
+        if(player.GetComponent<Player>().shootInput)
         {
             Debug.Log("podwq");
-            tisrigid.AddForce(transform.forward * Time.deltaTime * dashspeed);
+            tisrigid.AddForce(transform.forward * dashspeed);
         }
+
+        if(tisrigid.velocity.magnitude > maxVel)
+            tisrigid.velocity = tisrigid.velocity.normalized * maxVel;
+
        
         
     }
