@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovingSpotlightPositionScript : MonoBehaviour
 {
 
+    [SerializeField] float damage = 2f;
     public Vector3 PositionOfLight;
 
     // Start is called before the first frame update
@@ -19,5 +20,9 @@ public class MovingSpotlightPositionScript : MonoBehaviour
         gameObject.transform.position = PositionOfLight;
     }
 
-    // OnTriggerStay() Käytä tätä
+    private void OnTriggerStay(Collider other) 
+    {
+        var obj = other.gameObject;
+        obj.SendMessage("Hurt", damage, SendMessageOptions.DontRequireReceiver);
+    }
 }
