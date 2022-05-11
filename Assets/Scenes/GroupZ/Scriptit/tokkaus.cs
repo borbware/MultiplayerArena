@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class tokkaus : MonoBehaviour
 {
-    float pushforce = 6;
+    float pushforce = 7;
     Player player;
-    
     Vector3 spawnlocation;
+    [SerializeField] AudioClip slap;
     void Start()
     {
         spawnlocation = transform.position;
