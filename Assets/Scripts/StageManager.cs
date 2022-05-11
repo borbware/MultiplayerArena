@@ -104,12 +104,20 @@ public class StageManager : MonoBehaviour
     {
         int MostHP()
         {
-            return UIManagers.OrderByDescending(manager => manager.hp).FirstOrDefault()?.player ?? 0;
+            var orderedManagers = UIManagers.OrderByDescending(manager => manager.hp).ToList();
+            if (orderedManagers[0] == null || orderedManagers[0].hp == orderedManagers[1].hp)
+                return -1; // tie
+            else
+                return orderedManagers[0].player;
         }
 
         int MostScore()
         {
-            return UIManagers.OrderByDescending(manager => manager.score).FirstOrDefault()?.player ?? 0;
+            var orderedManagers = UIManagers.OrderByDescending(manager => manager.score).ToList();
+            if (orderedManagers[0] == null || orderedManagers[0].score == orderedManagers[1].score)
+                return -1; // tie
+            else
+                return orderedManagers[0].player;
         }
 
         stageState = StageState.End;
