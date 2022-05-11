@@ -25,7 +25,9 @@ public class tokkaus : MonoBehaviour
         {
             if(audiocd < 0)
             {walking.Play(); audiocd = 1;}
+            
         }
+        else{walking.Stop();}
         
     }
     void OnTriggerEnter(Collider other) 
