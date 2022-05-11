@@ -50,10 +50,12 @@ public class MiddleUIManager : MonoBehaviour
                 Time.timeScale = 0;
                 _winText.enabled = true;
                 var winner = StageManager.instance.winner;
-                if (winner > 0)
-                    _winText.text = $"PLAYER {winner} WINS";
-                else
+                if (winner == 0)
                     _winText.text = "NO ONE WINS";
+                else if (winner == -1)
+                    _winText.text = "TIE";
+                else
+                    _winText.text = $"PLAYER {winner} WINS";
                 StartCoroutine(EndStage());
             }
             if (_continueText.enabled && Input.GetButtonDown("Fire1"))
