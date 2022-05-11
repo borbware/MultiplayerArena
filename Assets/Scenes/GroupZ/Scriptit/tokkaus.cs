@@ -7,15 +7,15 @@ public class tokkaus : MonoBehaviour
     float pushforce = 7;
     Player player;
     Vector3 spawnlocation;
-    AudioSource slap,walkingdownthestreet;
+    AudioSource walking;
+    [SerializeField] AudioClip slap;
     Rigidbody tisrigid;
     float audiocd = 0;
     void Start()
     {
-        walkingdownthestreet = GetComponent<AudioSource>();
         spawnlocation = transform.position;
         player = GetComponent<Player>();
-        slap = GetComponent<AudioSource>();
+        walking = GetComponent<AudioSource>();
         tisrigid = gameObject.GetComponent<Rigidbody>();
     }
     void Update()
@@ -24,7 +24,7 @@ public class tokkaus : MonoBehaviour
         if(tisrigid.velocity.sqrMagnitude > 1.4f)
         {
             if(audiocd < 0)
-            {walkingdownthestreet.Play(0); audiocd = 1;}
+            {walking.Play(); audiocd = 1;}
         }
         
     }
@@ -34,7 +34,7 @@ public class tokkaus : MonoBehaviour
         GameObject toher = other.gameObject;
         if(toher.tag == "Player")
         {
-            slap.Play(0);
+            walking.PlayOneShot(slap);
             var pushother = toher.GetComponent<Rigidbody>();
             pushother.AddForce((toher.transform.position - gameObject.transform.position)
             .normalized * tisrigid.velocity.sqrMagnitude * pushforce);
