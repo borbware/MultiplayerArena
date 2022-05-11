@@ -347,6 +347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7094368707203167839, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
+      propertyPath: time
+      value: 120
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
 --- !u!114 &215262710 stripped
@@ -645,6 +649,7 @@ MonoBehaviour:
   jumpInput: 0
   shootInput: 0
   hurtDisablesInput: 0
+  UIManager: {fileID: 0}
 --- !u!1001 &634272397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -886,6 +891,7 @@ MonoBehaviour:
   jumpInput: 0
   shootInput: 0
   hurtDisablesInput: 0
+  UIManager: {fileID: 0}
 --- !u!114 &771987604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1568,6 +1574,7 @@ MonoBehaviour:
   jumpInput: 0
   shootInput: 0
   hurtDisablesInput: 0
+  UIManager: {fileID: 0}
 --- !u!114 &1087680719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1694,6 +1701,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: stageTime
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: UIManagers.Array.data[0]
       value: 
@@ -2212,6 +2223,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 589
+--- !u!54 &1530760459
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530760455}
+  serializedVersion: 2
+  m_Mass: 0.06
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 94
+  m_CollisionDetection: 0
+--- !u!65 &1530760460
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530760455}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6044478, y: 1.4762894, z: 2.335509}
+  m_Center: {x: 0.0015807152, y: 0.727114, z: 0.2847017}
 --- !u!1 &1542891017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2473,6 +2513,7 @@ MonoBehaviour:
   jumpInput: 0
   shootInput: 0
   hurtDisablesInput: 0
+  UIManager: {fileID: 0}
 --- !u!114 &1810111126
 MonoBehaviour:
   m_ObjectHideFlags: 0
