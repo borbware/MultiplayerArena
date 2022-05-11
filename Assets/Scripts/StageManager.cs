@@ -41,12 +41,10 @@ public class StageManager : MonoBehaviour
             UIManagers[i] = GameObject.Find($"Player{i + 1}UI").GetComponent<PlayerUIManager>();
         }
     }
-
     public void StartPlay()
     {
         stageState = StageState.Play;
     }
-
     public void AddScore(int player, int newScore)
     {
         UIManagers[player - 1].AddScore(newScore);
@@ -78,17 +76,26 @@ public class StageManager : MonoBehaviour
             foreach (var manager in UIManagers)
             {
                 Debug.Log(manager.hp + " " + maxHP);
-                playerWithMostHP = (manager.hp > maxHP) ? manager.player : playerWithMostHP;
+                if (manager.hp > maxHP)
+                {
+                    playerWithMostHP = manager.player;
+                    maxHP = manager.hp;
+                }
             }
             return playerWithMostHP;
         }
+
         int MostScore()
         {
             int playerWithMostScore = 0;
             float maxScore = 0;
             foreach (var manager in UIManagers)
             {
-                playerWithMostScore = (manager.score > maxScore) ? manager.player : playerWithMostScore;
+                if (manager.score > maxScore)
+                {
+                    playerWithMostScore = manager.player;
+                    maxScore = manager.score;
+                }
             }
             return playerWithMostScore;
         }

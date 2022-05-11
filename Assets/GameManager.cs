@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    int ParseJoyNum()
+    int ParseJoyNum() // https://answers.unity.com/questions/1039087/how-to-assign-a-determined-joystick-number-to-each.html
     {
         string joyNumString = "";
         int joyNum = 0;

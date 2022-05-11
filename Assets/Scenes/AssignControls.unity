@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: PRESS BUTTONS TO ASSIGN CONTROLS
       objectReference: {fileID: 0}
+    - target: {fileID: 7094368706249924197, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
+      propertyPath: score
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7094368706835821448, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
