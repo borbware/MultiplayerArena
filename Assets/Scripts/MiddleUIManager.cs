@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WinText : MonoBehaviour
+public class MiddleUIManager : MonoBehaviour
 {
-    Text _winText;
-    Text _continueText;
+    Text _winText, _continueText, _readyText;
     public float _winTime;
     void Start()
     {
@@ -13,6 +12,8 @@ public class WinText : MonoBehaviour
 
         _continueText = transform.Find("ContinueText").gameObject.GetComponent<Text>();
         _continueText.enabled = false;
+
+        _readyText = transform.Find("ReadyText").gameObject.GetComponent<Text>();
     }
 
     void Update()
@@ -45,7 +46,20 @@ public class WinText : MonoBehaviour
             }
         } else if (StageManager.instance.stageState == StageManager.StageState.SetControllers)
         {
-            _continueText.enabled = true;
+            if (!_continueText.enabled)
+                _continueText.enabled = true;
+        } else if (StageManager.instance.stageState == StageManager.StageState.Pause)
+        {
+            if (!_winText.enabled)
+            {
+                _winText.enabled = true;
+                _winText.text = "PAUSE";
+                _readyText.enabled = false;
+            }
+        } else if (StageManager.instance.stageState == StageManager.StageState.Play)
+        {
+            if (_winText.enabled)
+                _winText.enabled = false;
         }
         
     }
