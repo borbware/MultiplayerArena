@@ -24,11 +24,6 @@ public class Shoot : MonoBehaviour
     float ChargeStart;
     float LastChargePress = 0;
 
-
-
-    void Awake(){
-            //UIManagers.Add(UIManager.GetComponent<PlayerUIManager>());
-    }
     private void Start()
     {
         UIManager = StageManager.instance.UIManagers[PlayerIndex - 1];
