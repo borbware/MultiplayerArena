@@ -28,7 +28,7 @@ public class PlayerKnockback : MonoBehaviour
     void OnTriggerEnter(Collider C){
         if(C.gameObject.tag == "Projectile" && KnockedBack == false){
             rb = C.gameObject.GetComponent<Rigidbody>();
-            Debug.Log(C.gameObject.name);
+            //Debug.Log(C.gameObject.name);
             KnockbackDir = rb.velocity.normalized;
             Destroy(C.gameObject);
             KnockedBack = true;
