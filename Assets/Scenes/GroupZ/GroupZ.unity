@@ -482,6 +482,10 @@ PrefabInstance:
       value: Hazardi
       objectReference: {fileID: 0}
     - target: {fileID: 2199625998670850250, guid: 61aa11029ff568d42b7ee1295bff68dc, type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199625998670850250, guid: 61aa11029ff568d42b7ee1295bff68dc, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -747,11 +751,24 @@ PrefabInstance:
       value: DeathPlane
       objectReference: {fileID: 0}
     - target: {fileID: 5125450636443232039, guid: e7416ad2a10312b448dd7b8fe6ec8ae9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125450636443232039, guid: e7416ad2a10312b448dd7b8fe6ec8ae9, type: 3}
       propertyPath: m_TagString
       value: fial
       objectReference: {fileID: 0}
+    - target: {fileID: 5125450636443232040, guid: e7416ad2a10312b448dd7b8fe6ec8ae9, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125450636443232041, guid: e7416ad2a10312b448dd7b8fe6ec8ae9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7416ad2a10312b448dd7b8fe6ec8ae9, type: 3}
+<<<<<<< HEAD
 --- !u!4 &533368937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5125450636443232038, guid: e7416ad2a10312b448dd7b8fe6ec8ae9, type: 3}
@@ -834,6 +851,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50daa816369323b42b56093bb108296f, type: 3}
+=======
+>>>>>>> 5782362b32019207873d799f90582335f0afa386
 --- !u!114 &564576682 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2881440896035964861, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
@@ -858,7 +877,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: stageTime
+<<<<<<< HEAD
       value: 20
+=======
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: loseWhenHPZero
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: loseWhenScoreZero
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: timerZeroWinCondition
+      value: 2
+>>>>>>> 5782362b32019207873d799f90582335f0afa386
       objectReference: {fileID: 0}
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: UIManagers.Array.data[0]
@@ -1655,7 +1690,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2027,6 +2062,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3097546338886608413, guid: 37b0c6e1245e1dd4b87b0dda736c933d, type: 3}
   m_PrefabInstance: {fileID: 1464100143}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &1479366975
 GameObject:
   m_ObjectHideFlags: 0
@@ -2076,6 +2112,8 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7094368706249924196, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
   m_PrefabInstance: {fileID: 190294459}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> 5782362b32019207873d799f90582335f0afa386
 --- !u!1 &1541474441
 GameObject:
   m_ObjectHideFlags: 0
@@ -2182,7 +2220,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2387,7 +2425,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2595,7 +2633,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0

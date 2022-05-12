@@ -8,6 +8,7 @@ public class hazardi : MonoBehaviour
     [SerializeField] bool lerping, activated;
     Rigidbody wall1, wall2, wall3, wall4;
     [SerializeField] int rotationTime = 480;
+    public int shotPower = 3000;
 
     void Start()
     {
@@ -47,7 +48,8 @@ public class hazardi : MonoBehaviour
 
         // Jos aikaa jäljellä vaan kuudesosa alkup. ajasta
         if (time < StageManager.instance.stageTime/6) {
-            rotationTime = 45;
+            rotationTime = 60;
+            shotPower = 8000;
         }
         // Jos aikaa jäljellä vaan viidesosa alkup. ajasta
         else if (time < StageManager.instance.stageTime/5) {
@@ -55,15 +57,18 @@ public class hazardi : MonoBehaviour
             wall2.constraints = RigidbodyConstraints.None;
             wall3.constraints = RigidbodyConstraints.None;
             wall4.constraints = RigidbodyConstraints.None;
-            rotationTime = 60;
+            rotationTime = 90;
+            shotPower = 6000;
         }
         // Jos aikaa jäljellä vaan neljäsosa alkup. ajasta
         else if (time < StageManager.instance.stageTime/4) {
-            rotationTime = 90;
+            rotationTime = 120;
+            shotPower = 5000;
         }
         // Jos aikaa jäljellä vaan kolmasosa alkup. ajasta
         else if (time < StageManager.instance.stageTime/3) {
-            rotationTime = 120;
+            rotationTime = 180;
+            shotPower = 4000;
         }
         // Jos puolet ajasta jäljellä
         else if (time < StageManager.instance.stageTime/2) {
