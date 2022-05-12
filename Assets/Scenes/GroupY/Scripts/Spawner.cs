@@ -19,15 +19,23 @@ public class Spawner : MonoBehaviour
 
     GameObject SpawnedObject;
 
+    public float StartTime;
+
+    float SpawnerRate;
+
     Vector3[] Positions = new Vector3[4];
 
-    float SpawnRate = 2.5f;
+    float[] SpawnRates = {1.3f, 1.5f, 2f, 2.8f, 3.6f, 4.5f, 5.5f, 6.5f};
+    float[] Theresholds = {15f, 30f, 45f ,60f, 75f, 90f, 105f, 121f};
+
+    float SpawnRate = 6.5f;
 
     int RngSpawn; 
     void Start()
     {
+        StartTime = Time.time;
         time = StageManager.instance.stageTime;
-        Spawntime = time;
+        Spawntime = time + (SpawnRate - 3.5f);
 
         for (int i=0; i<4;i++){
             Positions[i] = SpawnPoint[i].transform.position;
@@ -46,8 +54,10 @@ public class Spawner : MonoBehaviour
             time -= Time.deltaTime;
             if (time < (Spawntime - SpawnRate)){
                 Spawntime = time;
-
+                SpawnRate = GetSpawnRate();
                 PatternSpawn = Random.Range(0, 20);
+
+                Debug.Log(SpawnRate);
 
                 if (PatternSpawn < 7){
                     RngSpawn = Random.Range(0, 4);
@@ -63,6 +73,17 @@ public class Spawner : MonoBehaviour
                     QuadPattern();
             }
         }
+    }
+
+    float GetSpawnRate(){
+        float RetVal = 6.5f;
+        for (int j = 0; j < SpawnRates.Length; j++){
+            if(StageManager.instance.stageTime <  Theresholds[j]){
+                RetVal = SpawnRates[j];
+                break;
+            }
+        }
+        return RetVal;
     }
 
     void QuadPattern(){
