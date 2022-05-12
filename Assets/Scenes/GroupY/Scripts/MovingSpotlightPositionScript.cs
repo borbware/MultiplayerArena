@@ -5,24 +5,36 @@ using UnityEngine;
 public class MovingSpotlightPositionScript : MonoBehaviour
 {
 
-    [SerializeField] float damage = 2f;
-    public Vector3 PositionOfLight;
+    
+    public Vector3 InitialPositionOfLight;
+
+    private Vector3 ValueOne;
+    private Vector3 ValueTwo;
+
+    private Vector3 RandomVector;
+
+    Rigidbody rb;
+
+    float moveSpeed = 0.01f;
 
     // Start is called before the first frame update
     void Start()
     {
-        PositionOfLight = new Vector3(0f, 7f, 0f);
+        InitialPositionOfLight = new Vector3(0f, 7f, 0f);
+        gameObject.transform.position = InitialPositionOfLight;
+
+        rb = GetComponent<Rigidbody>();
+
+        ValueOne = new Vector3(4f, 0f, -4f);
+        ValueTwo = new Vector3(2f, 0f, -2f);
+        RandomVector = new Vector3(Mathf.PingPong(2f, -4f), Mathf.PingPong(1f, 2f));
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position = PositionOfLight;
+        rb.AddForce(RandomVector, ForceMode.Impulse);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, moveSpeed);
     }
 
-    private void OnTriggerStay(Collider other) 
-    {
-        var obj = other.gameObject;
-        obj.SendMessage("Hurt", damage, SendMessageOptions.DontRequireReceiver);
-    }
 }
