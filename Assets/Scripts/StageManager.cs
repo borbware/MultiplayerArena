@@ -35,19 +35,41 @@ public class StageManager : MonoBehaviour
 
     public StageState stageState = StageState.Ready;
     public List<PlayerUIManager> UIManagers;
-    public List<int> activePlayers;
     public int winner = 0;
-
+    List<int> activePlayers;
     void Awake()
     {
         activePlayers = new List<int> {1, 2, 3, 4};
         instance = this;
-    }
-    void Start()
-    {
         for (int i = 0; i < 4; i++)
         {
-            UIManagers[i] = GameObject.Find($"Player{i + 1}UI").GetComponent<PlayerUIManager>();
+            UIManagers.Add(GameObject.Find($"Player{i + 1}UI").GetComponent<PlayerUIManager>());
+        }
+    }
+    void Update()
+    {
+        if (stageState == StageState.Play)
+        {
+            stageTime -= Time.deltaTime;
+            if (stageTime <= 0)
+            {
+                stageTime = 0;
+                TimeUp();
+            }
+            if (Input.GetButtonDown("Start"))
+            {
+                stageState = StageState.Pause;
+                Time.timeScale = 0;
+                AudioListener.pause = true;
+            }
+        } else if (stageState == StageState.Pause)
+        {
+            if (Input.GetButtonDown("Start"))
+            {
+                stageState = StageState.Play;
+                Time.timeScale = 1;
+                AudioListener.pause = false;
+            }
         }
     }
     public void StartPlay()
@@ -75,17 +97,22 @@ public class StageManager : MonoBehaviour
         stageState = StageState.End;
         GameManager.instance.WinPlayer(player);
     }
-
     public void TimeUp()
     {
         int MostHP()
         {
-            return UIManagers.OrderByDescending(manager => manager.hp).FirstOrDefault()?.player ?? 0;
+            var topPlayers = UIManagers.GroupBy(p => p.hp).OrderByDescending(g => g.Key).FirstOrDefault();
+            if (topPlayers?.Count() == 1)
+                return topPlayers.First().player;
+            return -1; // tie
         }
 
         int MostScore()
         {
-            return UIManagers.OrderByDescending(manager => manager.score).FirstOrDefault()?.player ?? 0;
+            var topPlayers = UIManagers.GroupBy(p => p.score).OrderByDescending(g => g.Key).FirstOrDefault();
+            if (topPlayers?.Count() == 1)
+                return topPlayers.First().player;
+            return -1; // tie
         }
 
         stageState = StageState.End;
@@ -97,7 +124,6 @@ public class StageManager : MonoBehaviour
             WinPlayer(0);
 
     }
-
     public void ShowWins()
     {
         foreach (var manager in UIManagers)
