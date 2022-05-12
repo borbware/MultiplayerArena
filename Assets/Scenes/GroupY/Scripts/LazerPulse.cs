@@ -30,7 +30,6 @@ public class LazerPulse : MonoBehaviour
             new GradientAlphaKey[] { new GradientAlphaKey(BaseCol.a, 0.0f), 
             new GradientAlphaKey(BaseCol.a, 1.0f) }
         );
-
         gradientCol2.SetKeys(
             new GradientColorKey[] { new GradientColorKey(PulseColor, 0.0f), 
             new GradientColorKey(PulseColor, 1.0f) },
@@ -40,14 +39,8 @@ public class LazerPulse : MonoBehaviour
         lr.colorGradient = gradientCol1;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //  float t = Mathf.PingPong(Time.time,0.1f);
-        // GradientColor = Color.Lerp(BaseCol, PulseColor, t);
-
-        // lr.colorGradient = gradientCol1;
-
         if(Time.time-PulseRate > LastPulse){
             LastPulse = Time.time;
             if(CurState != 1){

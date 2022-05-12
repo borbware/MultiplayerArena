@@ -45,10 +45,10 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
-        SpawnLaser();
+        SpawnLasers();
     }
 
-    void SpawnLaser(){
+    void SpawnLasers(){
         if (StageManager.instance.stageState == StageManager.StageState.Play)
         {
             time -= Time.deltaTime;
@@ -87,20 +87,27 @@ public class Spawner : MonoBehaviour
     }
 
     void QuadPattern(){
-        for (int j = 0; j < 4; j++){
-            Instantiate(LaserPatterns[0], Positions[j], 
-            Quaternion.Euler(0, Rota[j], 0));
+        if(StageManager.instance.stageTime <= 60){
+            for (int j = 0; j < 4; j++){
+                Instantiate(LaserPatterns[0], Positions[j], 
+                Quaternion.Euler(0, Rota[j], 0));
+            }
+        } else{
+            DualPattern();
         }
     }
 
     void TripplePattern(){
-        RngSpawn = Random.Range(0, 4);
-
-        for (int j = 0; j < 3; j++){
-            if (RngSpawn + j > 3){
+        if(StageManager.instance.stageTime <= 75){
+            RngSpawn = Random.Range(0, 4);
+            for (int j = 0; j < 3; j++){
+                if (RngSpawn + j > 3){
                 RngSpawn -= 3;}
-            Instantiate(LaserPatterns[0], Positions[RngSpawn + j], 
-            Quaternion.Euler(0, Rota[RngSpawn + j], 0));
+                Instantiate(LaserPatterns[0], Positions[RngSpawn + j], 
+                Quaternion.Euler(0, Rota[RngSpawn + j], 0));
+            }
+        } else {
+            DualPattern2();
         }
     }
 
