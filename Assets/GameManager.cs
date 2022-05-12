@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public List<string> stages;
     int currentStageIndex = 0;
     List<int> assignedControllers;
-    int numberOfPlayers = 4; // not implemented completely yet
+    public int numberOfPlayers = 4; // not implemented completely yet
     void Awake()
     {
         if (instance == null)

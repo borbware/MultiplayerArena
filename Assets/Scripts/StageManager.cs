@@ -32,18 +32,31 @@ public class StageManager : MonoBehaviour
     public bool showScore = true;
     public bool showTimer = true;
     [Header("Do not touch")]
-
     public StageState stageState = StageState.Ready;
     public List<PlayerUIManager> UIManagers;
+    public List<GameObject> playerGameObjects;
     public int winner = 0;
     List<int> activePlayers;
     void Awake()
     {
-        activePlayers = new List<int> {1, 2, 3, 4};
         instance = this;
-        for (int i = 0; i < 4; i++)
+        activePlayers = new List<int>();
+    }
+    void Start()
+    {
+        for (int i = 0; i < GameManager.instance.numberOfPlayers; i++)
         {
-            UIManagers.Add(GameObject.Find($"Player{i + 1}UI").GetComponent<PlayerUIManager>());
+            activePlayers.Add(i + 1);
+        }
+        for (int i = UIManagers.Count - 1; i >= 0; i--)
+        {
+            if (UIManagers.Count > GameManager.instance.numberOfPlayers)
+            {
+                Destroy(UIManagers[i].gameObject);
+                UIManagers.RemoveAt(i);
+                Destroy(playerGameObjects[i]);
+                playerGameObjects.RemoveAt(i);
+            }
         }
     }
     void Update()
@@ -87,6 +100,7 @@ public class StageManager : MonoBehaviour
     public void LosePlayer(int player)
     {
         activePlayers.Remove(player);
+        Destroy(playerGameObjects[player - 1]);
         if (activePlayers.Count == 1)
             WinPlayer(activePlayers[0]);
     }
