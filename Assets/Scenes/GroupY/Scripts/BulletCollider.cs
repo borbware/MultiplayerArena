@@ -18,4 +18,8 @@ public class BulletCollider : MonoBehaviour
     void OnCollisionEnter(Collision C){
         C.gameObject.SendMessage("Hurt", damage, SendMessageOptions.DontRequireReceiver);
     }
+
+    void OnTriggerEnter(Collider C){
+        C.gameObject.SendMessage("Hurt", damage, SendMessageOptions.DontRequireReceiver);
+    }
 }
