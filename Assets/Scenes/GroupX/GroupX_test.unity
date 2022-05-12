@@ -3005,7 +3005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPeriod: 0.9
-  shootForce: 4387
+  shootForce: 10000
   bullet: {fileID: 8581939185569562706, guid: cc6314edba6be564686473507df40bf8, type: 3}
 --- !u!114 &519241870
 MonoBehaviour:
@@ -4896,7 +4896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPeriod: 0.9
-  shootForce: 4387
+  shootForce: 10000
   bullet: {fileID: 8581939185569562706, guid: cc6314edba6be564686473507df40bf8, type: 3}
 --- !u!1 &772823012
 GameObject:
@@ -7669,7 +7669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPeriod: 0.9
-  shootForce: 4387
+  shootForce: 10000
   bullet: {fileID: 8581939185569562706, guid: cc6314edba6be564686473507df40bf8, type: 3}
 --- !u!1 &1110397282
 GameObject:
@@ -8337,6 +8337,26 @@ PrefabInstance:
       propertyPath: UIManagers.Array.data[3]
       value: 
       objectReference: {fileID: 1901293081}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 519241862}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1810111121}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 771987597}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: 1087680713}
     - target: {fileID: 3733942775869018905, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -10865,7 +10885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPeriod: 0.9
-  shootForce: 4387
+  shootForce: 10000
   bullet: {fileID: 8581939185569562706, guid: cc6314edba6be564686473507df40bf8, type: 3}
 --- !u!114 &1810111128
 MonoBehaviour:
@@ -12212,7 +12232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7447163605590411544, guid: 907fd825e3988774caab4234b943bf44, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.046
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 7447163605590411544, guid: 907fd825e3988774caab4234b943bf44, type: 3}
       propertyPath: m_LocalPosition.z
