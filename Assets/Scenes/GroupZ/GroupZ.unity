@@ -549,7 +549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: stageTime
-      value: 10
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: UIManagers.Array.data[0]
@@ -922,7 +922,7 @@ GameObject:
   - component: {fileID: 914682410}
   - component: {fileID: 914682409}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Pole1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1130,7 +1130,7 @@ GameObject:
   - component: {fileID: 1403214156}
   - component: {fileID: 1403214155}
   m_Layer: 0
-  m_Name: Cylinder (3)
+  m_Name: Pole4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1226,7 +1226,7 @@ GameObject:
   - component: {fileID: 1447155050}
   - component: {fileID: 1447155049}
   m_Layer: 0
-  m_Name: Cylinder (1)
+  m_Name: Pole2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1782,7 +1782,7 @@ GameObject:
   - component: {fileID: 1737791135}
   - component: {fileID: 1737791134}
   m_Layer: 0
-  m_Name: Cylinder (2)
+  m_Name: Pole3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

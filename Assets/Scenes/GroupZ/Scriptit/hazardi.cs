@@ -45,9 +45,11 @@ public class hazardi : MonoBehaviour
         }
         time -= Time.deltaTime;
 
+        // Jos aikaa jäljellä vaan kuudesosa alkup. ajasta
         if (time < StageManager.instance.stageTime/6) {
-            rotationTime = 30;
+            rotationTime = 45;
         }
+        // Jos aikaa jäljellä vaan viidesosa alkup. ajasta
         else if (time < StageManager.instance.stageTime/5) {
             wall1.constraints = RigidbodyConstraints.None;
             wall2.constraints = RigidbodyConstraints.None;
@@ -55,14 +57,17 @@ public class hazardi : MonoBehaviour
             wall4.constraints = RigidbodyConstraints.None;
             rotationTime = 60;
         }
+        // Jos aikaa jäljellä vaan neljäsosa alkup. ajasta
         else if (time < StageManager.instance.stageTime/4) {
+            rotationTime = 90;
+        }
+        // Jos aikaa jäljellä vaan kolmasosa alkup. ajasta
+        else if (time < StageManager.instance.stageTime/3) {
             rotationTime = 120;
         }
-        else if (time < StageManager.instance.stageTime/3) {
-            rotationTime = 240;
-        }
+        // Jos puolet ajasta jäljellä
         else if (time < StageManager.instance.stageTime/2) {
-            rotationTime = 480;
+            rotationTime = 240;
         }
     }
 }
