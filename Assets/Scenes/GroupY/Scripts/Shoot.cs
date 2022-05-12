@@ -62,7 +62,6 @@ public class Shoot : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(UIManager.score);
         if (desiredShoot && UIManager.score > 0)
         {
             desiredShoot = false;
@@ -75,6 +74,7 @@ public class Shoot : MonoBehaviour
                     transform.position + transform.forward * 0.7f,
                     Quaternion.identity
                 );
+                Destroy(newBullet, 5);
                 newBullet.GetComponent<Rigidbody>().AddForce(
                     transform.forward * shootForce * Time.fixedDeltaTime);
                 nextShootTime = Time.time + shootPeriod;

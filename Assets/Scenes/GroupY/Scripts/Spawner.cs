@@ -57,8 +57,6 @@ public class Spawner : MonoBehaviour
                 SpawnRate = GetSpawnRate();
                 PatternSpawn = Random.Range(0, 20);
 
-                Debug.Log(SpawnRate);
-
                 if (PatternSpawn < 7){
                     RngSpawn = Random.Range(0, 4);
                     SpawnedObject = Instantiate(LaserPatterns[0], Positions[RngSpawn], 

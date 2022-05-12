@@ -24,16 +24,17 @@ public class PlayerKnockback : MonoBehaviour
     void FixedUpdate(){
         if (KnockedBack == true){
             destRB.gameObject.GetComponent<Rigidbody>().AddForce(
-        KnockbackDir * 1000 * Time.fixedDeltaTime);
+        KnockbackDir * 1200 * Time.fixedDeltaTime);
         }
     }
 
     
     void OnCollisionEnter(Collision C){
-        Debug.Log(C.gameObject.tag);
         if(C.gameObject.tag == "Projectile" && KnockedBack == false){
             rb = C.gameObject.GetComponent<Rigidbody>();
             KnockbackDir = rb.transform.forward;
+            Debug.Log(KnockbackDir);
+            Destroy(C.gameObject);
             KnockedBack = true;
             Invoke("CancelKnockback", 0.2f);
         }

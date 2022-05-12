@@ -16,11 +16,6 @@ public class BulletCollider : MonoBehaviour
     }
     [SerializeField] float damage = 10f;
     void OnCollisionEnter(Collision C){
-        Debug.Log(C.gameObject.tag);
         C.gameObject.SendMessage("Hurt", damage, SendMessageOptions.DontRequireReceiver);
-        if(C.gameObject.tag == "Player")
-        C.gameObject.GetComponent<Rigidbody>().AddForce(
-        KnockbackDir * 5);
-            Destroy(gameObject);
     }
 }
