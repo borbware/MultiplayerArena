@@ -10,7 +10,7 @@ public class TeleportSpawner : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        if (timer <= 0)
+        if (timer <= 0 && StageManager.instance.stageState == StageManager.StageState.Play)
         {
             Instantiate(teleportPrefab, new Vector3(
                 Random.Range(3.5f, -3.5f),
