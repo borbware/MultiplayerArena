@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,39 +16,18 @@ public class MiddleUIManager : MonoBehaviour
 
         _readyText = transform.Find("ReadyText").gameObject.GetComponent<Text>();
     }
-
     void Update()
     {
         if (StageManager.instance == null)
             return;
-        if (StageManager.instance.stageState == StageManager.StageState.End)
+
+        if (StageManager.instance.stageState == StageManager.StageState.Ready)
         {
-            if (!_winText.enabled)
-            {
-                _winText.enabled = true;
-                _winTime = Time.time;
-                var winner = StageManager.instance.winner;
-                if (winner > 0)
-                    _winText.text = $"PLAYER {winner} WINS";
-                else
-                    _winText.text = "NO ONE WINS";
-            }
-            if (Time.time > _winTime + 3f)
-            {
-                if (!_continueText.enabled)
-                {
-                    _continueText.enabled = true;
-                    StageManager.instance.ShowWins();
-                }
-                if (Input.GetButtonDown("Fire1"))
-                {
-                    GameManager.instance.NextStage();
-                }
-            }
-        } else if (StageManager.instance.stageState == StageManager.StageState.SetControllers)
+        }
+        else if (StageManager.instance.stageState == StageManager.StageState.Play)
         {
-            if (!_continueText.enabled)
-                _continueText.enabled = true;
+            if (_winText.enabled)
+                _winText.enabled = false;
         } else if (StageManager.instance.stageState == StageManager.StageState.Pause)
         {
             if (!_winText.enabled)
@@ -56,11 +36,38 @@ public class MiddleUIManager : MonoBehaviour
                 _winText.text = "PAUSE";
                 _readyText.enabled = false;
             }
-        } else if (StageManager.instance.stageState == StageManager.StageState.Play)
+        } else if (StageManager.instance.stageState == StageManager.StageState.End)
         {
-            if (_winText.enabled)
-                _winText.enabled = false;
-        }
+            if (!_winText.enabled)
+            {
+                IEnumerator EndStage()
+                {
+                    yield return new WaitForSecondsRealtime(2f);
+                    _continueText.enabled = true;
+                    StageManager.instance.ShowWins();
+                }
+
+                Time.timeScale = 0;
+                _winText.enabled = true;
+                var winner = StageManager.instance.winner;
+                if (winner == 0)
+                    _winText.text = "NO ONE WINS";
+                else if (winner == -1)
+                    _winText.text = "TIE";
+                else
+                    _winText.text = $"PLAYER {winner} WINS";
+                StartCoroutine(EndStage());
+            }
+            if (_continueText.enabled && Input.GetButtonDown("Fire1"))
+            {
+                GameManager.instance.NextStage();
+                Time.timeScale = 1;
+            }
+        } else if (StageManager.instance.stageState == StageManager.StageState.SetControllers)
+        {
+            if (!_continueText.enabled)
+                _continueText.enabled = true;
+        } 
         
     }
 }

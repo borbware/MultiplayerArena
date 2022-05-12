@@ -25,11 +25,13 @@ public class PlayerUIManager : MonoBehaviour
         winCountObj = transform.Find("WinCount").gameObject;
         winCountText = winCountObj.GetComponent<Text>();
 
+    }
+    void Start() {
+
         HideWins();
         AddHP(0);
         AddScore(0);
-    }
-    void Start() {
+
         if (!StageManager.instance.showHP)
         {
             var hpObj = transform.Find("HP").gameObject;
@@ -59,7 +61,6 @@ public class PlayerUIManager : MonoBehaviour
     }
     public void ShowWins()
     {
-        Debug.Log("sadf");
         var wins = GameManager.instance.players[player - 1].wins;
         winCountText.text = $"{wins} WINS";
         winCountText.enabled = true;
