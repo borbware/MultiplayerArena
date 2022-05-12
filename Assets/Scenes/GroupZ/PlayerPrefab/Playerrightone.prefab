@@ -249,7 +249,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!82 &2472453220398747088
 AudioSource:
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slap: {fileID: 8300000, guid: 0c3b1dfe1cd93244691bb25935650910, type: 3}
   audiocd: 0
-  dashspeed: 5
+  dashspeed: 750
 --- !u!114 &2472453220398747094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 12
   maxAcceleration: 12
-  jumpHeight: 1
+  jumpHeight: 2
 --- !u!114 &2472453220398747093
 MonoBehaviour:
   m_ObjectHideFlags: 0
