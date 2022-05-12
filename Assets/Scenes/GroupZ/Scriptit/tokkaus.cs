@@ -63,7 +63,7 @@ public class tokkaus : MonoBehaviour
         GameObject toher = other.gameObject;
         if(toher.tag == "Player")
         {
-            Debug.Log("triggering");
+            // Debug.Log("triggering");
             walking.PlayOneShot(slap);
             var pushother = toher.GetComponent<Rigidbody>();
             var dist = toher.transform.position - gameObject.transform.position;
@@ -73,7 +73,7 @@ public class tokkaus : MonoBehaviour
         }    
         if(toher.tag == "fial")
         {
-            Debug.Log(toher.tag);
+            // Debug.Log(toher.tag);
             if(player.UIManager.score == 0)
             {Destroy(gameObject);}
             else

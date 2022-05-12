@@ -24,7 +24,7 @@ public class hazardi : MonoBehaviour
     void FixedUpdate()
     {
         // When hazard comes up
-        if (time < StageManager.instance.stageTime/1.5f && activated != true) {
+        if (StageManager.instance.stageTime < time/1.5f && activated != true) {
             activated = true;
             lerping = true;
             t = 0;
@@ -44,15 +44,14 @@ public class hazardi : MonoBehaviour
             transform.GetChild(0).GetComponent<Collider>().enabled = true;
             transform.Rotate(Vector3.Lerp(new Vector3(0,0,0),new Vector3(0,360,0), t/(rotationTime)), Space.Self);
         }
-        time -= Time.deltaTime;
 
         // Jos aikaa jäljellä vaan kuudesosa alkup. ajasta
-        if (time < StageManager.instance.stageTime/6) {
+        if (StageManager.instance.stageTime < time/6) {
             rotationTime = 60;
             shotPower = 8000;
         }
         // Jos aikaa jäljellä vaan viidesosa alkup. ajasta
-        else if (time < StageManager.instance.stageTime/5) {
+        else if (StageManager.instance.stageTime < time/5) {
             wall1.constraints = RigidbodyConstraints.None;
             wall2.constraints = RigidbodyConstraints.None;
             wall3.constraints = RigidbodyConstraints.None;
@@ -61,17 +60,17 @@ public class hazardi : MonoBehaviour
             shotPower = 6000;
         }
         // Jos aikaa jäljellä vaan neljäsosa alkup. ajasta
-        else if (time < StageManager.instance.stageTime/4) {
+        else if (StageManager.instance.stageTime < time/4) {
             rotationTime = 120;
             shotPower = 5000;
         }
         // Jos aikaa jäljellä vaan kolmasosa alkup. ajasta
-        else if (time < StageManager.instance.stageTime/3) {
+        else if (StageManager.instance.stageTime < time/3) {
             rotationTime = 180;
             shotPower = 4000;
         }
         // Jos puolet ajasta jäljellä
-        else if (time < StageManager.instance.stageTime/2) {
+        else if (StageManager.instance.stageTime < time/2) {
             rotationTime = 240;
         }
     }
