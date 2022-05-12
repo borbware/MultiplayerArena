@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class hazardishot : MonoBehaviour
 {
-    [SerializeField] int shotPower = 3000;
+    int shotPower;
 
     // Hazard's firing effect
     private void OnTriggerStay(Collider col) {
@@ -19,6 +19,6 @@ public class hazardishot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        shotPower = transform.GetComponentInParent<hazardi>().shotPower;
     }
 }
