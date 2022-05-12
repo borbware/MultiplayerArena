@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Death
   - Projectile
+  - fial
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - FireLayer
   - Water
   - UI
   - 

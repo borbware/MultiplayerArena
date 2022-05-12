@@ -14,6 +14,7 @@ public class tokkaus : MonoBehaviour
     float liftUp = 25f;
     [SerializeField] float audiocd = 0, dashspeed = 5;
     bool canDash = true;
+
     void Start()
     {
         spawnlocation = transform.position;
@@ -72,6 +73,7 @@ public class tokkaus : MonoBehaviour
         }    
         if(toher.tag == "fial")
         {
+            //Debug.Log(toher.tag);
             if(player.UIManager.score == 0)
             {Destroy(gameObject);}
             else
