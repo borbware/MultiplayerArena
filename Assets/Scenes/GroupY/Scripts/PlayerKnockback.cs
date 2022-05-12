@@ -6,6 +6,8 @@ public class PlayerKnockback : MonoBehaviour
 {
     bool KnockedBack;
 
+    float[] KnockDir = {1f,1f};
+
     Rigidbody rb;
     Rigidbody destRB;
     Vector3 KnockbackDir;
@@ -23,8 +25,9 @@ public class PlayerKnockback : MonoBehaviour
 
     void FixedUpdate(){
         if (KnockedBack == true){
-            destRB.gameObject.GetComponent<Rigidbody>().AddForce(
-        KnockbackDir * 1200 * Time.fixedDeltaTime);
+            //destRB.gameObject.GetComponent<Rigidbody>().AddForce(
+        //KnockbackDir * 1200 * Time.fixedDeltaTime);
+        //gameObject.transform.position
         }
     }
 
@@ -33,6 +36,8 @@ public class PlayerKnockback : MonoBehaviour
         if(C.gameObject.tag == "Projectile" && KnockedBack == false){
             rb = C.gameObject.GetComponent<Rigidbody>();
             KnockbackDir = rb.transform.forward;
+            KnockDir[0] = -(transform.position.x - C.gameObject.transform.position.x);
+            KnockDir[1] = -(transform.position.y - C.gameObject.transform.position.y);
             Debug.Log(KnockbackDir);
             Destroy(C.gameObject);
             KnockedBack = true;

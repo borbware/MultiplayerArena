@@ -5,7 +5,8 @@ using UnityEngine;
 public class MovingSpotlightPositionScript : MonoBehaviour
 {
     public GameObject movingSpotlightPrefab;
-    public Vector3 initialPositionOfLight = new Vector3(0f, 8.5f, 0f);
+    bool HasSpawned = false;
+    //public Vector3 initialPositionOfLight = new Vector3(0f, 8.5f, 0f);
 
 
     // Start is called before the first frame update
@@ -18,18 +19,16 @@ public class MovingSpotlightPositionScript : MonoBehaviour
     void Update()
     {
 
-        if (StageManager.instance.stageState == StageManager.StageState.Play && StageManager.instance.stageTime == 115f) {
-
+        if (StageManager.instance.stageTime <= 115f && HasSpawned == false) {
+            HasSpawned = true;
             SpotLightSpawn();
-
         }
         
     }
 
     void SpotLightSpawn() 
     {
-
-            Instantiate(movingSpotlightPrefab, initialPositionOfLight, Quaternion.identity);
+            Instantiate(movingSpotlightPrefab, transform.position, Quaternion.identity);
  
     }
 
