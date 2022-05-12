@@ -666,7 +666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5802623014578938012, guid: 61aa11029ff568d42b7ee1295bff68dc, type: 3}
       propertyPath: rotationTime
-      value: 480
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6390018468646492388, guid: 61aa11029ff568d42b7ee1295bff68dc, type: 3}
       propertyPath: m_Enabled
@@ -993,7 +993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: stageTime
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: UIManagers.Array.data[0]
@@ -1394,14 +1394,6 @@ PrefabInstance:
     - target: {fileID: 412958, guid: 50daa816369323b42b56093bb108296f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11498850, guid: 50daa816369323b42b56093bb108296f, type: 3}
-      propertyPath: Duration
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 19810244, guid: 50daa816369323b42b56093bb108296f, type: 3}
-      propertyPath: CollisionModule.colliderForce
-      value: 450
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50daa816369323b42b56093bb108296f, type: 3}
