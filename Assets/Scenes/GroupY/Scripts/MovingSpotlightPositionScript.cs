@@ -15,7 +15,8 @@ public class MovingSpotlightPositionScript : MonoBehaviour
     private Vector3 pos4 = new Vector3(0f, 8.5f, -5f);
 
     private float lightSpeed = 2f;
-    private float lerpTime = 0f;
+    private float elapsedTime;
+    private float lerpDuration = 4f;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,7 @@ public class MovingSpotlightPositionScript : MonoBehaviour
     void Update()
     {
 
-        if (StageManager.instance.stageTime <= 115f && HasSpawned == false) {
+        if (StageManager.instance.stageTime <= 115.0f && HasSpawned == false) {
             HasSpawned = true;
             SpotLightSpawnAndMove();
         }
@@ -38,10 +39,11 @@ public class MovingSpotlightPositionScript : MonoBehaviour
     {
             movingLight = Instantiate(movingSpotlightPrefab, initialPositionOfLight, Quaternion.Euler(90f, 0f, 0f));
 
-            if (StageManager.instance.stageTime > 0.0f && lerpTime < 1f) {
+            if (StageManager.instance.stageTime > 0.0f && StageManager.instance.stageTime <= 110.0f && lerpDuration < 1f) {
                 
-                lerpTime += Time.deltaTime * lightSpeed;
-                movingLight.transform.position = Vector3.Lerp(initialPositionOfLight, pos1, lerpTime);
+                
+                movingLight.transform.position = Vector3.Lerp(initialPositionOfLight, pos1, elapsedTime / lerpDuration);
+                elapsedTime += Time.deltaTime * lightSpeed;
                 
             }
             
