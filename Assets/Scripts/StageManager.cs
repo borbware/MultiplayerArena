@@ -32,32 +32,48 @@ public class StageManager : MonoBehaviour
     public bool showScore = true;
     public bool showTimer = true;
     [Header("Do not touch")]
-
     public StageState stageState = StageState.Ready;
     public List<PlayerUIManager> UIManagers;
-    public List<int> activePlayers;
+    public List<GameObject> playerGameObjects;
     public int winner = 0;
-
+    List<int> activePlayers;
     void Awake()
     {
-        activePlayers = new List<int> {1, 2, 3, 4};
         instance = this;
+        activePlayers = new List<int>();
     }
     void Start()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < GameManager.instance.numberOfPlayers; i++)
         {
-            UIManagers[i] = GameObject.Find($"Player{i + 1}UI").GetComponent<PlayerUIManager>();
+            activePlayers.Add(i + 1);
+        }
+        for (int i = UIManagers.Count - 1; i >= 0; i--)
+        {
+            if (UIManagers.Count > GameManager.instance.numberOfPlayers)
+            {
+                Destroy(UIManagers[i].gameObject);
+                UIManagers.RemoveAt(i);
+                Destroy(playerGameObjects[i]);
+                playerGameObjects.RemoveAt(i);
+            }
         }
     }
     void Update()
     {
         if (stageState == StageState.Play)
         {
+            stageTime -= Time.deltaTime;
+            if (stageTime <= 0)
+            {
+                stageTime = 0;
+                TimeUp();
+            }
             if (Input.GetButtonDown("Start"))
             {
                 stageState = StageState.Pause;
                 Time.timeScale = 0;
+                AudioListener.pause = true;
             }
         } else if (stageState == StageState.Pause)
         {
@@ -65,6 +81,7 @@ public class StageManager : MonoBehaviour
             {
                 stageState = StageState.Play;
                 Time.timeScale = 1;
+                AudioListener.pause = false;
             }
         }
     }
@@ -83,6 +100,7 @@ public class StageManager : MonoBehaviour
     public void LosePlayer(int player)
     {
         activePlayers.Remove(player);
+        Destroy(playerGameObjects[player - 1]);
         if (activePlayers.Count == 1)
             WinPlayer(activePlayers[0]);
     }
@@ -97,12 +115,18 @@ public class StageManager : MonoBehaviour
     {
         int MostHP()
         {
-            return UIManagers.OrderByDescending(manager => manager.hp).FirstOrDefault()?.player ?? 0;
+            var topPlayers = UIManagers.GroupBy(p => p.hp).OrderByDescending(g => g.Key).FirstOrDefault();
+            if (topPlayers?.Count() == 1)
+                return topPlayers.First().player;
+            return -1; // tie
         }
 
         int MostScore()
         {
-            return UIManagers.OrderByDescending(manager => manager.score).FirstOrDefault()?.player ?? 0;
+            var topPlayers = UIManagers.GroupBy(p => p.score).OrderByDescending(g => g.Key).FirstOrDefault();
+            if (topPlayers?.Count() == 1)
+                return topPlayers.First().player;
+            return -1; // tie
         }
 
         stageState = StageState.End;

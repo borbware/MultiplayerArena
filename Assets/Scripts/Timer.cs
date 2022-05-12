@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] float time;
     Text _text;
     void Start()
     {
@@ -13,8 +12,7 @@ public class Timer : MonoBehaviour
             _text.enabled = false;
             return;
         }
-        time = StageManager.instance.stageTime;
-        SetTimerText(time);
+        SetTimerText(StageManager.instance.stageTime);
     }
 
     void SetTimerText(float time)
@@ -30,13 +28,7 @@ public class Timer : MonoBehaviour
         if (StageManager.instance != null
         && StageManager.instance.stageState == StageManager.StageState.Play)
         {
-            time -= Time.deltaTime;
-            if (time <= 0)
-            {
-                time = 0;
-                StageManager.instance.TimeUp();
-            }
-            SetTimerText(time);
+            SetTimerText(StageManager.instance.stageTime);
         }
     }
 }
