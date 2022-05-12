@@ -21,7 +21,7 @@ public class MovingSpotlightPositionScript : MonoBehaviour
 
         if (StageManager.instance.stageTime <= 115f && HasSpawned == false) {
             HasSpawned = true;
-            SpotLightSpawn();
+            //SpotLightSpawn();
         }
         
     }

@@ -62,10 +62,10 @@ public class Shoot : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (desiredShoot && UIManager.score > 0)
+        if (desiredShoot)
         {
             desiredShoot = false;
-            if (bullet != null && Time.time >= nextShootTime)
+            if (bullet != null && Time.time >= nextShootTime && UIManager.score > 0)
             {
                 LastChargePress = Time.time;
                 UIManager.AddScore(-1);
