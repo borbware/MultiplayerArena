@@ -41,12 +41,9 @@ public class StageManager : MonoBehaviour
     {
         activePlayers = new List<int> {1, 2, 3, 4};
         instance = this;
-    }
-    void Start()
-    {
         for (int i = 0; i < 4; i++)
         {
-            UIManagers[i] = GameObject.Find($"Player{i + 1}UI").GetComponent<PlayerUIManager>();
+            UIManagers.Add(GameObject.Find($"Player{i + 1}UI").GetComponent<PlayerUIManager>());
         }
     }
     void Update()
@@ -104,20 +101,18 @@ public class StageManager : MonoBehaviour
     {
         int MostHP()
         {
-            var orderedManagers = UIManagers.OrderByDescending(manager => manager.hp).ToList();
-            if (orderedManagers[0] == null || orderedManagers[0].hp == orderedManagers[1].hp)
-                return -1; // tie
-            else
-                return orderedManagers[0].player;
+            var topPlayers = UIManagers.GroupBy(p => p.hp).OrderByDescending(g => g.Key).FirstOrDefault();
+            if (topPlayers?.Count() == 1)
+                return topPlayers.First().player;
+            return -1; // tie
         }
 
         int MostScore()
         {
-            var orderedManagers = UIManagers.OrderByDescending(manager => manager.score).ToList();
-            if (orderedManagers[0] == null || orderedManagers[0].score == orderedManagers[1].score)
-                return -1; // tie
-            else
-                return orderedManagers[0].player;
+            var topPlayers = UIManagers.GroupBy(p => p.score).OrderByDescending(g => g.Key).FirstOrDefault();
+            if (topPlayers?.Count() == 1)
+                return topPlayers.First().player;
+            return -1; // tie
         }
 
         stageState = StageState.End;
