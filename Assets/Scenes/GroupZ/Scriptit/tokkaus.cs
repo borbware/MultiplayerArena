@@ -73,7 +73,7 @@ public class tokkaus : MonoBehaviour
         }    
         if(toher.tag == "fial")
         {
-            //Debug.Log(toher.tag);
+            Debug.Log(toher.tag);
             if(player.UIManager.score == 0)
             {Destroy(gameObject);}
             else

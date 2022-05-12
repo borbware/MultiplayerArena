@@ -38,7 +38,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592910405604400997}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a497c68fe1eb9e24189511eb4f29a678, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -55,7 +55,6 @@ GameObject:
   - component: {fileID: 7281618314435441706}
   - component: {fileID: 7440576762118783977}
   - component: {fileID: 248863004066372729}
-  - component: {fileID: 4154047749702969329}
   m_Layer: 0
   m_Name: left leg
   m_TagString: Untagged
@@ -126,20 +125,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4154047749702969329
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1114132191038164758}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &3022888836502019425
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +136,6 @@ GameObject:
   - component: {fileID: 7548796207944132764}
   - component: {fileID: 9141766020757741025}
   - component: {fileID: 7415727505315179237}
-  - component: {fileID: 1391239827490789457}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -222,20 +206,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1391239827490789457
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3022888836502019425}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4603902954306571510
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +217,6 @@ GameObject:
   - component: {fileID: 825208188865777175}
   - component: {fileID: 8845741456761039778}
   - component: {fileID: 5431804899981144390}
-  - component: {fileID: 6755724224490284942}
   m_Layer: 0
   m_Name: left arm
   m_TagString: Untagged
@@ -318,20 +287,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6755724224490284942
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4603902954306571510}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &6026886153921884627
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +298,6 @@ GameObject:
   - component: {fileID: 6796290054427528659}
   - component: {fileID: 4417225246201816106}
   - component: {fileID: 5508749120009781607}
-  - component: {fileID: 2775440636457089999}
   m_Layer: 0
   m_Name: right leg
   m_TagString: Untagged
@@ -414,20 +368,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2775440636457089999
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6026886153921884627}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &7768753043590084170
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,7 +379,6 @@ GameObject:
   - component: {fileID: 8512472364237612754}
   - component: {fileID: 7518235145698806818}
   - component: {fileID: 6636074075769250397}
-  - component: {fileID: 1772096987808489266}
   m_Layer: 0
   m_Name: right arm
   m_TagString: Untagged
@@ -510,20 +449,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1772096987808489266
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7768753043590084170}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &7860952255492361285
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +706,6 @@ GameObject:
   - component: {fileID: 556265318009632410}
   - component: {fileID: 2658104045426950506}
   - component: {fileID: 3074693731941846541}
-  - component: {fileID: 4531964131617748662}
   m_Layer: 0
   m_Name: spear
   m_TagString: Untagged
@@ -852,20 +776,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4531964131617748662
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8155806534839353899}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9136127219261894353
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,7 +787,6 @@ GameObject:
   - component: {fileID: 1966633493267188262}
   - component: {fileID: 2002466290472460153}
   - component: {fileID: 2790569668285282771}
-  - component: {fileID: 7600769863058651558}
   m_Layer: 0
   m_Name: head
   m_TagString: Untagged
@@ -948,16 +857,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7600769863058651558
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9136127219261894353}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
