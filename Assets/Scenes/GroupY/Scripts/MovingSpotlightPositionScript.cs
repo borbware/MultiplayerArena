@@ -26,7 +26,7 @@ public class MovingSpotlightPositionScript : MonoBehaviour
         
     }
 
-    void SpotLightSpawn() 
+    public void SpotLightSpawn() 
     {
 
             Instantiate(movingSpotlightPrefab, initialPositionOfLight, Quaternion.identity);
