@@ -6,7 +6,7 @@ public class MovingSpotlightPositionScript : MonoBehaviour
 {
     public GameObject movingSpotlightPrefab;
     bool HasSpawned = false;
-    //public Vector3 initialPositionOfLight = new Vector3(0f, 8.5f, 0f);
+    public Vector3 initialPositionOfLight = new Vector3(0f, 8.5f, 0f);
 
 
     // Start is called before the first frame update
@@ -28,7 +28,7 @@ public class MovingSpotlightPositionScript : MonoBehaviour
 
     public void SpotLightSpawn() 
     {
-            Instantiate(movingSpotlightPrefab, transform.position, Quaternion.identity);
+            Instantiate(movingSpotlightPrefab, initialPositionOfLight, Quaternion.Euler(90f, 0f, 0f));
  
     }
 
