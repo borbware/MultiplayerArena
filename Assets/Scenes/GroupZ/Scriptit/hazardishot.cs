@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class hazardishot : MonoBehaviour
 {
-    [SerializeField] int shotPower = 2500;
+    [SerializeField] int shotPower = 3000;
+
+    // Hazard's firing effect
     private void OnTriggerStay(Collider col) {
         col.attachedRigidbody.AddForce(-transform.up * Time.deltaTime * shotPower);
     }

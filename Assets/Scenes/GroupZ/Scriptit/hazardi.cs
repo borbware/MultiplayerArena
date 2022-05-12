@@ -6,33 +6,63 @@ public class hazardi : MonoBehaviour
 {
     float time, t;
     [SerializeField] bool lerping, activated;
-    // Start is called before the first frame update
+    Rigidbody wall1, wall2, wall3, wall4;
+    [SerializeField] int rotationTime = 480;
+
     void Start()
     {
         time = StageManager.instance.stageTime;
         lerping = false;
         activated = false;
+        wall1 = GameObject.Find("Wall1").GetComponent<Rigidbody>();
+        wall2 = GameObject.Find("Wall2").GetComponent<Rigidbody>();
+        wall3 = GameObject.Find("Wall3").GetComponent<Rigidbody>();
+        wall4 = GameObject.Find("Wall4").GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        if (time < (StageManager.instance.stageTime/2) && activated != true) {
+        // When hazard comes up
+        if (time < StageManager.instance.stageTime/1.5f && activated != true) {
             activated = true;
             lerping = true;
             t = 0;
         }
+
+        // Hazard coming up movement
         if (lerping) {
-            transform.localPosition = Vector3.Lerp(new Vector3(2.5f, -7.5f, 2.2f), new Vector3(2.5f, -1, 2.2f), t);
+            transform.localPosition = Vector3.Lerp(new Vector3(2.5f, -7.5f, 2.2f), new Vector3(2.5f, -0.5f, 2.2f), t);
             t += Time.deltaTime;
-            if (transform.localPosition == new Vector3(2.5f, -1, 2.2f)) 
+            if (transform.localPosition == new Vector3(2.5f, -0.5f, 2.2f)) 
                 lerping = false;
         }
+
+        // Hazard starts firing and rotating
         if (!lerping && activated) {
             transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
             transform.GetChild(0).GetComponent<Collider>().enabled = true;
-            transform.Rotate(Vector3.Lerp(new Vector3(0,0,0),new Vector3(0,180,0), t/120), Space.Self);
+            transform.Rotate(Vector3.Lerp(new Vector3(0,0,0),new Vector3(0,360,0), t/(rotationTime)), Space.Self);
         }
         time -= Time.deltaTime;
+
+        if (time < StageManager.instance.stageTime/6) {
+            rotationTime = 30;
+        }
+        else if (time < StageManager.instance.stageTime/5) {
+            wall1.constraints = RigidbodyConstraints.None;
+            wall2.constraints = RigidbodyConstraints.None;
+            wall3.constraints = RigidbodyConstraints.None;
+            wall4.constraints = RigidbodyConstraints.None;
+            rotationTime = 60;
+        }
+        else if (time < StageManager.instance.stageTime/4) {
+            rotationTime = 120;
+        }
+        else if (time < StageManager.instance.stageTime/3) {
+            rotationTime = 240;
+        }
+        else if (time < StageManager.instance.stageTime/2) {
+            rotationTime = 480;
+        }
     }
 }
