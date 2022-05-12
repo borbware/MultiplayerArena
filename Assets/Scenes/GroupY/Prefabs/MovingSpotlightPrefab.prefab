@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 8212625220626415810}
   - component: {fileID: 2585072541982450159}
   - component: {fileID: 2966163825764437268}
+  - component: {fileID: 5057326369421248854}
   m_Layer: 0
   m_Name: MovingSpotlightPrefab
   m_TagString: Untagged
@@ -286,3 +287,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 32
   m_CollisionDetection: 0
+--- !u!114 &5057326369421248854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7269501823247415893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f18d2d1eca61b44982e935e21927cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingSpotlightPrefab: {fileID: 7269501823247415893}
+  initialPositionOfLight: {x: 0, y: 8.5, z: 0}
