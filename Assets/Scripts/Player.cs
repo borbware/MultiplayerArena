@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     PlayerData _playerData;
     public PlayerState state = PlayerState.Active;
     public Vector2 axisInput;
-    public bool jumpInput, shootInput;
+    public bool jumpInput, shootInput, continuousJumpInput, continuousShootInput;
 
     public bool hurtDisablesInput;
 
@@ -52,6 +52,9 @@ public class Player : MonoBehaviour
         1f);
         jumpInput = Input.GetButtonDown($"P{_playerData.controller}A");
         shootInput = Input.GetButtonDown($"P{_playerData.controller}B");
+
+        continuousJumpInput = Input.GetButton($"P{_playerData.controller}A");
+        continuousShootInput = Input.GetButton($"P{_playerData.controller}B");
     }
     void Hurt(int damage)
     {
