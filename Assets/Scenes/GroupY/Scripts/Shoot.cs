@@ -101,6 +101,13 @@ public class Shoot : MonoBehaviour
             UIManager.AddScore(10);
             Invoke("CanPickUpAgain", 0.05f);
             CanPickUp = false;
+        }else if (C.gameObject.tag == "HealPickUp" && CanPickUp != false){
+            Destroy(C.gameObject);
+            if(UIManager.hp < 76 && UIManager.hp > 0){
+                UIManager.AddHP(25);}
+            else if (UIManager.hp > 0){
+                UIManager.AddHP((100f - UIManager.hp));
+            }
         }
     }
 

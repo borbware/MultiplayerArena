@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerUpSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject PowerUp;
+    [SerializeField] GameObject PowerUp, Heal;
 
     float Spawnrate = 15f;
 
@@ -32,10 +32,20 @@ public class PowerUpSpawner : MonoBehaviour
     }
 
     void SpawnPowerUp(){
+        GameObject Spawned;
         RandomSpawn = Random.Range(0, obj.Length);
         SpawnPoint = new Vector3
         (obj[RandomSpawn].transform.position.x, 40f, obj[RandomSpawn].transform.position.z);
-        SpawnedPowerUp = Instantiate(PowerUp,SpawnPoint,Quaternion.identity);
+
+        RandomSpawn = Random.Range(0, 5);
+
+        if(RandomSpawn > 2){
+            Spawned = Heal;
+        } else{
+            Spawned = PowerUp;
+        }
+
+        SpawnedPowerUp = Instantiate(Spawned,SpawnPoint,Quaternion.Euler(90f,0f,0f));
         Destroy(SpawnedPowerUp, 30);
     }
 }
