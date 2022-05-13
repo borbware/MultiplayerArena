@@ -14,10 +14,12 @@ public class PlayerUIManager : MonoBehaviour
 
     GameObject winCountObj;
     Text winCountText;
+    float width;
     void Awake()
     {
         hpBarObj = transform.Find("HP/bar").gameObject;
         hpBarRT = hpBarObj.GetComponent<RectTransform>();
+        width = hpBarRT.rect.width;
 
         scoreObj = transform.Find("Score").gameObject;
         scoreText = scoreObj.GetComponent<Text>();
@@ -47,7 +49,7 @@ public class PlayerUIManager : MonoBehaviour
     {
         hp += newHP;
         hp = Mathf.Clamp(hp, 0, 100);
-        hpBarRT.sizeDelta = new Vector2(hpBarRT.rect.width * hp / 100, hpBarRT.rect.height);
+        hpBarRT.sizeDelta = new Vector2(width * hp / 100, hpBarRT.rect.height);
         if (StageManager.instance.loseWhenHPZero && hp == 0)
             StageManager.instance.LosePlayer(player);
     }
