@@ -12,7 +12,8 @@ public class tokkaus : MonoBehaviour
     Rigidbody tisrigid;
     float maxVel = 12f;
     float liftUp = 25f;
-    [SerializeField] float audiocd = 0, dashspeed = 5;
+    [SerializeField] float audiocd = 0;
+    float  dashspeed = 400; 
     bool canDash = true;
 
     void Start()
@@ -28,8 +29,7 @@ public class tokkaus : MonoBehaviour
         if(tisrigid.velocity.sqrMagnitude > 1.4f)
         {
             if(audiocd < 0)
-            {walking.Play(); audiocd = 1;}
-            
+            {walking.Play(); audiocd = 1;}            
         }
         else{walking.Stop();}
         if(player.GetComponent<Player>().shootInput && canDash == true)
@@ -46,20 +46,22 @@ public class tokkaus : MonoBehaviour
     }
     IEnumerator DashCooldown()
     {
-
         canDash = true;
         yield return new WaitForSeconds(0.01f);
         tisrigid.AddForce(transform.up * liftUp);
-        tisrigid.AddForce(transform.forward * dashspeed);
+        for (int i = 0; i < 15; i++)
+        {
+            tisrigid.AddForce(transform.forward * dashspeed);
+            yield return new WaitForSeconds(0.01f);
+        }
         canDash = false;
         if(tisrigid.velocity.magnitude > maxVel)
-            tisrigid.velocity = tisrigid.velocity.normalized * maxVel;
+           tisrigid.velocity = tisrigid.velocity.normalized * maxVel;
         yield return new WaitForSeconds(2f);
         canDash = true;
     }
     void OnCollisionEnter(Collision other) 
     {   
-     
         GameObject toher = other.gameObject;
         if(toher.tag == "Player")
         {
