@@ -16,6 +16,8 @@ public class LerpFunction : MonoBehaviour
             yield return null;
         }
         _transform.position = targetPosition;
+        
+
 
     }
 }

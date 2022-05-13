@@ -9,12 +9,10 @@ public class MovingSpotlightPositionScript : MonoBehaviour
     bool HasSpawned = false;
     private Vector3 initialPositionOfLight = new Vector3(0f, 8.5f, 0f);
     
-    private Vector3 pos1 = new Vector3(-5f, 8.5f, 0f);
-    private Vector3 pos2 = new Vector3(0f, 8.5f, 5f);
-    private Vector3 pos3 = new Vector3(5f, 8.5f, 0f);
-    private Vector3 pos4 = new Vector3(0f, 8.5f, -5f);
-
-    private float time;
+    private Vector3 pos1 = new Vector3(-2.8f, 8.5f, 0f);
+    private Vector3 pos2 = new Vector3(0f, 8.5f, 2.8f);
+    private Vector3 pos3 = new Vector3(2.8f, 8.5f, 0f);
+    private Vector3 pos4 = new Vector3(0f, 8.5f, -2.8f);
 
     LerpFunction _lerpfunction;
     
@@ -22,7 +20,7 @@ public class MovingSpotlightPositionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        time = StageManager.instance.stageTime;
+        
         _lerpfunction = GetComponent<LerpFunction>();
     }
 
@@ -33,38 +31,31 @@ public class MovingSpotlightPositionScript : MonoBehaviour
         if (StageManager.instance.stageTime <= 115.0f && HasSpawned == false) {
             HasSpawned = true;
             SpotLightSpawnAndMove();
+            
         }
         
     }
 
-    public void BoxPosition()
+    
+
+    IEnumerator MoveSpotlight() 
     {
-        if (!movingLight) {
-            Debug.Log("No movable object found.");
-            return;
-        }
-
-        if (time <= 115f && time > 110f) {
-            _lerpfunction.LerpPosition(movingLight.transform, pos1, 3f);
-        } 
-
-        else if (time <= 105f && time > 100f) {
-            _lerpfunction.LerpPosition(movingLight.transform,pos2, 3f);
-        }
-
-        else if (time <= 95f && time > 90f) {
-            _lerpfunction.LerpPosition(movingLight.transform,pos3, 3f);
-        }
-
-        else if (time <= 85f && time > 95f) {
-            _lerpfunction.LerpPosition(movingLight.transform,pos4, 3f);
+        while (true) {
+            yield return _lerpfunction.LerpPosition(movingLight.transform, pos1, 5f);
+            yield return new WaitForSeconds(2);
+            yield return _lerpfunction.LerpPosition(movingLight.transform, pos2, 5f);
+            yield return new WaitForSeconds(2);
+            yield return _lerpfunction.LerpPosition(movingLight.transform, pos3, 5f);
+            yield return new WaitForSeconds(2);
+            yield return _lerpfunction.LerpPosition(movingLight.transform, pos4, 5f);
+            yield return new WaitForSeconds(2);
         }
     }
-
     public void SpotLightSpawnAndMove() 
     {
         movingLight = Instantiate(movingSpotlightPrefab, initialPositionOfLight, Quaternion.Euler(90f, 0f, 0f)); 
-        StartCoroutine(_lerpfunction.LerpPosition(movingLight.transform, pos1, 5f));
+        StartCoroutine(MoveSpotlight());
+
         
         
     }

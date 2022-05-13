@@ -26,15 +26,16 @@ public class Shoot : MonoBehaviour
     float ChargeStart;
     float LastChargePress = 0;
 
+    bool CanPickUp;
+
     GameObject scoreObj;
     Text scoreText;
 
     private void Start()
     {
         UIManager = StageManager.instance.UIManagers[PlayerIndex - 1];
-        UIManager.AddScore(50);
         _player = GetComponent<Player>();
-
+        CanPickUp = true;
         //scoreObj = transform.Find("Score").gameObject;
         //scoreText = scoreObj.GetComponent<Text>();
     }
@@ -85,6 +86,7 @@ public class Shoot : MonoBehaviour
                 Luoti,
                 transform.position + transform.forward * LuotiSpeed,
                 Quaternion.identity);
+            if(DeductScore == true){UIManager.AddScore(-1);}
             Destroy(newBullet, 5);
             newBullet.GetComponent<Rigidbody>().AddForce(
                 transform.forward * shootForce * Time.fixedDeltaTime);
@@ -93,11 +95,23 @@ public class Shoot : MonoBehaviour
     }
 
 
-       void OnCollisionEnter(Collision C){
-        if(C.gameObject.tag == "Projectile"){
-            UIManager.AddScore(20);
+    void OnCollisionEnter(Collision C){
+        if(C.gameObject.tag == "PowerUp_AutoShot" && CanPickUp != false){
             Destroy(C.gameObject);
+            UIManager.AddScore(10);
+            Invoke("CanPickUpAgain", 0.05f);
+            CanPickUp = false;
+        }else if (C.gameObject.tag == "HealPickUp" && CanPickUp != false){
+            Destroy(C.gameObject);
+            if(UIManager.hp < 76 && UIManager.hp > 0){
+                UIManager.AddHP(25);}
+            else if (UIManager.hp > 0){
+                UIManager.AddHP((100f - UIManager.hp));
+            }
         }
     }
 
+    void CanPickUpAgain(){
+        CanPickUp = true;
+    }
 }
