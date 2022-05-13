@@ -2425,6 +2425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1787420831}
   - component: {fileID: 1787420830}
+  - component: {fileID: 1787420832}
   m_Layer: 0
   m_Name: MovingSpotlightHandler
   m_TagString: Untagged
@@ -2445,7 +2446,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingSpotlightPrefab: {fileID: 7269501823247415893, guid: 6a34a1b26fd80b343abd07e6b8d6e003, type: 3}
-  time: 0
 --- !u!4 &1787420831
 Transform:
   m_ObjectHideFlags: 0
@@ -2460,6 +2460,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1787420832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787420829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847f875401086654ca3dd2a6cb51879c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1851281338
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,18 +5,17 @@ using UnityEngine;
 public class LerpFunction : MonoBehaviour
 {
 
-    public IEnumerator LerpPosition(Vector3 targetPosition, float duration)
+    public IEnumerator LerpPosition(Transform _transform, Vector3 targetPosition, float duration)
     {
-        
+        Vector3 startPosition = _transform.position;
         float time = 0;
-        Vector3 startPosition = transform.position;
         while (time < duration)
         {
-            transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            _transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
-        transform.position = targetPosition;
+        _transform.position = targetPosition;
 
     }
 }
