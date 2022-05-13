@@ -14,14 +14,12 @@ public class MovingSpotlightPositionScript : MonoBehaviour
     private Vector3 pos3 = new Vector3(2.8f, 8.5f, 0f);
     private Vector3 pos4 = new Vector3(0f, 8.5f, -2.8f);
 
-    LerpFunction _lerpfunction;
     
 
     // Start is called before the first frame update
     void Start()
     {
         
-        _lerpfunction = GetComponent<LerpFunction>();
     }
 
     // Update is called once per frame
@@ -41,13 +39,13 @@ public class MovingSpotlightPositionScript : MonoBehaviour
     IEnumerator MoveSpotlight() 
     {
         while (true) {
-            yield return _lerpfunction.LerpPosition(movingLight.transform, pos1, 5f);
+            yield return LerpFunction.LerpPosition(movingLight.transform, pos1, 5f);
             yield return new WaitForSeconds(2);
-            yield return _lerpfunction.LerpPosition(movingLight.transform, pos2, 5f);
+            yield return LerpFunction.LerpPosition(movingLight.transform, pos2, 5f);
             yield return new WaitForSeconds(2);
-            yield return _lerpfunction.LerpPosition(movingLight.transform, pos3, 5f);
+            yield return LerpFunction.LerpPosition(movingLight.transform, pos3, 5f);
             yield return new WaitForSeconds(2);
-            yield return _lerpfunction.LerpPosition(movingLight.transform, pos4, 5f);
+            yield return LerpFunction.LerpPosition(movingLight.transform, pos4, 5f);
             yield return new WaitForSeconds(2);
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class LerpFunction : MonoBehaviour
 {
 
-    public IEnumerator LerpPosition(Transform _transform, Vector3 targetPosition, float duration)
+    public static IEnumerator LerpPosition(Transform _transform, Vector3 targetPosition, float duration)
     {
         Vector3 startPosition = _transform.position;
         float time = 0;
