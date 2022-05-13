@@ -7,6 +7,8 @@ public class Platform_falling_script : MonoBehaviour
     GameObject[] platforms;
     bool hasbeendropped = false;
 
+    float LastSpawn = 0f;
+
 
 
     void Start()
@@ -21,21 +23,58 @@ public class Platform_falling_script : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         yield return LerpFunction.LerpPosition(platform.transform, 
         platform.transform.position + new Vector3(0f, -10f, 0f), 2.0f);
-    }    
+    }
     
     IEnumerator StartDrop()
     {
         yield return DropPlatform(platforms[0]);
-        yield return new WaitForSeconds (5.0f);
+        yield return new WaitForSeconds (1.0f);
         yield return DropPlatform(platforms[5]);
     }
 
 
     void Update()
     {
-       if(Time.time >2.0f && hasbeendropped == false) {
-           StartCoroutine(StartDrop()); 
-           hasbeendropped = true;
-       }
+    //    if(Time.time >2.0f && hasbeendropped == false) {
+    //        StartCoroutine(StartDrop()); 
+    //        hasbeendropped = true;
+    //    }
+
+        if(StageManager.instance.stageTime < 60 && (Time.time - 5) > LastSpawn){
+            LastSpawn = Time.time;
+            StartCoroutine(PlatformDrop());
+        }
+    }
+
+    IEnumerator PlatformDrop()
+    {   int Dropped;
+        Dropped = Random.Range(0,15);
+        yield return MovePlatform(platforms[Dropped], -10f, 1.2f);
+        //yield return new WaitForSeconds (0.2f);
+        yield return MovePlatform(platforms[Dropped], 10f, 1f);
+    }
+    
+    IEnumerator MovePlatform(GameObject platform, float value, float speed)
+    {
+        if(value < 0){
+             for (int j = 0; j < 3; j++){
+                 StartCoroutine(ColorFlash(platform));
+                 if (j < 2)
+                     yield return new WaitForSeconds (0.45f);
+                 else
+                     yield return new WaitForSeconds (0.15f);
+             }
+        }
+
+        yield return LerpFunction.LerpPosition(platform.transform, 
+        platform.transform.position + new Vector3(0f, value, 0f), speed);
+    }
+
+    IEnumerator ColorFlash(GameObject Object)
+    {
+        Renderer PlatRenderer = Object.GetComponent<Renderer>();
+        yield return PlatRenderer.material.color = Color.red;
+        yield return new WaitForSeconds (0.15f);
+        yield return PlatRenderer.material.color = Color.white;
     }
 }
