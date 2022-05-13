@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class tokkaus : MonoBehaviour
 {
-    float pushforce = 100;
+    float pushforce = 130;
     Player player;
     Vector3 spawnlocation;
     AudioSource walking;
@@ -25,6 +25,7 @@ public class tokkaus : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(pushforce);
         audiocd -= 1 * Time.deltaTime;
         if(tisrigid.velocity.sqrMagnitude > 1.4f)
         {
@@ -51,10 +52,12 @@ public class tokkaus : MonoBehaviour
         tisrigid.AddForce(transform.up * liftUp);
         for (int i = 0; i < 15; i++)
         {
+            pushforce = 300;
             tisrigid.AddForce(transform.forward * dashspeed);
             yield return new WaitForSeconds(0.01f);
         }
         canDash = false;
+        pushforce = 130;
         if(tisrigid.velocity.magnitude > maxVel)
            tisrigid.velocity = tisrigid.velocity.normalized * maxVel;
         yield return new WaitForSeconds(2f);
