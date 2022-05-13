@@ -1,15 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 public class Shoot : MonoBehaviour
 {
 
     bool desiredShoot;
+    bool autoFire;
     float nextShootTime;
     [SerializeField, Range(0.01f,   10f)] float shootPeriod;
     [SerializeField, Range(0f,   10000f)] float shootForce;
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject bullet, AutoBullet;
 
     public PlayerUIManager UIManager;
 
@@ -24,11 +26,17 @@ public class Shoot : MonoBehaviour
     float ChargeStart;
     float LastChargePress = 0;
 
+    GameObject scoreObj;
+    Text scoreText;
+
     private void Start()
     {
         UIManager = StageManager.instance.UIManagers[PlayerIndex - 1];
-        UIManager.AddScore(5);
+        UIManager.AddScore(50);
         _player = GetComponent<Player>();
+
+        //scoreObj = transform.Find("Score").gameObject;
+        //scoreText = scoreObj.GetComponent<Text>();
     }
 
     void ChargeGain(){
@@ -39,41 +47,60 @@ public class Shoot : MonoBehaviour
         }
     }
 
-    void Update()
-    {
+    void Update(){
         if (StageManager.instance.stageState != StageManager.StageState.Play)
             return;
         if (_player != null)
         {
-		    desiredShoot |= _player.shootInput;
+            autoFire |= _player.continuousShootInput && UIManager.score > 0;
+		    desiredShoot |= _player.shootInput && UIManager.score < 1;
         } else {
             desiredShoot = true;
+            autoFire = true;
         }
 
-        if(LastChargePress + ChargeCD < Time.time){
-            ChargeGain();
-        }
+        // if(LastChargePress + ChargeCD < Time.time){
+        //     ChargeGain();
+        
     }
 
-    void FixedUpdate()
-    {
-        if (desiredShoot)
+    void FixedUpdate(){
+        if (autoFire){
+            autoFire = false;
+            Ammu(bullet, 0.6f, 0.5f, true);
+
+        }
+        else if (desiredShoot)
         {
             desiredShoot = false;
-            if (bullet != null && Time.time >= nextShootTime && UIManager.score > 0)
-            {
-                LastChargePress = Time.time;
-                UIManager.AddScore(-1);
-                var newBullet = Instantiate(
-                    bullet,
-                    transform.position + transform.forward * 0.7f,
-                    Quaternion.identity
-                );
-                Destroy(newBullet, 5);
-                newBullet.GetComponent<Rigidbody>().AddForce(
-                    transform.forward * shootForce * Time.fixedDeltaTime);
-                nextShootTime = Time.time + shootPeriod;
-            }
+            Ammu(bullet, 0.7f, 1, false);
         }
     }
+
+
+    void Ammu(GameObject Luoti, float LuotiSpeed, float Modifier, bool DeductScore){
+        if (Luoti != null && Time.time >= nextShootTime){
+            LastChargePress = Time.time;
+            if(DeductScore == true){
+                UIManager.AddScore(-1);
+            }
+            var newBullet = Instantiate(
+                Luoti,
+                transform.position + transform.forward * LuotiSpeed,
+                Quaternion.identity);
+            Destroy(newBullet, 5);
+            newBullet.GetComponent<Rigidbody>().AddForce(
+                transform.forward * shootForce * Time.fixedDeltaTime);
+            nextShootTime = Time.time + shootPeriod * Modifier;
+        }
+    }
+
+
+       void OnCollisionEnter(Collision C){
+        if(C.gameObject.tag == "Projectile"){
+            UIManager.AddScore(20);
+            Destroy(C.gameObject);
+        }
+    }
+
 }

@@ -607,6 +607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4997407868383470306, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
+    - {fileID: 2345306565705809883, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
 --- !u!1 &338469053
 GameObject:
@@ -911,6 +912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4997407868383470306, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
+    - {fileID: 2345306565705809883, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
 --- !u!1 &536809687
 GameObject:
@@ -1256,6 +1258,21 @@ MonoBehaviour:
   bullet: {fileID: 4095838401650760824, guid: 4fbbca60df377774893cc90fa8f49b87, type: 3}
   UIManager: {fileID: 0}
   PlayerIndex: 3
+--- !u!114 &741082345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741082343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7c579931de0be49b732cef94fc0dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 4.2
+  maxAcceleration: 10
+  jumpHeight: 1.1
 --- !u!114 &741082352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1760,6 +1777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4997407868383470306, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
+    - {fileID: 2345306565705809883, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
 --- !u!1001 &1194422407
 PrefabInstance:
@@ -1966,6 +1984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4997407868383470306, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
+    - {fileID: 2345306565705809883, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
 --- !u!4 &1395586176 stripped
 Transform:
@@ -2207,6 +2226,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2345306565705809888, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
   m_PrefabInstance: {fileID: 326504583}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1562378365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562378364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7c579931de0be49b732cef94fc0dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 4.2
+  maxAcceleration: 10
+  jumpHeight: 1.1
 --- !u!114 &1562378372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2498,6 +2532,21 @@ MonoBehaviour:
   bullet: {fileID: 4095838401650760824, guid: 4fbbca60df377774893cc90fa8f49b87, type: 3}
   UIManager: {fileID: 0}
   PlayerIndex: 4
+--- !u!114 &1981015786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981015784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7c579931de0be49b732cef94fc0dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 4.2
+  maxAcceleration: 10
+  jumpHeight: 1.1
 --- !u!114 &1981015793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2575,6 +2624,21 @@ MonoBehaviour:
   bullet: {fileID: 4095838401650760824, guid: 4fbbca60df377774893cc90fa8f49b87, type: 3}
   UIManager: {fileID: 0}
   PlayerIndex: 2
+--- !u!114 &2045080213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045080211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7c579931de0be49b732cef94fc0dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 4.2
+  maxAcceleration: 10
+  jumpHeight: 1.1
 --- !u!114 &2045080220
 MonoBehaviour:
   m_ObjectHideFlags: 0
