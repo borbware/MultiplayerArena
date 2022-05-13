@@ -67,7 +67,7 @@ public class Shoot : MonoBehaviour
     void FixedUpdate(){
         if (autoFire){
             autoFire = false;
-            Ammu(bullet, 0.6f, 0.5f, true);
+            Ammu(AutoBullet, 0.6f, 0.5f, true);
 
         }
         else if (desiredShoot)
@@ -81,9 +81,6 @@ public class Shoot : MonoBehaviour
     void Ammu(GameObject Luoti, float LuotiSpeed, float Modifier, bool DeductScore){
         if (Luoti != null && Time.time >= nextShootTime){
             LastChargePress = Time.time;
-            if(DeductScore == true){
-                UIManager.AddScore(-1);
-            }
             var newBullet = Instantiate(
                 Luoti,
                 transform.position + transform.forward * LuotiSpeed,

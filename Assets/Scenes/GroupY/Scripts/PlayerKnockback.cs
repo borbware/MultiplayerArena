@@ -27,13 +27,20 @@ public class PlayerKnockback : MonoBehaviour
 
     void OnTriggerEnter(Collider C){
         if(C.gameObject.tag == "Projectile" && KnockedBack == false){
-            rb = C.gameObject.GetComponent<Rigidbody>();
+            LuotiOsuma(C.gameObject, 0.15f);
+        } else if(C.gameObject.tag == "AutoShot" && KnockedBack == false){
+            LuotiOsuma(C.gameObject, 0.1f);
+        }
+
+    }
+
+    void LuotiOsuma (GameObject Object, float f){
+        rb = Object.GetComponent<Rigidbody>();
             //Debug.Log(C.gameObject.name);
             KnockbackDir = rb.velocity.normalized;
-            Destroy(C.gameObject);
+            Destroy(Object);
             KnockedBack = true;
-            Invoke("CancelKnockback", 0.15f);
-        }
+            Invoke("CancelKnockback", f);
     }
 
     void CancelKnockback(){

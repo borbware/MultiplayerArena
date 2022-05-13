@@ -621,6 +621,7 @@ GameObject:
   - component: {fileID: 338469056}
   - component: {fileID: 338469055}
   - component: {fileID: 338469054}
+  - component: {fileID: 338469059}
   - component: {fileID: 338469058}
   m_Layer: 0
   m_Name: Spawner1
@@ -725,6 +726,19 @@ MonoBehaviour:
   - {fileID: 354526908}
   - {fileID: 738614574}
   StartTime: 0
+--- !u!114 &338469059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338469053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13fa28d0623710b4b8b8a612fa27a150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PowerUp: {fileID: 5895148792525641235, guid: 722fc484a8775674c910c48e27abd886, type: 3}
 --- !u!1 &354526908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,6 +1270,7 @@ MonoBehaviour:
   shootPeriod: 0.5
   shootForce: 7562
   bullet: {fileID: 4095838401650760824, guid: 4fbbca60df377774893cc90fa8f49b87, type: 3}
+  AutoBullet: {fileID: 581431424088888654, guid: fc58afb3daef93e4984f9f1a883e9dcb, type: 3}
   UIManager: {fileID: 0}
   PlayerIndex: 3
 --- !u!114 &741082345
@@ -2268,6 +2283,7 @@ MonoBehaviour:
   shootPeriod: 0.5
   shootForce: 7562
   bullet: {fileID: 4095838401650760824, guid: 4fbbca60df377774893cc90fa8f49b87, type: 3}
+  AutoBullet: {fileID: 581431424088888654, guid: fc58afb3daef93e4984f9f1a883e9dcb, type: 3}
   UIManager: {fileID: 0}
   PlayerIndex: 1
 --- !u!4 &1588294889 stripped
@@ -2429,7 +2445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingSpotlightPrefab: {fileID: 7269501823247415893, guid: 6a34a1b26fd80b343abd07e6b8d6e003, type: 3}
-  initialPositionOfLight: {x: 0, y: 8.5, z: 0}
+  time: 0
 --- !u!4 &1787420831
 Transform:
   m_ObjectHideFlags: 0
@@ -2530,6 +2546,7 @@ MonoBehaviour:
   shootPeriod: 0.5
   shootForce: 7562
   bullet: {fileID: 4095838401650760824, guid: 4fbbca60df377774893cc90fa8f49b87, type: 3}
+  AutoBullet: {fileID: 581431424088888654, guid: fc58afb3daef93e4984f9f1a883e9dcb, type: 3}
   UIManager: {fileID: 0}
   PlayerIndex: 4
 --- !u!114 &1981015786
@@ -2622,6 +2639,7 @@ MonoBehaviour:
   shootPeriod: 0.5
   shootForce: 7562
   bullet: {fileID: 4095838401650760824, guid: 4fbbca60df377774893cc90fa8f49b87, type: 3}
+  AutoBullet: {fileID: 581431424088888654, guid: fc58afb3daef93e4984f9f1a883e9dcb, type: 3}
   UIManager: {fileID: 0}
   PlayerIndex: 2
 --- !u!114 &2045080213

@@ -10,6 +10,9 @@ TagManager:
   - Spawner2
   - Spawner3
   - Spawner4
+  - PowerUp_AutoShot
+  - AutoShot
+  - Platform
   layers:
   - Default
   - TransparentFX
