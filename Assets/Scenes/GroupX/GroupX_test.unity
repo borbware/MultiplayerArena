@@ -10591,13 +10591,14 @@ GameObject:
   - component: {fileID: 1681089664}
   - component: {fileID: 1681089663}
   - component: {fileID: 1681089665}
+  - component: {fileID: 1681089666}
   m_Layer: 5
-  m_Name: StartText
+  m_Name: SText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1681089662
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10674,6 +10675,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 4, y: 4}
   m_UseGraphicAlpha: 1
+--- !u!114 &1681089666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681089661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f61cedc785aaee4f83a0c14b4cc732e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SText: {fileID: 1681089663}
 --- !u!1 &1683440116
 GameObject:
   m_ObjectHideFlags: 0
