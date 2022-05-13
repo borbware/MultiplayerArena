@@ -7,13 +7,10 @@ public class hazardi : MonoBehaviour
     float time, t;
     [SerializeField] bool lerping, activated;
     Rigidbody wall1, wall2, wall3, wall4;
-    GameObject floor1, floor2, floor3, floor4;
+    GameObject floor1;
     [SerializeField] int rotationTime = 480;
     public int shotPower = 480;
 
-    private void OnTriggerStay(Collider col) {
-        col.attachedRigidbody.AddForce(-transform.up * Time.deltaTime * shotPower);
-    }
     void Start()
     {
         time = StageManager.instance.stageTime;
@@ -24,7 +21,6 @@ public class hazardi : MonoBehaviour
         wall3 = GameObject.Find("Wall3").GetComponent<Rigidbody>();
         wall4 = GameObject.Find("Wall4").GetComponent<Rigidbody>();
         floor1 = GameObject.Find("Floor1");
-        floor2 = GameObject.Find("Floor2");
     }
 
     void FixedUpdate()
@@ -55,12 +51,10 @@ public class hazardi : MonoBehaviour
         if (StageManager.instance.stageTime < time/6) {
             rotationTime = 90;
             shotPower = 900;
-            floor2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            floor2.GetComponent<Collider>().isTrigger = true;
         }
         // Jos aikaa jäljellä vaan viidesosa alkup. ajasta
         else if (StageManager.instance.stageTime < time/5) {
-            floor1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            floor1.GetComponent<Rigidbody>().isKinematic = false;
             floor1.GetComponent<Collider>().isTrigger = true;
             rotationTime = 120;
             shotPower = 760;
