@@ -9821,7 +9821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootPeriod: 1
   shootForce: 10000
-  bullet: {fileID: 3772105503295984745, guid: d1e232a46e5e6b745b2af0bffc69cc33, type: 3}
+  bullet: {fileID: 4606743399105398606, guid: 818d9824fb523a54096525b095b38d76, type: 3}
 --- !u!114 &1530760458
 MonoBehaviour:
   m_ObjectHideFlags: 0
