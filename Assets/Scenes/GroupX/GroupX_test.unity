@@ -10085,7 +10085,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: stageTime
-      value: 60
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: UIManagers.Array.data[0]
