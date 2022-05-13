@@ -68,7 +68,6 @@ public class PlayerControls : MonoBehaviour
         void OnTriggerEnter(Collider C){
         if(C.gameObject.tag == "Projectile" && KnockedBack == false){
             rb = C.gameObject.GetComponent<Rigidbody>();
-            Debug.Log(C.gameObject.name);
             KnockbackDir = rb.velocity.normalized;
             Destroy(C.gameObject);
             _rigidbody.velocity = new Vector3(0f, 0f, 0f);
@@ -78,7 +77,6 @@ public class PlayerControls : MonoBehaviour
     }
 
     void CancelKnockback(){
-        Debug.Log("Hi");
         KnockedBack = false;
     }
 }

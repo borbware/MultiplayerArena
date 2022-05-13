@@ -45,7 +45,7 @@ public class PowerUpSpawner : MonoBehaviour
             Spawned = PowerUp;
         }
 
-        SpawnedPowerUp = Instantiate(Spawned,SpawnPoint,Quaternion.Euler(90f,0f,0f));
+        SpawnedPowerUp = Instantiate(Spawned,SpawnPoint,Quaternion.Euler(75f,0f,0f));
         Destroy(SpawnedPowerUp, 30);
     }
 }

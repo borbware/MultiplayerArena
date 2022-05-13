@@ -13,6 +13,7 @@ TagManager:
   - PowerUp_AutoShot
   - AutoShot
   - Platform
+  - HealPickUp
   layers:
   - Default
   - TransparentFX
