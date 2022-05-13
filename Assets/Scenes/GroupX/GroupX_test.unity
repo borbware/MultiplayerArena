@@ -3058,6 +3058,8 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  continuousJumpInput: 0
+  continuousShootInput: 0
   hurtDisablesInput: 0
   UIManager: {fileID: 0}
 --- !u!1 &539224502
@@ -4915,6 +4917,8 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  continuousJumpInput: 0
+  continuousShootInput: 0
   hurtDisablesInput: 0
   UIManager: {fileID: 0}
 --- !u!114 &771987604
@@ -7769,6 +7773,8 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  continuousJumpInput: 0
+  continuousShootInput: 0
   hurtDisablesInput: 0
   UIManager: {fileID: 0}
 --- !u!114 &1087680719
@@ -10378,6 +10384,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594356984}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!224 &1600679646 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7094368706835821448, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
+  m_PrefabInstance: {fileID: 176866088}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1641696714
 GameObject:
   m_ObjectHideFlags: 0
@@ -10568,6 +10579,101 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657805079}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1681089661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1681089662}
+  - component: {fileID: 1681089664}
+  - component: {fileID: 1681089663}
+  - component: {fileID: 1681089665}
+  m_Layer: 5
+  m_Name: StartText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1681089662
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681089661}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.89, y: 1.21307, z: 0.89}
+  m_Children: []
+  m_Father: {fileID: 1600679646}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 5, y: 199}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1681089663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681089661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.68235296, g: 0.38823533, b: 0.14509805, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: ab8473da13946534091f6e95767ee1f7, type: 3}
+    m_FontSize: 88
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 206
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Press B to jump & Press A to shoot
+--- !u!222 &1681089664
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681089661}
+  m_CullTransparentMesh: 1
+--- !u!114 &1681089665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681089661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 4, y: 4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1683440116
 GameObject:
   m_ObjectHideFlags: 0
@@ -10986,6 +11092,8 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  continuousJumpInput: 0
+  continuousShootInput: 0
   hurtDisablesInput: 0
   UIManager: {fileID: 0}
 --- !u!114 &1810111126
