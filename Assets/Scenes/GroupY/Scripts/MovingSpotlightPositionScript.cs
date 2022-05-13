@@ -7,21 +7,23 @@ public class MovingSpotlightPositionScript : MonoBehaviour
     public GameObject movingSpotlightPrefab;
     GameObject movingLight;
     bool HasSpawned = false;
-    public Vector3 initialPositionOfLight = new Vector3(0f, 8.5f, 0f);
-
+    private Vector3 initialPositionOfLight = new Vector3(0f, 8.5f, 0f);
+    
     private Vector3 pos1 = new Vector3(-5f, 8.5f, 0f);
     private Vector3 pos2 = new Vector3(0f, 8.5f, 5f);
     private Vector3 pos3 = new Vector3(5f, 8.5f, 0f);
     private Vector3 pos4 = new Vector3(0f, 8.5f, -5f);
 
-    private float lightSpeed = 2f;
-    private float elapsedTime;
-    private float lerpDuration = 4f;
+    public float time;
+
+    LerpFunction _lerpfunction;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        time = StageManager.instance.stageTime;
+        _lerpfunction = GetComponent<LerpFunction>();
     }
 
     // Update is called once per frame
@@ -35,18 +37,35 @@ public class MovingSpotlightPositionScript : MonoBehaviour
         
     }
 
+    public void BoxPosition()
+    {
+        if (!movingLight) {
+            Debug.Log("No movable object found.");
+            return;
+        }
+
+        if (time <= 115f && time > 110f) {
+            _lerpfunction.LerpPosition(pos1, 3f);
+        } 
+
+        else if (time <= 105f && time > 100f) {
+            _lerpfunction.LerpPosition(pos2, 3f);
+        }
+
+        else if (time <= 95f && time > 90f) {
+            _lerpfunction.LerpPosition(pos3, 3f);
+        }
+
+        else if (time <= 85f && time > 95f) {
+            _lerpfunction.LerpPosition(pos4, 3f);
+        }
+    }
+
     public void SpotLightSpawnAndMove() 
     {
-            movingLight = Instantiate(movingSpotlightPrefab, initialPositionOfLight, Quaternion.Euler(90f, 0f, 0f));
-
-            if (StageManager.instance.stageTime > 0.0f && StageManager.instance.stageTime <= 110.0f && lerpDuration < 1f) {
-                
-                
-                movingLight.transform.position = Vector3.Lerp(initialPositionOfLight, pos1, elapsedTime / lerpDuration);
-                elapsedTime += Time.deltaTime * lightSpeed;
-                
-            }
-            
+        movingLight = Instantiate(movingSpotlightPrefab, initialPositionOfLight, Quaternion.Euler(90f, 0f, 0f)); 
+        _lerpfunction.LerpPosition(initialPositionOfLight, 3f);
+        BoxPosition();
     }
 
 }
