@@ -24,7 +24,7 @@ public class TileRemover : MonoBehaviour
 
         if(interval < 0.0f)
         {
-            var tileNum = Random.Range(0, 99);
+            var tileNum = Random.Range(0, 129);
 
             var tile = GameObject.Find("Cube (" + tileNum + ")");
 
