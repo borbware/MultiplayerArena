@@ -18,6 +18,14 @@ public class control : MonoBehaviour
             player = collider.gameObject;
             player.GetComponent<PlatformerController>().enabled = false;
         }
+
+        if (playerController && collider.tag == "Projectile")
+        {
+            playerController.jumpInput = true;
+            playerController = null;
+            GetComponent<Rotate>().enabled = true;
+            player.GetComponent<PlatformerController>().enabled = true;
+        }
     }
 
     void Update()
