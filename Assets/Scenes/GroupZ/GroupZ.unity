@@ -255,6 +255,10 @@ PrefabInstance:
       propertyPath: dashCooldownImage
       value: 
       objectReference: {fileID: 912109712}
+    - target: {fileID: 7094368705467402385, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7094368706249924197, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
       propertyPath: score
       value: 2
@@ -266,6 +270,10 @@ PrefabInstance:
     - target: {fileID: 7094368706249924197, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
       propertyPath: dashCooldownImage
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7094368706540541725, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7094368706835821448, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
       propertyPath: m_Pivot.x
@@ -990,7 +998,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: showHP
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: stageTime
