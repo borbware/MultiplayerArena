@@ -564,7 +564,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1001 &451823216
 PrefabInstance:
@@ -1223,7 +1223,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1001 &729611498
 PrefabInstance:
@@ -1631,7 +1631,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!224 &886077409 stripped
 RectTransform:
@@ -2970,8 +2970,8 @@ GameObject:
   - component: {fileID: 1956647774}
   - component: {fileID: 1956647777}
   - component: {fileID: 1956647776}
-  - component: {fileID: 1956647778}
   - component: {fileID: 1956647775}
+  - component: {fileID: 1956647778}
   m_Layer: 0
   m_Name: Floor1
   m_TagString: Untagged
@@ -3069,7 +3069,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1001 &2117776633
 PrefabInstance:

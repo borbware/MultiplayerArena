@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 623467131950702481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 343.10364, y: 212.9, z: -55.400646}
-  m_LocalScale: {x: 1.8501, y: 1.8501, z: 1.8501}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 9149718908913293810}
   - {fileID: 968837175480384328}
@@ -211,7 +211,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slap: {fileID: 8300000, guid: 0c3b1dfe1cd93244691bb25935650910, type: 3}
   audiocd: 0
-  dashspeed: 750
 --- !u!114 &3578961310736448255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +243,8 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  continuousJumpInput: 0
+  continuousShootInput: 0
   hurtDisablesInput: 0
   UIManager: {fileID: 0}
 --- !u!1 &1035988285271041438
