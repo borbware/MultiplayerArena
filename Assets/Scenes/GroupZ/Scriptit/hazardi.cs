@@ -6,7 +6,7 @@ public class hazardi : MonoBehaviour
 {
     float time, t;
     [SerializeField] bool lerping, activated;
-    Rigidbody wall1, wall2, wall3, wall4;
+    Rigidbody wall1, wall2, wall3, wall4, floor1, floor2, floor3, floor4;
     [SerializeField] int rotationTime = 480;
     public int shotPower = 480;
 
@@ -22,6 +22,10 @@ public class hazardi : MonoBehaviour
         wall2 = GameObject.Find("Wall2").GetComponent<Rigidbody>();
         wall3 = GameObject.Find("Wall3").GetComponent<Rigidbody>();
         wall4 = GameObject.Find("Wall4").GetComponent<Rigidbody>();
+        floor1 = GameObject.Find("Floor1").GetComponent<Rigidbody>();
+        floor2 = GameObject.Find("Floor2").GetComponent<Rigidbody>();
+        floor3 = GameObject.Find("Floor3").GetComponent<Rigidbody>();
+        floor4 = GameObject.Find("Floor4").GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
@@ -55,15 +59,16 @@ public class hazardi : MonoBehaviour
         }
         // Jos aikaa jäljellä vaan viidesosa alkup. ajasta
         else if (StageManager.instance.stageTime < time/5) {
-            wall1.constraints = RigidbodyConstraints.None;
-            wall2.constraints = RigidbodyConstraints.None;
-            wall3.constraints = RigidbodyConstraints.None;
-            wall4.constraints = RigidbodyConstraints.None;
+            
             rotationTime = 120;
             shotPower = 760;
         }
         // Jos aikaa jäljellä vaan neljäsosa alkup. ajasta
         else if (StageManager.instance.stageTime < time/4) {
+            wall1.constraints = RigidbodyConstraints.None;
+            wall2.constraints = RigidbodyConstraints.None;
+            wall3.constraints = RigidbodyConstraints.None;
+            wall4.constraints = RigidbodyConstraints.None;
             rotationTime = 180;
             shotPower = 660;
         }
