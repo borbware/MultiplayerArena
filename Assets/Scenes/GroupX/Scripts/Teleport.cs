@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
+    void Start() 
+    {
+        Destroy(gameObject, 3.0f);    
+    }
+
     void OnTriggerEnter(Collider collider)
     {
         var obj = collider.gameObject;
