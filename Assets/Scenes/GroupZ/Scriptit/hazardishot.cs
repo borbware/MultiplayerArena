@@ -1,24 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class hazardishot : MonoBehaviour
 {
     int shotPower;
-
-    // Hazard's firing effect
-    private void OnTriggerStay(Collider col) {
-        col.attachedRigidbody.AddForce(-transform.up * Time.deltaTime * shotPower);
-    }
+    CollisionModule col;
+    GameObject tuli;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        col = GetComponentInChildren<ParticleSystem>().collision;
+        tuli = GameObject.Find("HazardiFlame");
     }
 
     // Update is called once per frame
     void Update()
     {
-        shotPower = transform.GetComponentInParent<hazardi>().shotPower;
+        shotPower = tuli.transform.GetComponentInParent<hazardi>().shotPower;
+        col.colliderForce = shotPower;
     }
 }

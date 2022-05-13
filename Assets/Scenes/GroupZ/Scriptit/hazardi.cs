@@ -8,8 +8,11 @@ public class hazardi : MonoBehaviour
     [SerializeField] bool lerping, activated;
     Rigidbody wall1, wall2, wall3, wall4;
     [SerializeField] int rotationTime = 480;
-    public int shotPower = 3000;
+    public int shotPower = 480;
 
+    private void OnTriggerStay(Collider col) {
+        col.attachedRigidbody.AddForce(-transform.up * Time.deltaTime * shotPower);
+    }
     void Start()
     {
         time = StageManager.instance.stageTime;
@@ -24,7 +27,7 @@ public class hazardi : MonoBehaviour
     void FixedUpdate()
     {
         // When hazard comes up
-        if (StageManager.instance.stageTime < time/1.5f && activated != true) {
+        if (StageManager.instance.stageTime < time/1.25f && activated != true) {
             activated = true;
             lerping = true;
             t = 0;
@@ -47,8 +50,8 @@ public class hazardi : MonoBehaviour
 
         // Jos aikaa jäljellä vaan kuudesosa alkup. ajasta
         if (StageManager.instance.stageTime < time/6) {
-            rotationTime = 60;
-            shotPower = 8000;
+            rotationTime = 90;
+            shotPower = 900;
         }
         // Jos aikaa jäljellä vaan viidesosa alkup. ajasta
         else if (StageManager.instance.stageTime < time/5) {
@@ -56,22 +59,23 @@ public class hazardi : MonoBehaviour
             wall2.constraints = RigidbodyConstraints.None;
             wall3.constraints = RigidbodyConstraints.None;
             wall4.constraints = RigidbodyConstraints.None;
-            rotationTime = 90;
-            shotPower = 6000;
+            rotationTime = 120;
+            shotPower = 760;
         }
         // Jos aikaa jäljellä vaan neljäsosa alkup. ajasta
         else if (StageManager.instance.stageTime < time/4) {
-            rotationTime = 120;
-            shotPower = 5000;
+            rotationTime = 180;
+            shotPower = 660;
         }
         // Jos aikaa jäljellä vaan kolmasosa alkup. ajasta
         else if (StageManager.instance.stageTime < time/3) {
-            rotationTime = 180;
-            shotPower = 4000;
+            rotationTime = 240;
+            shotPower = 580;
         }
         // Jos puolet ajasta jäljellä
         else if (StageManager.instance.stageTime < time/2) {
-            rotationTime = 240;
+            rotationTime = 360;
+            shotPower = 520;
         }
     }
 }
