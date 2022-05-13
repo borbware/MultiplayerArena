@@ -15,11 +15,19 @@ public class Platform_falling_script : MonoBehaviour
 
     }
 
+    IEnumerator DropPlatform(GameObject platform)
+    {
+        platform.GetComponent<Renderer>().material.color = Color.red;
+        yield return new WaitForSeconds(2.0f);
+        yield return LerpFunction.LerpPosition(platform.transform, 
+        platform.transform.position + new Vector3(0f, -10f, 0f), 2.0f);
+    }    
+    
     IEnumerator StartDrop()
     {
-        Debug.Log("vaihda väri");
-        yield return new WaitForSeconds(2.0f);
-        Debug.Log("tiputa");
+        yield return DropPlatform(platforms[0]);
+        yield return new WaitForSeconds (5.0f);
+        yield return DropPlatform(platforms[5]);
     }
 
 
