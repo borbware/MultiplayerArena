@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Platform_falling_script : MonoBehaviour
 {
-    // Start is called before the first frame update
+    GameObject[] platforms;
+    bool hasbeendropped = false;
+
+
+
     void Start()
     {
-        
+       platforms = GameObject.FindGameObjectsWithTag("Platform");
+
     }
 
-    // Update is called once per frame
+    IEnumerator StartDrop()
+    {
+        Debug.Log("vaihda väri");
+        yield return new WaitForSeconds(2.0f);
+        Debug.Log("tiputa");
+    }
+
+
     void Update()
     {
-        
+       if(Time.time >2.0f && hasbeendropped == false) {
+           StartCoroutine(StartDrop()); 
+           hasbeendropped = true;
+       }
     }
 }
