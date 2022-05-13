@@ -16,6 +16,9 @@ public class PowerUpSpawner : MonoBehaviour
     int RandomSpawn;
 
     GameObject[] obj;
+    Vector3[] Positions;
+
+    bool SpawnPointsSet = false;
 
     void Start()
     {
@@ -25,6 +28,13 @@ public class PowerUpSpawner : MonoBehaviour
 
     void Update()
     {
+        if(SpawnPointsSet == false){
+            SpawnPointsSet = true;
+            Positions = new Vector3[16];
+            for (int j = 0; j < obj.Length; j++){
+                Positions[j] = obj[j].transform.position;
+            }
+        }
         if(Time.time > LastSpawn + Spawnrate){
             LastSpawn = Time.time;
             SpawnPowerUp();
@@ -35,7 +45,7 @@ public class PowerUpSpawner : MonoBehaviour
         GameObject Spawned;
         RandomSpawn = Random.Range(0, obj.Length);
         SpawnPoint = new Vector3
-        (obj[RandomSpawn].transform.position.x, 40f, obj[RandomSpawn].transform.position.z);
+        (Positions[RandomSpawn].x, 40f, Positions[RandomSpawn].z);
 
         RandomSpawn = Random.Range(0, 5);
 

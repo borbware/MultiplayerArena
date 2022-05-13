@@ -28,7 +28,7 @@ public class MovingSpotlightPositionScript : MonoBehaviour
     void Update()
     {
 
-        if (StageManager.instance.stageTime <= 60.0f && HasSpawned == false) {
+        if (StageManager.instance.stageTime <= 90.0f && HasSpawned == false) {
             HasSpawned = true;
             SpotLightSpawnAndMove();
             
