@@ -54,22 +54,22 @@ public class hazardi : MonoBehaviour
         }
         // Jos aikaa jäljellä vaan viidesosa alkup. ajasta
         else if (StageManager.instance.stageTime < time/5) {
-            floor1.GetComponent<Rigidbody>().isKinematic = false;
-            floor1.GetComponent<Collider>().isTrigger = true;
             rotationTime = 120;
             shotPower = 760;
         }
         // Jos aikaa jäljellä vaan neljäsosa alkup. ajasta
         else if (StageManager.instance.stageTime < time/4) {
-            wall1.constraints = RigidbodyConstraints.None;
-            wall2.constraints = RigidbodyConstraints.None;
-            wall3.constraints = RigidbodyConstraints.None;
-            wall4.constraints = RigidbodyConstraints.None;
+            floor1.GetComponent<Rigidbody>().isKinematic = false;
+            floor1.GetComponent<Collider>().isTrigger = true;
             rotationTime = 180;
             shotPower = 660;
         }
         // Jos aikaa jäljellä vaan kolmasosa alkup. ajasta
         else if (StageManager.instance.stageTime < time/3) {
+            wall1.constraints = RigidbodyConstraints.None;
+            wall2.constraints = RigidbodyConstraints.None;
+            wall3.constraints = RigidbodyConstraints.None;
+            wall4.constraints = RigidbodyConstraints.None;
             rotationTime = 240;
             shotPower = 580;
         }
