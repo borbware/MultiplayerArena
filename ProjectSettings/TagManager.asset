@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Death
   - Projectile
+  - Tile
+  - Port1
+  - Port2
   layers:
   - Default
   - TransparentFX
