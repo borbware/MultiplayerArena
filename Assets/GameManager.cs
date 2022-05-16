@@ -70,9 +70,10 @@ public class GameManager : MonoBehaviour
         else if (StageManager.instance.stageState == StageManager.StageState.Pause)
         {
             if (Input.GetButtonDown("Select"))
-            {
                 SceneManager.LoadScene("AssignControls");
-            }
+            if (Input.GetButtonDown("L1") && Input.GetButtonDown("R1"))
+                Application.Quit();
+
         }
     }
     public void NextStage()
