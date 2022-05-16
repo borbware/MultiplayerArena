@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     int currentStageIndex = 0;
     List<int> assignedControllers;
     public int numberOfPlayers = 4; // not implemented completely yet
+
     void Awake()
     {
         if (instance == null)
@@ -71,7 +72,7 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetButtonDown("Select"))
                 SceneManager.LoadScene("AssignControls");
-            if (Input.GetButtonDown("L1") && Input.GetButtonDown("R1"))
+            if (Input.GetButtonDown("LB") && Input.GetButtonDown("RB"))
                 Application.Quit();
 
         }
