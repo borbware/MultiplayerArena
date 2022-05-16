@@ -14,8 +14,8 @@ public class BoxMover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        x = 0.0f;
-        z = VALUE;
+        x = Random.Range(-2.5f, 2.5f);
+        z = Random.Range(-2.5f, 2.5f);
 
         speed = Vector3.right;
 
