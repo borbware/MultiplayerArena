@@ -71,8 +71,10 @@ public class GameManager : MonoBehaviour
         else if (StageManager.instance.stageState == StageManager.StageState.Pause)
         {
             if (Input.GetButtonDown("Select"))
+            {
                 SceneManager.LoadScene("AssignControls");
                 StageManager.instance.stageState = StageManager.StageState.SetControllers;
+            }
             if (Input.GetButtonDown("LB") && Input.GetButtonDown("RB"))
                 Application.Quit();
 
