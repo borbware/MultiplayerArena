@@ -10,7 +10,7 @@ public class tokkaus : MonoBehaviour
     AudioSource walking;
     [SerializeField] AudioClip slap;
     Rigidbody tisrigid;
-    float maxVel = 12f;
+    float maxVel = 17f;
     float liftUp = 25f;
     [SerializeField] float audiocd = 0;
     float  dashspeed = 400; 
