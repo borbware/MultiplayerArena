@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlatformerController : MonoBehaviour
 {
-	[SerializeField, Range(0.0f, 100f)] float maxSpeed = 		10f;
-	[SerializeField, Range(0.0f, 100f)] float maxAcceleration = 10f;
-	[SerializeField, Range(0f,   10f)]	float jumpHeight = 		2f;
+	[Range(0.0f, 100f)] public float maxSpeed = 		10f;
+	[Range(0.0f, 100f)] public float maxAcceleration = 10f;
+	[Range(0f,   10f)]  public float jumpHeight = 		2f;
 	Vector3 velocity, desiredVelocity;
 	bool desiredJump;
 
