@@ -445,6 +445,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 623467131950702481, guid: 695a0a35c65e2024ba178725235bebfa, type: 3}
   m_PrefabInstance: {fileID: 311139320}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &311139322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311139321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf8c7893f6679a43b462989b1e76d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cdImage: {fileID: 107098903}
+  isCooldown: 0
 --- !u!1 &341009729 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 163286, guid: 50daa816369323b42b56093bb108296f, type: 3}
@@ -1087,7 +1101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: stageTime
-      value: 45
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: loseWhenHPZero
@@ -1233,7 +1247,6 @@ GameObject:
   - component: {fileID: 726613461}
   - component: {fileID: 726613460}
   - component: {fileID: 726613459}
-  - component: {fileID: 726613462}
   m_Layer: 0
   m_Name: Floor2
   m_TagString: Untagged
@@ -1317,22 +1330,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726613457}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &726613462
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 726613457}
-  serializedVersion: 2
-  m_Mass: 10000
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1001 &729611498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1460,6 +1457,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7860952255492361285, guid: 8a5c2edd5c7ae4344b568d4ad9701331, type: 3}
   m_PrefabInstance: {fileID: 811201929}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &811201931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811201930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf8c7893f6679a43b462989b1e76d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cdImage: {fileID: 916379745}
+  isCooldown: 0
 --- !u!1001 &867186690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1980,6 +1991,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1964674783939471544, guid: 4204ce333b59fb242b8bdcf16a6ae77a, type: 3}
   m_PrefabInstance: {fileID: 451823216}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1114976046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114976045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf8c7893f6679a43b462989b1e76d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cdImage: {fileID: 436044250}
+  isCooldown: 0
 --- !u!1 &1219712918
 GameObject:
   m_ObjectHideFlags: 0
@@ -3125,6 +3150,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2472359077745820449, guid: 4c127591605711c42b559982d97c4979, type: 3}
   m_PrefabInstance: {fileID: 1910655348}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1910655350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910655349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf8c7893f6679a43b462989b1e76d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cdImage: {fileID: 1246854792}
+  isCooldown: 0
 --- !u!1 &1956647773
 GameObject:
   m_ObjectHideFlags: 0

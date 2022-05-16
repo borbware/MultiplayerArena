@@ -7,26 +7,22 @@ public class cooldown : MonoBehaviour
 {
     [Header("Cooldown")]
     public Image cdImage;
-    public float cooldownTest = 1f;
-    bool isCooldown;
+    public bool isCooldown = false;
     Player player;
+    float math;
+
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Playerrightone").GetComponent<Player>();
+        player = GetComponent<Player>();
         cdImage.fillAmount = 0;
-        
+        math = 1/2.35f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Cooldown();
-    }
-    
-    void Cooldown()
-    {
-        if(player.GetComponent<Player>().shootInput && isCooldown == false)
+        if(player.shootInput && isCooldown == false)
         {
             isCooldown = true;
             cdImage.fillAmount = 1;
@@ -34,7 +30,7 @@ public class cooldown : MonoBehaviour
 
         if(isCooldown)
         {
-            cdImage.fillAmount -= 1 / cooldownTest * Time.deltaTime;
+            cdImage.fillAmount -= math * Time.deltaTime;
 
             if(cdImage.fillAmount <= 0)
             { 
@@ -42,5 +38,13 @@ public class cooldown : MonoBehaviour
                 isCooldown = false;
             }
         }
+        
+
+        
+    }
+    
+    void Cooldown()
+    {
+
     }
 }
