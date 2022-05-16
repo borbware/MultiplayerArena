@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Death
   - Projectile
+  - Failure
   - Tile
   - Port1
   - Port2
@@ -13,10 +14,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - FireLayer
   - Water
   - UI
-  - 
+  - Push
   - 
   - 
   - 
