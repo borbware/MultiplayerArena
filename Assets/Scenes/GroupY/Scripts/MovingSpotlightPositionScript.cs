@@ -14,7 +14,7 @@ public class MovingSpotlightPositionScript : MonoBehaviour
     private Vector3 pos3 = new Vector3(2.8f, 8.5f, 0f);
     private Vector3 pos4 = new Vector3(0f, 8.5f, -2.8f);
 
-    
+    AudioClip _audio;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +39,7 @@ public class MovingSpotlightPositionScript : MonoBehaviour
     IEnumerator MoveSpotlight() 
     {
         while (true) {
+            yield return new WaitForSeconds(1);
             yield return LerpFunction.LerpPosition(movingLight.transform, pos1, 2.5f);
             yield return new WaitForSeconds(0.2f);
             yield return LerpFunction.LerpPosition(movingLight.transform, pos2, 2.5f);
