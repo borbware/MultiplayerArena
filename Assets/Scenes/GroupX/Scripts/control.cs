@@ -44,8 +44,7 @@ public class control : MonoBehaviour
             );
 
             Vector3 currentRotation = transform.rotation.eulerAngles;
-            Debug.Log(currentRotation);
-            currentRotation.x = Mathf.Clamp(currentRotation.x, 340, 359);
+            currentRotation.x = Mathf.Clamp(currentRotation.x, 330, 358);
             transform.localRotation = Quaternion.Euler(currentRotation);
 
             player.transform.position = seat.transform.position;
