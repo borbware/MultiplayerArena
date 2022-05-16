@@ -4045,7 +4045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68019aa0b988d6442ae87fab12f3b391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootPeriod: 0.9
+  shootPeriod: 3
   shootForce: 10000
   bullet: {fileID: 5513215216124340262, guid: b36549a9ddfc5094d81efa54bbd3c3c0, type: 3}
 --- !u!114 &519241870
@@ -4567,6 +4567,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seat: {fileID: 1528173396}
+  playerController: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &599490168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6434,7 +6436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68019aa0b988d6442ae87fab12f3b391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootPeriod: 0.9
+  shootPeriod: 3
   shootForce: 10000
   bullet: {fileID: 5513215216124340262, guid: b36549a9ddfc5094d81efa54bbd3c3c0, type: 3}
 --- !u!1 &772823012
@@ -9951,7 +9953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68019aa0b988d6442ae87fab12f3b391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootPeriod: 0.9
+  shootPeriod: 3
   shootForce: 10000
   bullet: {fileID: 5513215216124340262, guid: b36549a9ddfc5094d81efa54bbd3c3c0, type: 3}
 --- !u!1 &1110397282
@@ -11006,6 +11008,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seat: {fileID: 2040927077}
+  playerController: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &1250160916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12867,6 +12871,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seat: {fileID: 2048159907}
+  playerController: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &1542891017
 GameObject:
   m_ObjectHideFlags: 0
@@ -12876,6 +12882,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1542891018}
+  - component: {fileID: 1542891019}
   m_Layer: 0
   m_Name: Interactive
   m_TagString: Untagged
@@ -12902,6 +12909,18 @@ Transform:
   m_Father: {fileID: 1382992536}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1542891019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542891017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c0cc09f2f284f44ac2902b9c3e3a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1543309138
 GameObject:
   m_ObjectHideFlags: 0
@@ -14588,7 +14607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68019aa0b988d6442ae87fab12f3b391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootPeriod: 0.9
+  shootPeriod: 3
   shootForce: 10000
   bullet: {fileID: 5513215216124340262, guid: b36549a9ddfc5094d81efa54bbd3c3c0, type: 3}
 --- !u!114 &1810111128
@@ -16703,6 +16722,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seat: {fileID: 876768716}
+  playerController: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &2046653649
 MonoBehaviour:
   m_ObjectHideFlags: 0
