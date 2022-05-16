@@ -18,7 +18,6 @@ public class Shoot : MonoBehaviour
     int PlayerIndex;
 
     Player _player;
-    float ChargeCD = 2.3f;
     float ChargeTimer;
     float ChargeStart;
     float LastChargePress = 0;

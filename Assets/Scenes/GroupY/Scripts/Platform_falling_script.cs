@@ -5,13 +5,11 @@ using UnityEngine;
 public class Platform_falling_script : MonoBehaviour
 {
     GameObject[] platforms;
-    bool hasbeendropped = false;
+    //bool hasbeendropped = false;
 
     float LastSpawn = 0f;
 
     int Dropped;
-
-
 
     void Start()
     {
@@ -71,7 +69,6 @@ public class Platform_falling_script : MonoBehaviour
                      yield return new WaitForSeconds (0.15f);
              }
         }
-        Debug.Log(platform.name);
         yield return LerpFunction.LerpPosition(platform.transform, 
         platform.transform.position + new Vector3(0f, value, 0f), speed);
     }

@@ -1326,6 +1326,18 @@ MonoBehaviour:
   maxSpeed: 4.2
   maxAcceleration: 10
   jumpHeight: 1.1
+--- !u!114 &741082346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741082343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79b73142f57e60478702506d1290899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &741082352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2476,6 +2488,18 @@ MonoBehaviour:
   maxSpeed: 4.2
   maxAcceleration: 10
   jumpHeight: 1.1
+--- !u!114 &1562378366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562378364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79b73142f57e60478702506d1290899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1562378372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2808,6 +2832,18 @@ MonoBehaviour:
   maxSpeed: 4.2
   maxAcceleration: 10
   jumpHeight: 1.1
+--- !u!114 &1981015787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981015784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79b73142f57e60478702506d1290899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1981015793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2858,6 +2894,18 @@ MonoBehaviour:
   maxSpeed: 4.2
   maxAcceleration: 10
   jumpHeight: 1.1
+--- !u!114 &2045080214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045080211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79b73142f57e60478702506d1290899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2045080220
 MonoBehaviour:
   m_ObjectHideFlags: 0
