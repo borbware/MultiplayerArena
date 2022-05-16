@@ -54,6 +54,14 @@ public class control : MonoBehaviour
                 playerController = null;
                 GetComponent<Rotate>().enabled = true;
                 player.GetComponent<PlatformerController>().enabled = true;
+                
+                player.transform.position = new Vector3(
+                    player.transform.position.x,
+                    0,
+                    player.transform.position.x
+                );
+
+                transform.rotation = Quaternion.Euler(0, currentRotation.y, currentRotation.z);
             }
         }
     }
