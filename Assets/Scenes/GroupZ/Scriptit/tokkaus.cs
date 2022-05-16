@@ -45,6 +45,25 @@ public class tokkaus : MonoBehaviour
         if(tisrigid.velocity.magnitude > maxVel)
             tisrigid.velocity = tisrigid.velocity.normalized * maxVel; 
     }
+    IEnumerator Spawning() {
+        player.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+        player.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
+        player.transform.GetChild(2).GetComponent<MeshRenderer>().enabled = false;
+        player.transform.GetChild(3).GetComponent<MeshRenderer>().enabled = false;
+        player.transform.GetChild(4).GetComponent<MeshRenderer>().enabled = false;
+        player.transform.GetChild(5).GetComponent<MeshRenderer>().enabled = false;
+        player.transform.GetChild(6).GetComponent<MeshRenderer>().enabled = false;
+        yield return new WaitForSeconds(1);
+        player.UIManager.AddScore(-1); transform.position = spawnlocation;
+        player.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+        player.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = true;
+        player.transform.GetChild(2).GetComponent<MeshRenderer>().enabled = true;
+        player.transform.GetChild(3).GetComponent<MeshRenderer>().enabled = true;
+        player.transform.GetChild(4).GetComponent<MeshRenderer>().enabled = true;
+        player.transform.GetChild(5).GetComponent<MeshRenderer>().enabled = true;
+        player.transform.GetChild(6).GetComponent<MeshRenderer>().enabled = true;
+    }
+
     IEnumerator DashCooldown()
     {
         canDash = true;
@@ -80,10 +99,12 @@ public class tokkaus : MonoBehaviour
         if(toher.tag == "fial")
         {
             // Debug.Log(toher.tag);
-            if(player.UIManager.score == 0)
-            {Destroy(gameObject);}
-            else
-            {player.UIManager.AddScore(-1); transform.position = spawnlocation;}
+            if(player.UIManager.score == 0) {
+                Destroy(gameObject);
+            }
+            else {
+                StartCoroutine(Spawning());
+            }
         }
     }
 }
