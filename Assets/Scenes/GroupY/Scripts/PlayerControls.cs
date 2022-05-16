@@ -65,14 +65,20 @@ public class PlayerControls : MonoBehaviour
 		velocity.y += Mathf.Sqrt(-2f * Physics.gravity.y * jumpHeight);
 	}
 
-        void OnTriggerEnter(Collider C){
-        if(C.gameObject.tag == "Projectile" && KnockedBack == false){
+    void OnTriggerEnter(Collider C){
+        if ((C.gameObject.tag == "AutoShot" || C.gameObject.tag == "Projectile") && KnockedBack == false){
             rb = C.gameObject.GetComponent<Rigidbody>();
             KnockbackDir = rb.velocity.normalized;
             Destroy(C.gameObject);
             _rigidbody.velocity = new Vector3(0f, 0f, 0f);
-            KnockedBack = true;
+        }
+
+        if(C.gameObject.tag == "Projectile" && KnockedBack == false){
             Invoke("CancelKnockback", 0.15f);
+            KnockedBack = true;
+        } else if (C.gameObject.tag == "AutoShot" && KnockedBack == false){
+            Invoke("CancelKnockback", 0.115f);
+            KnockedBack = true;
         }
     }
 

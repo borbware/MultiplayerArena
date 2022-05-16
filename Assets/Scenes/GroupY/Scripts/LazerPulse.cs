@@ -17,6 +17,8 @@ public class LazerPulse : MonoBehaviour
     Gradient gradientCol1 = new Gradient();
     Gradient gradientCol2 = new Gradient();
 
+    Color UsedCol; 
+
      float LastPulse = 0;
 
     void Start()
@@ -37,7 +39,6 @@ public class LazerPulse : MonoBehaviour
             new GradientAlphaKey(PulseColor.a, 1.0f) });
 
         lr.colorGradient = gradientCol1;
-
     }
 
     void Update()
@@ -45,6 +46,7 @@ public class LazerPulse : MonoBehaviour
         if(Time.time-PulseRate > LastPulse){
             LastPulse = Time.time;
             ColPulse();
+
         }
     }
 
