@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7418220857761805829}
   - component: {fileID: 1010548322907693428}
   - component: {fileID: 4997407868383470306}
+  - component: {fileID: 4652279735773321851}
   m_Layer: 0
   m_Name: PlayerPlaftormer
   m_TagString: Player
@@ -158,10 +159,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
-  state: active
+  state: 0
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  continuousJumpInput: 0
+  continuousShootInput: 0
+  hurtDisablesInput: 0
   UIManager: {fileID: 0}
 --- !u!114 &4997407868383470306
 MonoBehaviour:
@@ -178,6 +182,20 @@ MonoBehaviour:
   shootPeriod: 0.9
   shootForce: 4387
   bullet: {fileID: 8581939185569562706, guid: cc6314edba6be564686473507df40bf8, type: 3}
+--- !u!114 &4652279735773321851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2345306565705809888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd3e659df007bb45a62c37c13461a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threshold: 0
+  damage: 50
 --- !u!1 &5239187378164395655
 GameObject:
   m_ObjectHideFlags: 0
