@@ -18,16 +18,32 @@ public class control : MonoBehaviour
             player = collider.gameObject;
             player.GetComponent<PlatformerController>().enabled = false;
             player.GetComponent<ShootProjectile>().enabled = false;
+        } 
+        else if (collider.tag == "Player" && player != null)
+        {
+            // playerController = collider.GetComponent<Player>();
+            // GetComponent<Rotate>().enabled = false;
+            // player = collider.gameObject;
+            playerController.jumpInput = true;
+
+            player.GetComponent<PlatformerController>().enabled = true;
+            player.GetComponent<ShootProjectile>().enabled = true;
+
+            playerController = collider.GetComponent<Player>();
+            GetComponent<Rotate>().enabled = false;
+            player = collider.gameObject;
+            player.GetComponent<PlatformerController>().enabled = false;
+            player.GetComponent<ShootProjectile>().enabled = false;
         }
 
         if (playerController && collider.tag == "Projectile")
         {
             playerController.jumpInput = true;
             playerController = null;
-            player = null;
             GetComponent<Rotate>().enabled = true;
             player.GetComponent<PlatformerController>().enabled = true;
             player.GetComponent<ShootProjectile>().enabled = true;
+            player = null;
         }
     }
 
