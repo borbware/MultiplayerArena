@@ -3,6 +3,7 @@
 using UnityEngine;
 using UnityEditor;
 
+#if (UNITY_EDITOR)
 namespace DigitalRuby.PyroParticles
 {
     [CustomEditor(typeof(FireBaseScript))]
@@ -48,3 +49,4 @@ namespace DigitalRuby.PyroParticles
         }
     }
 }
+#endif
