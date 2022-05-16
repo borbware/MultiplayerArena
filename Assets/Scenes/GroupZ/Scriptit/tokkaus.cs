@@ -75,7 +75,6 @@ public class tokkaus : MonoBehaviour
             tisrigid.AddForce(transform.forward * dashspeed);
             yield return new WaitForSeconds(0.01f);
         }
-        Debug.Log(GetComponent<cooldown>().isCooldown);
         canDash = false;
         pushforce = 130;
         if(tisrigid.velocity.magnitude > maxVel)

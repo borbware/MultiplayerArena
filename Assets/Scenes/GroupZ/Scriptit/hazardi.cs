@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class hazardi : MonoBehaviour
 {
-    float time, t;
-    [SerializeField] bool lerping, activated;
+    float time, t, t2;
+    [SerializeField] bool lerping, lerping2, activated;
     Rigidbody wall1, wall2, wall3, wall4;
     GameObject floor1;
     [SerializeField] int rotationTime = 480;
@@ -15,6 +15,7 @@ public class hazardi : MonoBehaviour
     {
         time = StageManager.instance.stageTime;
         lerping = false;
+        lerping2 = false;
         activated = false;
         wall1 = GameObject.Find("Wall1").GetComponent<Rigidbody>();
         wall2 = GameObject.Find("Wall2").GetComponent<Rigidbody>();
@@ -40,6 +41,12 @@ public class hazardi : MonoBehaviour
                 lerping = false;
         }
 
+        // Floor drops
+        if (lerping2) {
+            floor1.transform.localPosition = Vector3.Lerp(new Vector3(4,-2,1.5f), new Vector3(4,-5,1.5f),t2);
+            t2 += Time.deltaTime;
+        }
+
         // Hazard starts firing and rotating
         if (!lerping && activated) {
             transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
@@ -59,8 +66,10 @@ public class hazardi : MonoBehaviour
         }
         // Jos aikaa jäljellä vaan neljäsosa alkup. ajasta
         else if (StageManager.instance.stageTime < time/4) {
-            floor1.GetComponent<Rigidbody>().isKinematic = false;
-            floor1.GetComponent<Collider>().isTrigger = true;
+            if (!lerping) {
+                t2 = 0;
+                lerping2 = true;
+            }
             rotationTime = 180;
             shotPower = 660;
         }
