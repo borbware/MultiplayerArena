@@ -6,9 +6,10 @@ public class DestructibleBalls : MonoBehaviour
 {
     void OnCollisionEnter(Collision bullet)
     {
-        if (bullet.gameObject.tag.Equals("Projectile"))
+        if (bullet.gameObject.tag.Equals("Projectile")
+        || (bullet.gameObject.tag.Equals("Player")))
         {
-            Destroy (bullet.gameObject, 0.1f);
+            Destroy (this.gameObject, 0.1f);
         }
     }
 }
