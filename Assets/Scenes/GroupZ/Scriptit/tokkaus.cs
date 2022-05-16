@@ -7,7 +7,7 @@ public class tokkaus : MonoBehaviour
     float pushforce = 130;
     Player player;
     Vector3 spawnlocation;
-    AudioSource walking;
+    AudioSource walking, othersource;
     [SerializeField] AudioClip slap, death;
     Rigidbody tisrigid;
     float maxVel = 17f;
@@ -21,6 +21,7 @@ public class tokkaus : MonoBehaviour
         spawnlocation = transform.position;
         player = GetComponent<Player>();
         walking = GetComponent<AudioSource>();
+        othersource = GameObject.Find("Environment").GetComponent<AudioSource>();
         tisrigid = gameObject.GetComponent<Rigidbody>();
     }
     void Update()
@@ -54,7 +55,8 @@ public class tokkaus : MonoBehaviour
         player.transform.GetChild(5).GetComponent<MeshRenderer>().enabled = false;
         player.transform.GetChild(6).GetComponent<MeshRenderer>().enabled = false;
         yield return new WaitForSeconds(1);
-        player.UIManager.AddScore(-1); transform.position = spawnlocation;
+        player.UIManager.AddScore(-1); 
+        transform.position = spawnlocation;
         player.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
         player.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = true;
         player.transform.GetChild(2).GetComponent<MeshRenderer>().enabled = true;
@@ -97,7 +99,7 @@ public class tokkaus : MonoBehaviour
         }    
         if(toher.tag == "fial")
         {
-            walking.PlayOneShot(death);
+            othersource.PlayOneShot(death);
             if(player.UIManager.score == 0) {
                 Destroy(gameObject);
             }
