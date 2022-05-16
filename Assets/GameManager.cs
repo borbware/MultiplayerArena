@@ -38,20 +38,24 @@ public class GameManager : MonoBehaviour
             {
                 players.Add(new PlayerData(i + 1));
             }
-            assignedControllers = new List<int>();
         } else
         {
             Destroy(gameObject);
+        }
+    }
+    void InitControls()
+    {
+        assignedControllers = new List<int>();
+        foreach (var player in players)
+        {
+            player.controller = 0;
         }
     }
     void Start()
     {
         if (StageManager.instance.stageState == StageManager.StageState.SetControllers)
         {
-            foreach (var player in players)
-            {
-                player.controller = 0;
-            }
+            InitControls();
         }
     }
     void Update()
@@ -66,6 +70,7 @@ public class GameManager : MonoBehaviour
             if (Input.GetButtonDown("Start"))
             {
                 SceneManager.LoadScene(stages[currentStageIndex]);
+                StageManager.instance.stageState = StageManager.StageState.Ready;
             }
         }
         else if (StageManager.instance.stageState == StageManager.StageState.Pause)
@@ -74,6 +79,9 @@ public class GameManager : MonoBehaviour
             {
                 SceneManager.LoadScene("AssignControls");
                 StageManager.instance.stageState = StageManager.StageState.SetControllers;
+                Time.timeScale = 1;
+                AudioListener.pause = false;
+                InitControls();
             }
             if (Input.GetButtonDown("LB") && Input.GetButtonDown("RB"))
                 Application.Quit();
