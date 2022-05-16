@@ -23,7 +23,7 @@ public class PowerUp : MonoBehaviour
             shooter.shootForce += 5000;
             shooter.shootPeriod -= 0.4f;
 
-            timer = 5;
+            timer = 15;
             started = true;
 
             GetComponent<Collider>().enabled = false;
