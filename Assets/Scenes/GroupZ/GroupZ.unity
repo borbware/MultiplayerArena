@@ -1181,7 +1181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5125450636443232039, guid: e7416ad2a10312b448dd7b8fe6ec8ae9, type: 3}
       propertyPath: m_TagString
-      value: fial
+      value: Failure
       objectReference: {fileID: 0}
     - target: {fileID: 5125450636443232040, guid: e7416ad2a10312b448dd7b8fe6ec8ae9, type: 3}
       propertyPath: m_ReceiveShadows

@@ -97,7 +97,7 @@ public class tokkaus : MonoBehaviour
             if (dotproduct > 0)
                 pushother.AddForce(dist.normalized * dotproduct * pushforce);
         }    
-        if(toher.tag == "fial")
+        if(toher.tag == "Failure")
         {
             othersource.PlayOneShot(death);
             if(player.UIManager.score == 0) {
