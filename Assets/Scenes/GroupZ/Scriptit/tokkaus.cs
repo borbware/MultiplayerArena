@@ -8,7 +8,7 @@ public class tokkaus : MonoBehaviour
     Player player;
     Vector3 spawnlocation;
     AudioSource walking;
-    [SerializeField] AudioClip slap;
+    [SerializeField] AudioClip slap, death;
     Rigidbody tisrigid;
     float maxVel = 17f;
     float liftUp = 25f;
@@ -97,7 +97,7 @@ public class tokkaus : MonoBehaviour
         }    
         if(toher.tag == "fial")
         {
-            // Debug.Log(toher.tag);
+            walking.PlayOneShot(death);
             if(player.UIManager.score == 0) {
                 Destroy(gameObject);
             }

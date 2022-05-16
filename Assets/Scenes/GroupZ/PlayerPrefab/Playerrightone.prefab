@@ -372,6 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slap: {fileID: 8300000, guid: 0c3b1dfe1cd93244691bb25935650910, type: 3}
+  death: {fileID: 8300000, guid: 96df77549a39d964eb2b18eb2b54ec85, type: 3}
   audiocd: 0
 --- !u!114 &2472453220398747094
 MonoBehaviour:
