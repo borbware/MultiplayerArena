@@ -33,8 +33,8 @@ public class PlayerKnockback : MonoBehaviour
             KnockbackStrength = 3650f;
             LuotiOsuma(C.gameObject, 0.15f);
         } else if(C.gameObject.tag == "AutoShot" && KnockedBack == false){
-            KnockbackStrength = 5050f;
-            LuotiOsuma(C.gameObject, 0.11f);
+            KnockbackStrength = 12750f;
+            LuotiOsuma(C.gameObject, 0.115f);
         }
 
     }

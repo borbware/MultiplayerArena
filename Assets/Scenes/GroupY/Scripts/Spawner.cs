@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
     Vector3[] Positions = new Vector3[4];
 
     //float[] SpawnRates = {1.3f, 1.5f, 2f, 2.8f, 3.6f, 4.5f, 5.5f, 6.5f};
-    float[] SpawnRates = {1.8f, 2.5f, 3.1f, 3.7f, 4.5f, 5.3f, 5.9f, 6.5f};
+    float[] SpawnRates = {1.8f, 2.5f, 3.2f, 3.9f, 4.6f, 5.3f, 5.9f, 6.5f};
     float[] Theresholds = {15f, 30f, 45f ,60f, 75f, 90f, 105f, 121f};
 
     float SpawnRate = 6.5f;

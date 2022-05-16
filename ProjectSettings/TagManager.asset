@@ -6,10 +6,6 @@ TagManager:
   tags:
   - Death
   - Projectile
-  - Spawner1
-  - Spawner2
-  - Spawner3
-  - Spawner4
   - PowerUp_AutoShot
   - AutoShot
   - Platform
