@@ -7,7 +7,6 @@ public class Shoot : MonoBehaviour
 {
 
     bool desiredShoot;
-    bool autoFire;
     float nextShootTime;
     [SerializeField, Range(0.01f,   10f)] float shootPeriod;
     [SerializeField, Range(0f,   10000f)] float shootForce;
@@ -19,8 +18,6 @@ public class Shoot : MonoBehaviour
     int PlayerIndex;
 
     Player _player;
-
-    int MaxCharges = 5;
     float ChargeCD = 2.3f;
     float ChargeTimer;
     float ChargeStart;
@@ -40,24 +37,16 @@ public class Shoot : MonoBehaviour
         //scoreText = scoreObj.GetComponent<Text>();
     }
 
-    void ChargeGain(){
-        if((ChargeTimer + (ChargeCD/7) < Time.time) 
-        && UIManager.score < MaxCharges){
-           UIManager.AddScore(1);
-           ChargeTimer = Time.time;
-        }
-    }
-
     void Update(){
         if (StageManager.instance.stageState != StageManager.StageState.Play)
             return;
         if (_player != null)
         {
-            autoFire |= _player.continuousShootInput && UIManager.score > 0;
-		    desiredShoot |= _player.shootInput && UIManager.score < 1;
+            //autoFire |= _player.continuousShootInput && UIManager.score > 0;
+		    desiredShoot |= _player.shootInput;// && UIManager.score < 1;
         } else {
             desiredShoot = true;
-            autoFire = true;
+            //autoFire = true;
         }
 
         // if(LastChargePress + ChargeCD < Time.time){
@@ -66,20 +55,20 @@ public class Shoot : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if (autoFire){
-            autoFire = false;
-            Ammu(AutoBullet, 0.6f, 0.5f, true);
+        if (desiredShoot && UIManager.score > 0){
+            desiredShoot = false;
+            Ammu(AutoBullet, 1.2f, true, 0.35f);
 
         }
         else if (desiredShoot)
         {
             desiredShoot = false;
-            Ammu(bullet, 0.7f, 1, false);
+            Ammu(bullet, 0.7f, false, 1f);
         }
     }
 
 
-    void Ammu(GameObject Luoti, float LuotiSpeed, float Modifier, bool DeductScore){
+    void Ammu(GameObject Luoti, float LuotiSpeed, bool DeductScore, float Modifier){
         if (Luoti != null && Time.time >= nextShootTime){
             LastChargePress = Time.time;
             var newBullet = Instantiate(
@@ -89,8 +78,8 @@ public class Shoot : MonoBehaviour
             if(DeductScore == true){UIManager.AddScore(-1);}
             Destroy(newBullet, 5);
             newBullet.GetComponent<Rigidbody>().AddForce(
-                transform.forward * shootForce * Time.fixedDeltaTime);
-            nextShootTime = Time.time + shootPeriod * Modifier;
+                transform.forward * (shootForce * Modifier) * Time.fixedDeltaTime);
+            nextShootTime = Time.time + shootPeriod;
         }
     }
 

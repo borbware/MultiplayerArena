@@ -9,6 +9,8 @@ public class Platform_falling_script : MonoBehaviour
 
     float LastSpawn = 0f;
 
+    int Dropped;
+
 
 
     void Start()
@@ -40,18 +42,22 @@ public class Platform_falling_script : MonoBehaviour
     //        hasbeendropped = true;
     //    }
 
-        if(StageManager.instance.stageTime < 60 && (Time.time - 5) > LastSpawn){
+        if(StageManager.instance.stageTime < 76 && (Time.time - 5) > LastSpawn){
             LastSpawn = Time.time;
-            StartCoroutine(PlatformDrop());
+            Dropped = Random.Range(0,15);
+            int Dropped2 = Random.Range(0,15);
+
+           if(Dropped == Dropped2) Dropped2 ++;
+                StartCoroutine(PlatformDrop(Dropped));
+                StartCoroutine(PlatformDrop(Dropped2));
         }
     }
 
-    IEnumerator PlatformDrop()
-    {   int Dropped;
-        Dropped = Random.Range(0,15);
-        yield return MovePlatform(platforms[Dropped], -10f, 1.2f);
-        //yield return new WaitForSeconds (0.2f);
-        yield return MovePlatform(platforms[Dropped], 10f, 1f);
+    IEnumerator PlatformDrop(int dropped)
+    {
+        if(dropped >  15) dropped -= 15;
+        yield return MovePlatform(platforms[dropped], -10f, 1.2f);
+        yield return MovePlatform(platforms[dropped], 10f, 1f);
     }
     
     IEnumerator MovePlatform(GameObject platform, float value, float speed)
@@ -65,7 +71,7 @@ public class Platform_falling_script : MonoBehaviour
                      yield return new WaitForSeconds (0.15f);
              }
         }
-
+        Debug.Log(platform.name);
         yield return LerpFunction.LerpPosition(platform.transform, 
         platform.transform.position + new Vector3(0f, value, 0f), speed);
     }

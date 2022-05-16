@@ -8,6 +8,8 @@ public class PlayerKnockback : MonoBehaviour
 
     float[] KnockDir = {1f,1f};
 
+    float KnockbackStrength;
+
 
     Rigidbody rb;
     Rigidbody destRB;
@@ -22,15 +24,17 @@ public class PlayerKnockback : MonoBehaviour
     void FixedUpdate(){
         if (KnockedBack == true){
             destRB.gameObject.GetComponent<Rigidbody>().AddForce(
-                KnockbackDir * 3650 * Time.fixedDeltaTime);
+                KnockbackDir * KnockbackStrength * Time.fixedDeltaTime);
         }
     }
 
     void OnTriggerEnter(Collider C){
         if(C.gameObject.tag == "Projectile" && KnockedBack == false){
+            KnockbackStrength = 3650f;
             LuotiOsuma(C.gameObject, 0.15f);
         } else if(C.gameObject.tag == "AutoShot" && KnockedBack == false){
-            LuotiOsuma(C.gameObject, 0.085f);
+            KnockbackStrength = 5050f;
+            LuotiOsuma(C.gameObject, 0.11f);
         }
 
     }

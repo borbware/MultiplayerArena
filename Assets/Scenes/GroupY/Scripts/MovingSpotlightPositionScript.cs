@@ -39,14 +39,14 @@ public class MovingSpotlightPositionScript : MonoBehaviour
     IEnumerator MoveSpotlight() 
     {
         while (true) {
-            yield return LerpFunction.LerpPosition(movingLight.transform, pos1, 5f);
-            yield return new WaitForSeconds(2);
-            yield return LerpFunction.LerpPosition(movingLight.transform, pos2, 5f);
-            yield return new WaitForSeconds(2);
-            yield return LerpFunction.LerpPosition(movingLight.transform, pos3, 5f);
-            yield return new WaitForSeconds(2);
-            yield return LerpFunction.LerpPosition(movingLight.transform, pos4, 5f);
-            yield return new WaitForSeconds(2);
+            yield return LerpFunction.LerpPosition(movingLight.transform, pos1, 3f);
+            yield return new WaitForSeconds(0.5f);
+            yield return LerpFunction.LerpPosition(movingLight.transform, pos2, 3f);
+            yield return new WaitForSeconds(0.5f);
+            yield return LerpFunction.LerpPosition(movingLight.transform, pos3, 3f);
+            yield return new WaitForSeconds(0.5f);
+            yield return LerpFunction.LerpPosition(movingLight.transform, pos4, 3f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
     public void SpotLightSpawnAndMove() 
