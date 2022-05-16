@@ -3705,7 +3705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootPeriod: 0.9
   shootForce: 10000
-  bullet: {fileID: 8581939185569562706, guid: cc6314edba6be564686473507df40bf8, type: 3}
+  bullet: {fileID: 5513215216124340262, guid: b36549a9ddfc5094d81efa54bbd3c3c0, type: 3}
 --- !u!114 &519241870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5980,7 +5980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootPeriod: 0.9
   shootForce: 10000
-  bullet: {fileID: 8581939185569562706, guid: cc6314edba6be564686473507df40bf8, type: 3}
+  bullet: {fileID: 5513215216124340262, guid: b36549a9ddfc5094d81efa54bbd3c3c0, type: 3}
 --- !u!1 &772823012
 GameObject:
   m_ObjectHideFlags: 0
@@ -9216,7 +9216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootPeriod: 0.9
   shootForce: 10000
-  bullet: {fileID: 8581939185569562706, guid: cc6314edba6be564686473507df40bf8, type: 3}
+  bullet: {fileID: 5513215216124340262, guid: b36549a9ddfc5094d81efa54bbd3c3c0, type: 3}
 --- !u!1 &1110397282
 GameObject:
   m_ObjectHideFlags: 0
@@ -13446,7 +13446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootPeriod: 0.9
   shootForce: 10000
-  bullet: {fileID: 8581939185569562706, guid: cc6314edba6be564686473507df40bf8, type: 3}
+  bullet: {fileID: 5513215216124340262, guid: b36549a9ddfc5094d81efa54bbd3c3c0, type: 3}
 --- !u!114 &1810111128
 MonoBehaviour:
   m_ObjectHideFlags: 0
