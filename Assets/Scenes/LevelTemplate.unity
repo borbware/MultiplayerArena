@@ -474,6 +474,8 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  continuousJumpInput: 0
+  continuousShootInput: 0
   hurtDisablesInput: 0
   UIManager: {fileID: 0}
 --- !u!114 &519127508
@@ -687,6 +689,8 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  continuousJumpInput: 0
+  continuousShootInput: 0
   hurtDisablesInput: 0
   UIManager: {fileID: 0}
 --- !u!114 &612980045
@@ -1013,6 +1017,8 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  continuousJumpInput: 0
+  continuousShootInput: 0
   hurtDisablesInput: 0
   UIManager: {fileID: 0}
 --- !u!114 &1041915007
@@ -1643,6 +1649,8 @@ MonoBehaviour:
   axisInput: {x: 0, y: 0}
   jumpInput: 0
   shootInput: 0
+  continuousJumpInput: 0
+  continuousShootInput: 0
   hurtDisablesInput: 0
   UIManager: {fileID: 0}
 --- !u!114 &2067494168
@@ -1806,10 +1814,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 833434270727555163, guid: e13f9f3c8f3fb8842a69840acbd5c17f, type: 3}
-      propertyPath: numberOfPlayers
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e13f9f3c8f3fb8842a69840acbd5c17f, type: 3}
 --- !u!1001 &3733942775646583918
@@ -1855,6 +1859,26 @@ PrefabInstance:
       propertyPath: UIManagers.Array.data[3]
       value: 
       objectReference: {fileID: 1934747440}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1041915003}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 519127504}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 2067494164}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: 612980041}
     - target: {fileID: 3733942775869018905, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: m_RootOrder
       value: 1

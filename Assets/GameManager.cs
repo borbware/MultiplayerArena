@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     int currentStageIndex = 0;
     List<int> assignedControllers;
     public int numberOfPlayers = 4; // not implemented completely yet
+
     void Awake()
     {
         if (instance == null)
@@ -37,25 +38,31 @@ public class GameManager : MonoBehaviour
             {
                 players.Add(new PlayerData(i + 1));
             }
-            assignedControllers = new List<int>();
         } else
         {
             Destroy(gameObject);
+        }
+    }
+    void InitControls()
+    {
+        assignedControllers = new List<int>();
+        foreach (var player in players)
+        {
+            player.controller = 0;
         }
     }
     void Start()
     {
         if (StageManager.instance.stageState == StageManager.StageState.SetControllers)
         {
-            foreach (var player in players)
-            {
-                player.controller = 0;
-            }
+            InitControls();
         }
     }
     void Update()
     {
-        if (StageManager.instance != null && StageManager.instance.stageState == StageManager.StageState.SetControllers)
+        if (StageManager.instance == null)
+            return;
+        if (StageManager.instance.stageState == StageManager.StageState.SetControllers)
         {
             if (assignedControllers.Count < players.Count)
                 DetectControllers();
@@ -63,7 +70,22 @@ public class GameManager : MonoBehaviour
             if (Input.GetButtonDown("Start"))
             {
                 SceneManager.LoadScene(stages[currentStageIndex]);
+                StageManager.instance.stageState = StageManager.StageState.Ready;
             }
+        }
+        else if (StageManager.instance.stageState == StageManager.StageState.Pause)
+        {
+            if (Input.GetButtonDown("Select"))
+            {
+                SceneManager.LoadScene("AssignControls");
+                StageManager.instance.stageState = StageManager.StageState.SetControllers;
+                Time.timeScale = 1;
+                AudioListener.pause = false;
+                InitControls();
+            }
+            if (Input.GetButtonDown("LB") && Input.GetButtonDown("RB"))
+                Application.Quit();
+
         }
     }
     public void NextStage()
