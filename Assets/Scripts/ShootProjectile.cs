@@ -38,6 +38,9 @@ public class ShootProjectile : MonoBehaviour
                     transform.position + transform.forward * 0.5f,
                     Quaternion.identity
                 );
+                Hurt _hurt = newBullet.GetComponent<Hurt>();
+                if (_hurt != null)
+                    _hurt.shooter = gameObject;
                 newBullet.GetComponent<Rigidbody>().AddForce(
                     transform.forward * shootForce * Time.fixedDeltaTime);
                 nextShootTime = Time.time + shootPeriod;
