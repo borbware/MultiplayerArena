@@ -196,7 +196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 833434270727555163, guid: e13f9f3c8f3fb8842a69840acbd5c17f, type: 3}
       propertyPath: stages.Array.data[0]
-      value: LevelTemplate
+      value: GroupX_test
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e13f9f3c8f3fb8842a69840acbd5c17f, type: 3}
