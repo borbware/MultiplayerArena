@@ -56,18 +56,18 @@ public class Shoot : MonoBehaviour
     void FixedUpdate(){
         if (desiredShoot && UIManager.score > 0){
             desiredShoot = false;
-            Ammu(AutoBullet, 1.2f, true, 0.35f);
+            Ammu(AutoBullet, 1.2f, true, 0.35f, 1.5f);
 
         }
         else if (desiredShoot)
         {
             desiredShoot = false;
-            Ammu(bullet, 0.7f, false, 1f);
+            Ammu(bullet, 0.7f, false, 1f, 1f);
         }
     }
 
 
-    void Ammu(GameObject Luoti, float LuotiSpeed, bool DeductScore, float Modifier){
+    void Ammu(GameObject Luoti, float LuotiSpeed, bool DeductScore, float Modifier, float RateOfFire){
         if (Luoti != null && Time.time >= nextShootTime){
             LastChargePress = Time.time;
             var newBullet = Instantiate(
@@ -78,7 +78,7 @@ public class Shoot : MonoBehaviour
             Destroy(newBullet, 5);
             newBullet.GetComponent<Rigidbody>().AddForce(
                 transform.forward * (shootForce * Modifier) * Time.fixedDeltaTime);
-            nextShootTime = Time.time + shootPeriod;
+            nextShootTime = Time.time + (shootPeriod * RateOfFire);
         }
     }
 
@@ -86,7 +86,7 @@ public class Shoot : MonoBehaviour
     void OnCollisionEnter(Collision C){
         if(C.gameObject.tag == "PowerUp_AutoShot" && CanPickUp != false){
             Destroy(C.gameObject);
-            UIManager.AddScore(10);
+            UIManager.AddScore(3);
             Invoke("CanPickUpAgain", 0.05f);
             CanPickUp = false;
         }else if (C.gameObject.tag == "HealPickUp" && CanPickUp != false){
