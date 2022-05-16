@@ -7,7 +7,7 @@ public class ShootProjectile : MonoBehaviour
     float nextShootTime;
     [Range(0.01f,   10f)] public float shootPeriod;
     [Range(0f,   10000f)] public float shootForce;
-    [SerializeField] GameObject bullet;
+    public GameObject bullet;
 
     Player _player;
     private void Start()
