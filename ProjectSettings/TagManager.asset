@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Death
   - Projectile
+  - PowerUp_AutoShot
+  - AutoShot
+  - Platform
+  - HealPickUp
   - Failure
   - Tile
   - Port1
