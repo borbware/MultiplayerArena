@@ -131,8 +131,8 @@ GameObject:
   - component: {fileID: 2010319912326547873}
   - component: {fileID: 2048748101383097181}
   - component: {fileID: 1294720277601711638}
-  - component: {fileID: 2010319912326547807}
-  - component: {fileID: 2010319912326547805}
+  - component: {fileID: 2692288228117774368}
+  - component: {fileID: 9030543595785351398}
   m_Layer: 0
   m_Name: Player1Platformer
   m_TagString: Player
@@ -273,7 +273,7 @@ MonoBehaviour:
   maxSpeed: 10
   maxAcceleration: 10
   jumpHeight: 2
---- !u!114 &2010319912326547807
+--- !u!114 &2692288228117774368
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,10 +282,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2010319912326547803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0010be7568186ce48b4eb0b63be81b67, type: 3}
+  m_Script: {fileID: 11500000, guid: b4b5d625f5dedbc4b91d92e1eb9576ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2010319912326547805
+--- !u!114 &9030543595785351398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,12 +294,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2010319912326547803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68019aa0b988d6442ae87fab12f3b391, type: 3}
+  m_Script: {fileID: 11500000, guid: fae933f2cc20ea84383bbfd703c9f5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootPeriod: 0.9
-  shootForce: 4387
-  bullet: {fileID: 8581939185569562706, guid: cc6314edba6be564686473507df40bf8, type: 3}
+  shootPeriod: 0
+  shootForce: 0
+  bullet: {fileID: 0}
 --- !u!1 &3048556204226634132
 GameObject:
   m_ObjectHideFlags: 0
