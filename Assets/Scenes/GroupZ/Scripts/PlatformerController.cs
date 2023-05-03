@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZPlatformerController : MonoBehaviour
+namespace GroupZ
+{
+public class PlatformerController : MonoBehaviour
 {
     [Range(0.0f, 100f)] public float maxSpeed = 		10f;
 	[Range(0.0f, 100f)] public float maxAcceleration = 10f;
@@ -11,7 +13,7 @@ public class ZPlatformerController : MonoBehaviour
 	bool desiredJump;
 
 	Rigidbody _rigidbody;
-    ZPlayer _player;
+    Player _player;
 	bool onGround;
 
 	void OnCollisionStay () {
@@ -20,7 +22,7 @@ public class ZPlatformerController : MonoBehaviour
 
 	void Start()
 	{
-        _player = GetComponent<ZPlayer>();
+        _player = GetComponent<Player>();
 		_rigidbody = GetComponent<Rigidbody>();
 	}
 
@@ -49,4 +51,5 @@ public class ZPlatformerController : MonoBehaviour
 	void Jump() {
 		velocity.y += Mathf.Sqrt(-2f * Physics.gravity.y * jumpHeight);
 	}
+}
 }
