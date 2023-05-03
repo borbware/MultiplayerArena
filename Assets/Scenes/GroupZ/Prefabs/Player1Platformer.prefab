@@ -297,9 +297,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae933f2cc20ea84383bbfd703c9f5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootPeriod: 0
+  shootPeriod: 1
   shootForce: 0
-  bullet: {fileID: 0}
+  bullet: {fileID: 6381163997264809591, guid: 9a1de2fe632e8f847bab002eb7583248, type: 3}
 --- !u!1 &3048556204226634132
 GameObject:
   m_ObjectHideFlags: 0
