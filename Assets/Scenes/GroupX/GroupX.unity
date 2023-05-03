@@ -578,7 +578,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5125450636443232038, guid: e7416ad2a10312b448dd7b8fe6ec8ae9, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5125450636443232038, guid: e7416ad2a10312b448dd7b8fe6ec8ae9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -692,7 +692,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2569301245441163848, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2569301245441163848, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -844,6 +844,20 @@ MonoBehaviour:
   maxMoles: 3
   mole: {fileID: 8075797068476980383, guid: 2748805fbd9d23c40b0d2f9e4d3b53ae, type: 3}
   hole: {fileID: 1283521480252124002, guid: 7740c608cae0df241a6b2be93e337f63, type: 3}
+  arrayOfHoles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1434007958
 Transform:
   m_ObjectHideFlags: 0

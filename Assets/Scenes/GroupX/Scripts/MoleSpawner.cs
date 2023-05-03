@@ -12,30 +12,14 @@ public class MoleSpawner : MonoBehaviour
 
     System.Random rand = new System.Random();
 
-    public class MoleHole {
-        /* this clss is a container for a position (Vector3) and a bool which keeps track 
-        whether there is a mole already spawned*/
-
-        public Vector3 position;
-        public bool isEmpty = true;
-
-        public MoleHole(float x, float y, float z){
-            position = new Vector3(x, y, z);
-        }
-
-        public void setEmpty(){
-            isEmpty = true;
-        }
-    }
-
     //we construct our array of mole holes
     //new or different holes should be entered here manually
-    static MoleHole hole_0 = new MoleHole(2.5f, 0f, 2.5f);
+    /*static MoleHole hole_0 = new MoleHole(2.5f, 0f, 2.5f);
     static MoleHole hole_1 = new MoleHole(2.5f, 0f, -2.5f);
     static MoleHole hole_2 = new MoleHole(-2.5f, 0f, -2.5f);
-    static MoleHole hole_3 = new MoleHole(-2.5f, 0f, 2.5f);
+    static MoleHole hole_3 = new MoleHole(-2.5f, 0f, 2.5f);*/
 
-    public MoleHole[] arrayOfHoles = {hole_0, hole_1, hole_2, hole_3};
+    [SerializeField] public MoleHole[] arrayOfHoles; // = {hole_0, hole_1, hole_2, hole_3};
 
 
     private void spawnMole(){
@@ -63,7 +47,7 @@ public class MoleSpawner : MonoBehaviour
     }
 
     void Awake() {
-        //we instantiate all the holes where the viruses will spawn
+        /*//we instantiate all the holes where the viruses will spawn
         foreach (MoleHole molehole in arrayOfHoles)
         {
             Instantiate<GameObject>(
@@ -71,7 +55,7 @@ public class MoleSpawner : MonoBehaviour
                 molehole.position + new Vector3(0f, 0.1f, 0f),  //they are raised above the plain
                 Quaternion.Euler(0f, 0f, 0f)
             );
-        }
+        }*/
 
     }
 
