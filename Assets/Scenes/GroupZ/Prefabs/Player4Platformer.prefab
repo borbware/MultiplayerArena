@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e7053b7112706334bbf586159a51e88a, type: 2}
     - target: {fileID: 2010319912326547803, guid: 29fdac101f9e0f54d8809fe9271dc36a, type: 3}
       propertyPath: m_Name
-      value: Player1Platformer (1) Variant
+      value: Player4Platformer
       objectReference: {fileID: 0}
     - target: {fileID: 2010319912326547804, guid: 29fdac101f9e0f54d8809fe9271dc36a, type: 3}
       propertyPath: m_RootOrder
@@ -63,5 +63,9 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e7053b7112706334bbf586159a51e88a, type: 2}
+    - target: {fileID: 2048748101383097181, guid: 29fdac101f9e0f54d8809fe9271dc36a, type: 3}
+      propertyPath: player
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29fdac101f9e0f54d8809fe9271dc36a, type: 3}
