@@ -6,6 +6,7 @@ namespace GroupX
 {
     [RequireComponent(typeof(Player))]
     [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Animator))]
     public class PlayerController : MonoBehaviour
     {
         [field: SerializeField]
@@ -18,6 +19,7 @@ namespace GroupX
 
         private Player _player;
         private Rigidbody _rigidbody;
+        private Animator _animator;
 
         private Vector3 _desiredVelocity;
 
@@ -25,6 +27,7 @@ namespace GroupX
         {
             _player = GetComponent<Player>();
             _rigidbody = GetComponent<Rigidbody>();
+            _animator = GetComponent<Animator>();
         }
 
         private void FixedUpdate()
@@ -48,7 +51,7 @@ namespace GroupX
 
         private void Attack()
         {
-            throw new NotImplementedException();
+            _animator.SetTrigger("Attack");
         }
     }
 }
