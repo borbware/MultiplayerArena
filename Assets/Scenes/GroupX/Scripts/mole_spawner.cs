@@ -8,6 +8,7 @@ public class mole_spawner : MonoBehaviour
     [SerializeField] int max_moles = 3; //this should be less than the no of players 
                                         //to create tension
     [SerializeField] GameObject mole;
+    [SerializeField] GameObject hole;
 
     System.Random rand = new System.Random();
 
@@ -29,10 +30,10 @@ public class mole_spawner : MonoBehaviour
 
     //we construct our array of mole holes
     //new or different holes should be entered here manually
-    static MoleHole hole_0 = new MoleHole(2.5f, 0.5f, 2.5f);
-    static MoleHole hole_1 = new MoleHole(2.5f, 0.5f, -2.5f);
-    static MoleHole hole_2 = new MoleHole(-2.5f, 0.5f, -2.5f);
-    static MoleHole hole_3 = new MoleHole(-2.5f, 0.5f, 2.5f);
+    static MoleHole hole_0 = new MoleHole(2.5f, 0f, 2.5f);
+    static MoleHole hole_1 = new MoleHole(2.5f, 0f, -2.5f);
+    static MoleHole hole_2 = new MoleHole(-2.5f, 0f, -2.5f);
+    static MoleHole hole_3 = new MoleHole(-2.5f, 0f, 2.5f);
 
     public MoleHole[] array_of_holes = {hole_0, hole_1, hole_2, hole_3};
 
@@ -51,7 +52,7 @@ public class mole_spawner : MonoBehaviour
             
             GameObject new_mole = Instantiate<GameObject>(
                 mole,
-                array_of_holes[hole_number].position,
+                array_of_holes[hole_number].position + new Vector3(0f, -0.1f, 0f),
                 Quaternion.Euler(0f, 0f, 0f)
             );
             new_mole.GetComponent<mole_script>().i_am_in_hole_no = hole_number;
@@ -61,13 +62,22 @@ public class mole_spawner : MonoBehaviour
     }
 
     void Awake() {
+        //we instantiate all the holes where the viruses will spawn
+        foreach (MoleHole molehole in array_of_holes)
+        {
+            Instantiate<GameObject>(
+                hole,
+                molehole.position + new Vector3(0f, 0.1f, 0f),  //they are raised above the plain
+                Quaternion.Euler(0f, 0f, 0f)
+            );
+        }
 
     }
 
     // Start is called before the first frame update
     void Start(){
         // start spawning moles after 2 seconds
-        InvokeRepeating("spawn_mole", 2f, spawn_interval);
+        InvokeRepeating("spawn_mole", 3f, spawn_interval);
     }
 
     // Update is called once per frame
