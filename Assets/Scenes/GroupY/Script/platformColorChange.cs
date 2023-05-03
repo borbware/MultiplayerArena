@@ -30,8 +30,11 @@ namespace GroupY
         void OnCapture(int newAffiliation)
         {
             affiliation = newAffiliation;
+            //Add points to the capturer
             if(affiliation != 0)StageManager.instance.UIManagers[affiliation - 1].AddScore(1);
+            //Take points from previous capturer
             if(lastAffiliation != 0)StageManager.instance.UIManagers[lastAffiliation - 1].AddScore(-1);
+            //change the material
             meshRenderer.material = materials.materials[affiliation];
             lastAffiliation = affiliation;
             
