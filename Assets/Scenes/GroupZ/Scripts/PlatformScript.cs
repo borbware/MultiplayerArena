@@ -24,7 +24,7 @@ namespace GroupZ
             meshChild.transform.localPosition = new Vector3
                                             (childstartPos.x + Mathf.Sin(Time.time * speed) * amount, 
                                             childstartPos.y + Mathf.Sin(Time.time * speed) * amount,
-                                            transform.localPosition.z);
+                                            0);
         }
 
         void Falling()
