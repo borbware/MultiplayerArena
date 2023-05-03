@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZShootProjectile : MonoBehaviour
+namespace GroupZ
+{
+public class ShootProjectile : MonoBehaviour
 {
     bool desiredShoot;
     float nextShootTime, shootRange = 1f;
@@ -10,10 +12,10 @@ public class ZShootProjectile : MonoBehaviour
     [Range(0f,   10000f)] public float shootForce;
     public GameObject bullet;
 
-    ZPlayer _player;
+    Player _player;
     private void Start()
     {
-        _player = GetComponent<ZPlayer>();
+        _player = GetComponent<Player>();
     }
     void Update()
     {
@@ -50,4 +52,5 @@ public class ZShootProjectile : MonoBehaviour
             }
         }
     }
+}
 }

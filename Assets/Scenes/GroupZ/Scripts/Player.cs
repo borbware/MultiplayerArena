@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using static GameManager;
 
-public class ZPlayer : MonoBehaviour
+namespace GroupZ
+{
+public class Player : MonoBehaviour
 {
     public enum PlayerState
     {
@@ -78,4 +80,6 @@ public class ZPlayer : MonoBehaviour
         CancelInvoke("HurtFlicker");
         state = PlayerState.Active;
     }
+}
+    
 }
