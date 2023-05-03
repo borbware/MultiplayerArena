@@ -41,6 +41,7 @@ public class ShootProjectile : MonoBehaviour
                     transform.position + transform.forward * shootRange,
                     Quaternion.identity
                 );
+                newBullet.GetComponent<ShockWave>().shooter = _player.player;
                 // if want projectile to hurt the target it touches
                 Hurt _hurt = newBullet.GetComponent<Hurt>();
                 if (_hurt != null)
