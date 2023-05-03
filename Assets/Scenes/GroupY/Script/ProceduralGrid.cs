@@ -38,7 +38,9 @@ namespace GroupY
                 {
                     for(int j = 0; j < depth; j++)
                     {
-                        tiles[i*width + j] = GameObject.Instantiate(tile, new Vector3((float)i * spacing,0,(float)j * spacing) - offset, Quaternion.Euler(0,0,0),this.transform);
+                        
+                        tiles[i*j] = GameObject.Instantiate(tile, transform.position + new Vector3((float)i * spacing,0,(float)j * spacing) - offset, Quaternion.Euler(0,0,0),this.transform);
+                        
                     }
                 }
             }
