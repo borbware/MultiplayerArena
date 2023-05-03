@@ -8,6 +8,8 @@ namespace GroupZ
     {
         MeshCollider platformMesh;
         GameObject meshChild;
+        MeshFilter meshf;
+        [SerializeField] Mesh intact, broken1, broken2;
         float platformHP = 5f;
         //float lerpMax = 0f;
         //float lerpMin = -10f;
@@ -73,6 +75,7 @@ namespace GroupZ
             platformMesh = meshChild.GetComponent<MeshCollider>();
             startPos = transform.position;
             childstartPos = meshChild.transform.localPosition;
+            meshf = meshChild.GetComponent<MeshFilter>();
         }
 
         // Update is called once per frame
@@ -95,9 +98,16 @@ namespace GroupZ
                 {
                     //fallLerptime += Time.deltaTime;
                     Falling();
+                } else if (platformHP <= 1.666f)
+                {
+                    meshf.mesh = broken2;
+                } else if (platformHP <= 3.444f)
+                {
+                    meshf.mesh = broken1;
                 } else if (platformHP >= 5f && platformFallen == true)
                 {
                     platformHP = 5f;
+                    meshf.mesh = intact;
                     transform.position = startPos;
                     //lerpTemp = lerpMax;
                     //lerpMax = lerpMin;
