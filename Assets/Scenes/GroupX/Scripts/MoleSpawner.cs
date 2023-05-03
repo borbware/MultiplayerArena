@@ -57,6 +57,7 @@ public class MoleSpawner : MonoBehaviour
             );
             newMole.GetComponent<MoleScript>().iAmInHoleNo = holeNumber;
             Destroy(newMole, newMole.GetComponent<MoleScript>().moleLifetime);
+            arrayOfHoles[holeNumber].isEmpty = false;
             //Debug.Log($"hole no {holeNumber} is full");
         }
     }

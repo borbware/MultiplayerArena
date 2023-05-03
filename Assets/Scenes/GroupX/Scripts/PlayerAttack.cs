@@ -15,7 +15,7 @@ namespace GroupX
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<mole_script>(out var mole))
+            if (other.TryGetComponent<MoleScript>(out var mole))
             {
                 Debug.Log("Mole hit");
                 Destroy(mole.gameObject);
