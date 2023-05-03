@@ -11,8 +11,6 @@ namespace GroupY
         public float spacing = 1;
         int tileCount;
 
-        [SerializeField]Material odd, even;
-
         public GameObject[] tiles;
         // Start is called before the first frame update
         void Start()
@@ -41,8 +39,6 @@ namespace GroupY
                     for(int j = 0; j < depth; j++)
                     {
                         tiles[i*width + j] = GameObject.Instantiate(tile, new Vector3((float)i * spacing,0,(float)j * spacing) - offset, Quaternion.Euler(0,0,0),this.transform);
-                        MeshRenderer renderer;
-                        if(tiles[i*width + j].TryGetComponent<MeshRenderer>(out renderer))renderer.material = (i + j) % 2 == 1 ? odd : even;
                     }
                 }
             }
