@@ -33,6 +33,23 @@ namespace GroupZ
             platformFallen = true;
         }
 
+        void OnTriggerEnter(Collider other) 
+        {
+            if (other.gameObject.tag == "Bullet")
+            {
+                platformHP -= 1.5f;
+                CameraShake.instance.TriggerShake(0.1f);
+            }
+        }
+
+        void OnTriggerExit(Collider other) 
+        {
+            if (other.gameObject.tag == "Bullet")
+            {
+                meshChild.transform.localPosition = childstartPos;
+            }
+        }
+
         void OnCollisionStay(Collision other) 
         {
             if (other.gameObject.tag == "Player")
@@ -46,6 +63,7 @@ namespace GroupZ
             if (other.gameObject.tag == "Player")
             {
                 playerTouching = false;
+                meshChild.transform.localPosition = childstartPos;
             }
         }
 
