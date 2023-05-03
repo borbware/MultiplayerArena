@@ -7,7 +7,7 @@ public class Hurt : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         var obj = other.gameObject;
-        if (obj != shooter)
-            obj.SendMessage("Hurt", damage, SendMessageOptions.DontRequireReceiver);
+//        if (obj != shooter)
+//            obj.SendMessage("Hurt", damage, SendMessageOptions.DontRequireReceiver);
     }
 }
