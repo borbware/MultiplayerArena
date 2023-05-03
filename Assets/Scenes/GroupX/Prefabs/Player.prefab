@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 1993708639174095717}
   - component: {fileID: 1993708639174095716}
   - component: {fileID: 1993708639174095719}
-  - component: {fileID: -4051986513280027550}
   - component: {fileID: 1993708639174095737}
   - component: {fileID: 1993708639174095736}
-  - component: {fileID: 7228363785373296418}
+  - component: {fileID: 6707854244112401013}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -120,21 +119,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &-4051986513280027550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993708639174095741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72aa3259d14440849be86b1cf53900e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 10
-  maxAcceleration: 10
-  jumpHeight: 2
 --- !u!114 &1993708639174095737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +152,7 @@ MonoBehaviour:
   continuousShootInput: 0
   hurtDisablesInput: 0
   UIManager: {fileID: 0}
---- !u!114 &7228363785373296418
+--- !u!114 &6707854244112401013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,12 +161,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1993708639174095741}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68019aa0b988d6442ae87fab12f3b391, type: 3}
+  m_Script: {fileID: 11500000, guid: f718fdeb1a23ef649a00c1469ee17e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootPeriod: 0.9
-  shootForce: 4387
-  bullet: {fileID: 8581939185569562706, guid: cc6314edba6be564686473507df40bf8, type: 3}
+  <maxSpeed>k__BackingField: 10
 --- !u!1 &1993708639433762043
 GameObject:
   m_ObjectHideFlags: 0
