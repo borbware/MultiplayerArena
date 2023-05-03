@@ -299,7 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootPeriod: 1
   shootForce: 0
-  bullet: {fileID: 6381163997264809591, guid: 9a1de2fe632e8f847bab002eb7583248, type: 3}
+  bullet: {fileID: 2202141161920212100, guid: 093a889d2339b864e9daf04e4bacd85e, type: 3}
 --- !u!1 &3048556204226634132
 GameObject:
   m_ObjectHideFlags: 0
