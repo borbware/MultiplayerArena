@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 554907202257585489, guid: 233b120c55a39ae418b71e65c7f41fb0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 996a070ad770cf74db675394fbf30df4, type: 2}
     - target: {fileID: 1993708639174095738, guid: 233b120c55a39ae418b71e65c7f41fb0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,7 +57,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1993708639174095741, guid: 233b120c55a39ae418b71e65c7f41fb0, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 2053002251524944920, guid: 233b120c55a39ae418b71e65c7f41fb0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 996a070ad770cf74db675394fbf30df4, type: 2}
+    - target: {fileID: 7365496682576893731, guid: 233b120c55a39ae418b71e65c7f41fb0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 996a070ad770cf74db675394fbf30df4, type: 2}
+    - target: {fileID: 9077382971118741098, guid: 233b120c55a39ae418b71e65c7f41fb0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 996a070ad770cf74db675394fbf30df4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 233b120c55a39ae418b71e65c7f41fb0, type: 3}
