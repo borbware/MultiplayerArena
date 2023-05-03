@@ -71,14 +71,8 @@ namespace GroupZ
         {
             meshChild = gameObject.transform.GetChild(0).gameObject;
             platformMesh = meshChild.GetComponent<MeshCollider>();
-            startPos = new Vector3
-                            (transform.position.x,
-                            transform.position.y,
-                            transform.position.z);
-            childstartPos = new Vector3
-                            (meshChild.transform.localPosition.x, 
-                            meshChild.transform.localPosition.y, 
-                            meshChild.transform.localPosition.z);
+            startPos = transform.position;
+            childstartPos = meshChild.transform.localPosition;
         }
 
         // Update is called once per frame
@@ -104,7 +98,7 @@ namespace GroupZ
                 } else if (platformHP >= 5f && platformFallen == true)
                 {
                     platformHP = 5f;
-                    transform.position = new Vector3(startPos.x, startPos.y, startPos.z);
+                    transform.position = startPos;
                     //lerpTemp = lerpMax;
                     //lerpMax = lerpMin;
                     //lerpMin = lerpTemp;
