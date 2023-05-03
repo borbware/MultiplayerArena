@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mole_spawner : MonoBehaviour
+public class MoleSpawner : MonoBehaviour
 {   
-    [SerializeField] float spawn_interval = 3;
-    [SerializeField] int max_moles = 3; //this should be less than the no of players 
+    [SerializeField] float spawnInterval = 3;
+    [SerializeField] int maxMoles = 3; //this should be less than the no of players 
                                         //to create tension
     [SerializeField] GameObject mole;
     [SerializeField] GameObject hole;
@@ -17,14 +17,14 @@ public class mole_spawner : MonoBehaviour
         whether there is a mole already spawned*/
 
         public Vector3 position;
-        public bool is_empty = true;
+        public bool isEmpty = true;
 
         public MoleHole(float x, float y, float z){
             position = new Vector3(x, y, z);
         }
 
-        public void set_empty(){
-            is_empty = true;
+        public void setEmpty(){
+            isEmpty = true;
         }
     }
 
@@ -35,35 +35,35 @@ public class mole_spawner : MonoBehaviour
     static MoleHole hole_2 = new MoleHole(-2.5f, 0f, -2.5f);
     static MoleHole hole_3 = new MoleHole(-2.5f, 0f, 2.5f);
 
-    public MoleHole[] array_of_holes = {hole_0, hole_1, hole_2, hole_3};
+    public MoleHole[] arrayOfHoles = {hole_0, hole_1, hole_2, hole_3};
 
 
-    private void spawn_mole(){
+    private void spawnMole(){
         /*picks a random index from the array of holes repeatedly until it finds
         an empty hole, then it spawns a new mole at that position
         the new mole remembers the index of the hole where it spawned*/
 
         int number_of_moles = GameObject.FindGameObjectsWithTag("Mole").Length;
-        if (number_of_moles < max_moles){
-            int hole_number = rand.Next(0, array_of_holes.Length);
-            while (!array_of_holes[hole_number].is_empty){
-                hole_number = rand.Next(0, array_of_holes.Length);
+        if (number_of_moles < maxMoles){
+            int holeNumber = rand.Next(0, arrayOfHoles.Length);
+            while (!arrayOfHoles[holeNumber].isEmpty){
+                holeNumber = rand.Next(0, arrayOfHoles.Length);
             }
             
-            GameObject new_mole = Instantiate<GameObject>(
+            GameObject newMole = Instantiate<GameObject>(
                 mole,
-                array_of_holes[hole_number].position + new Vector3(0f, -0.1f, 0f),
+                arrayOfHoles[holeNumber].position + new Vector3(0f, -0.1f, 0f),
                 Quaternion.Euler(0f, 0f, 0f)
             );
-            new_mole.GetComponent<mole_script>().i_am_in_hole_no = hole_number;
-            Destroy(new_mole, new_mole.GetComponent<mole_script>().mole_lifetime);
-            //Debug.Log($"hole no {hole_number} is full");
+            newMole.GetComponent<MoleScript>().iAmInHoleNo = holeNumber;
+            Destroy(newMole, newMole.GetComponent<MoleScript>().moleLifetime);
+            //Debug.Log($"hole no {holeNumber} is full");
         }
     }
 
     void Awake() {
         //we instantiate all the holes where the viruses will spawn
-        foreach (MoleHole molehole in array_of_holes)
+        foreach (MoleHole molehole in arrayOfHoles)
         {
             Instantiate<GameObject>(
                 hole,
@@ -77,7 +77,7 @@ public class mole_spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         // start spawning moles after 2 seconds
-        InvokeRepeating("spawn_mole", 3f, spawn_interval);
+        InvokeRepeating("spawnMole", 3f, spawnInterval);
     }
 
     // Update is called once per frame

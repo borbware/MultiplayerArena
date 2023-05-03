@@ -741,7 +741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4132419678834062140, guid: 02bfe69c52335a6488ae6d0fa1a45e9f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4132419678834062141, guid: 02bfe69c52335a6488ae6d0fa1a45e9f, type: 3}
       propertyPath: m_RootOrder
@@ -818,8 +818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e8c8854627a3245a7fcbc011eb7205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn_interval: 1
-  max_moles: 3
+  spawnInterval: 3
+  maxMoles: 3
   mole: {fileID: 8075797068476980383, guid: 2748805fbd9d23c40b0d2f9e4d3b53ae, type: 3}
   hole: {fileID: 1283521480252124002, guid: 7740c608cae0df241a6b2be93e337f63, type: 3}
 --- !u!4 &1434007958
@@ -1077,6 +1077,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mapTile1
       objectReference: {fileID: 0}
+    - target: {fileID: 3925315734069539278, guid: 3c8cb32e107099747b430b97007eaa8d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4409680926599490420, guid: 3c8cb32e107099747b430b97007eaa8d, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1194,6 +1198,10 @@ PrefabInstance:
     - target: {fileID: 3925315734069539278, guid: 3c8cb32e107099747b430b97007eaa8d, type: 3}
       propertyPath: m_Name
       value: mapTile0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3925315734069539278, guid: 3c8cb32e107099747b430b97007eaa8d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4409680926599490420, guid: 3c8cb32e107099747b430b97007eaa8d, type: 3}
       propertyPath: m_RootOrder

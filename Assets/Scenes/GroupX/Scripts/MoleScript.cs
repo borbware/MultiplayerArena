@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mole_script : MonoBehaviour
+public class MoleScript : MonoBehaviour
 {   
-    [SerializeField] public float mole_lifetime = 5f;
-    public int i_am_in_hole_no = 0;
+    [SerializeField] public float moleLifetime = 5f;
+    public int iAmInHoleNo = 0;
 
     public enum moleState
     {
@@ -15,10 +15,10 @@ public class mole_script : MonoBehaviour
     }
 
     private void OnDestroy() {
-        // we set call the mole_spawner script to set the hole the mole was in to empty
-        GameObject.Find("RunningScripts").GetComponent<mole_spawner>()
-        .array_of_holes[i_am_in_hole_no].set_empty();
-        //Debug.Log($"hole no {i_am_in_hole_no} is empty");
+        // we set call the MoleSpawner script to set the hole the mole was in to empty
+        GameObject.Find("RunningScripts").GetComponent<MoleSpawner>()
+        .arrayOfHoles[iAmInHoleNo].setEmpty();
+        //Debug.Log($"hole no {iAmInHoleNo} is empty");
     }
 
     float moleWaitingTimer = 0f;
@@ -66,6 +66,6 @@ public class mole_script : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        moveMole(0.6f, mole_lifetime - 1);
+        moveMole(0.6f, moleLifetime - 1);
     }
 }
