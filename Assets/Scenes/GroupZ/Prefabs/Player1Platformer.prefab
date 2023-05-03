@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 2010319912326547874}
   - component: {fileID: 2010319912326547873}
   - component: {fileID: 2048748101383097181}
-  - component: {fileID: 2010319912326547872}
+  - component: {fileID: 1294720277601711638}
   - component: {fileID: 2010319912326547807}
   - component: {fileID: 2010319912326547805}
   m_Layer: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec85a7baf17433140b895c0728da0577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: 0
+  player: 1
   state: 0
   axisInput: {x: 0, y: 0}
   jumpInput: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
   continuousShootInput: 0
   hurtDisablesInput: 0
   UIManager: {fileID: 0}
---- !u!114 &2010319912326547872
+--- !u!114 &1294720277601711638
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2010319912326547803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72aa3259d14440849be86b1cf53900e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9dd761f6b672f0642917447161520e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
