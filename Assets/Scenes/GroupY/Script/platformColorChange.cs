@@ -2,29 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GroupY{
-public class platformColorChange : MonoBehaviour
+namespace GroupY
 {
-    [SerializeField] GameObject players;
-    [SerializeField] Material color;
-
-    void Start()
+    public class platformColorChange : MonoBehaviour
     {
-        gameObject.GetComponent<Renderer>().material.color = Color.white;
-    }
-    void OnCollisionEnter(Collision other) 
+        [SerializeField] GameObject players;
+
+        [Range(0, 4)]
+        public int affiliation;
+        int lastAffiliation;
+
+        [SerializeField] teamMaterials materials;
+        [SerializeField] MeshRenderer meshRenderer;
+
+        void Start()
+        {
+            meshRenderer.material = materials.materials[affiliation];
+        }
+        void OnCollisionEnter(Collision other) 
         {
         if (other.gameObject.tag == "Player")
-            {
-            gameObject.GetComponent<Renderer>().material.color = 
-            other.gameObject.GetComponent<Renderer>().material.color;
+            {   Player player = other.collider.GetComponent<Player>();
+                if(affiliation != player.player)OnCapture(player.player);
             }    
         }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void OnCapture(int newAffiliation)
+        {
+            affiliation = newAffiliation;
+            if(affiliation != 0)StageManager.instance.UIManagers[affiliation - 1].AddScore(1);
+            if(lastAffiliation != 0)StageManager.instance.UIManagers[lastAffiliation - 1].AddScore(-1);
+            meshRenderer.material = materials.materials[affiliation];
+            lastAffiliation = affiliation;
+            
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
-}
 }

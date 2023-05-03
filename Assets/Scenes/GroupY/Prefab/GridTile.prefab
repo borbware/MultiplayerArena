@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 58668912780850630}
   - component: {fileID: 2825050375692337420}
   - component: {fileID: 3877782826804578062}
+  - component: {fileID: -2255275040630369721}
   m_Layer: 0
   m_Name: GridTile
   m_TagString: Untagged
@@ -97,4 +98,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: {fileID: 0}
-  color: {fileID: 0}
+  affiliation: 0
+  materials: {fileID: 11400000, guid: ab4904462b899f9459fe5a4083454937, type: 2}
+  meshRenderer: {fileID: 2825050375692337420}
+--- !u!64 &-2255275040630369721
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4338202470017032409}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -462981019419857548, guid: f7956957c1f9f55489d35b3010b40735, type: 3}
