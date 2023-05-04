@@ -350,10 +350,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2043345648845458491, guid: 208011956dfbca34987a11722a44f36b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2043345650356424034, guid: 208011956dfbca34987a11722a44f36b, type: 3}
       propertyPath: m_Name
       value: PlatformerStage
@@ -402,21 +398,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2645794916634869562, guid: 208011956dfbca34987a11722a44f36b, type: 3}
-      propertyPath: shakeSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2645794916634869562, guid: 208011956dfbca34987a11722a44f36b, type: 3}
-      propertyPath: shakeAmount
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5306477993211511083, guid: 208011956dfbca34987a11722a44f36b, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2645794916634869562, guid: 208011956dfbca34987a11722a44f36b, type: 3}
-    - {fileID: 2043345648845458491, guid: 208011956dfbca34987a11722a44f36b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 208011956dfbca34987a11722a44f36b, type: 3}
 --- !u!1001 &729611498
 PrefabInstance:

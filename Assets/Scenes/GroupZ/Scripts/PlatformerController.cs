@@ -14,7 +14,7 @@ public class PlatformerController : MonoBehaviour
 
 	Rigidbody _rigidbody;
     Player _player;
-	bool onGround;
+	public bool onGround;
 
 	void OnCollisionStay () {
 		onGround = true;
