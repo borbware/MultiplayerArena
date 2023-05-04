@@ -11,7 +11,6 @@ public class MoleHole : MonoBehaviour
     private void Awake()
     {
         position = transform.position;
-        Debug.Log($"Position: {position}");
     }
 
     public void setEmpty()

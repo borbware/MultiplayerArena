@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <maxSpeed>k__BackingField: 10
-  <maxAcceleration>k__BackingField: 10
+  <maxAcceleration>k__BackingField: 30
 --- !u!95 &512528392355397087
 Animator:
   serializedVersion: 5

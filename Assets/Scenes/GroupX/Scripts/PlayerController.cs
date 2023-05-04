@@ -14,7 +14,7 @@ namespace GroupX
         public float maxSpeed { get; private set; } = 10f;
 
         [field: SerializeField]
-        [field: Range(0f, 100f)]
+        [field: Range(0f, 300f)]
         public float maxAcceleration { get; private set; } = 10f;
 
         private Player _player;
