@@ -5868,7 +5868,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 2
+        scalar: 1
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -9710,7 +9710,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e7c27766cb08533419b1603d058dc389, type: 2}
+  - {fileID: 2100000, guid: 5c6450a3cd6930d44a8037cf9035be19, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9786,6 +9786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ccc7a2b7728aa43bfe4119e070d197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooter: 0
 --- !u!1 &2202141162840556821
 GameObject:
   m_ObjectHideFlags: 0
