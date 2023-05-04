@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BestagonScript : MonoBehaviour
+public class FloorDropEvent : MonoBehaviour
 {
     float timeTillDrop = 3f;
     float totalStageTime;
-    void dropFloor(){
+    bool eventTriggered = false;
+
+    void eventTrigger(){
         float currentStageTime = GameObject.Find("StageManager").GetComponent<StageManager>().stageTime;
-        if (totalStageTime - currentStageTime > timeTillDrop){  
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;  
-            GetComponent<Rigidbody>().useGravity = true;
+        if (totalStageTime - currentStageTime > timeTillDrop && !eventTriggered){  
+            eventTriggered = true;
+            GetComponent<MoleSpawner>().listOfHoles.RemoveRange(7, 6);  //removes 6 elements starting from index 7 (these are the last 6 holes)
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,6 @@ public class BestagonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dropFloor();
+        eventTrigger();
     }
 }

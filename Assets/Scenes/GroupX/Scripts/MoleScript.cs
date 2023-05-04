@@ -17,7 +17,7 @@ public class MoleScript : MonoBehaviour
     private void OnDestroy() {
         // we set call the MoleSpawner script to set the hole the mole was in to empty
         GameObject.Find("RunningScripts").GetComponent<MoleSpawner>()
-        .arrayOfHoles[iAmInHoleNo].setEmpty();
+        .listOfHoles[iAmInHoleNo].setEmpty();
         //Debug.Log($"hole no {iAmInHoleNo} is empty");
     }
 
