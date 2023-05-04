@@ -7,12 +7,22 @@ public class FloorDropEvent : MonoBehaviour
     float timeTillDrop = 3f;
     float totalStageTime;
     bool eventTriggered = false;
+    [SerializeField] List<GameObject> outerHexes;
 
     void eventTrigger(){
         float currentStageTime = GameObject.Find("StageManager").GetComponent<StageManager>().stageTime;
         if (totalStageTime - currentStageTime > timeTillDrop && !eventTriggered){  
             eventTriggered = true;
-            GetComponent<MoleSpawner>().listOfHoles.RemoveRange(7, 6);  //removes 6 elements starting from index 7 (these are the last 6 holes)
+
+            //remove the extra moleholes - removes 6 elements starting from index 7 (these are the last 6 holes)
+            GetComponent<MoleSpawner>().listOfHoles.RemoveRange(7, 6);
+
+            //drop outer hexes
+            foreach (GameObject hex in outerHexes)
+            {
+                hex.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;  
+                hex.GetComponent<Rigidbody>().useGravity = true;
+            }
         }
     }
 
