@@ -42,12 +42,14 @@ namespace GroupY
             coll.enabled = false;
             for(float elapsed = 0; elapsed <= duration; elapsed += Time.deltaTime)
             {
+                transform.rotation = Quaternion.Euler(0,elapsed/duration*90,0);
                 transform.localScale = Vector3.one * (1 - (elapsed/duration));
                 yield return null;
             }
             transform.position = position;
             for(float elapsed = 0; elapsed <= duration; elapsed += Time.deltaTime)
             {
+                transform.rotation = Quaternion.Euler(0,elapsed/duration*90,0);
                 transform.localScale = Vector3.one * (elapsed/duration);
                 yield return null;
             }
