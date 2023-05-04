@@ -5,16 +5,17 @@ using UnityEngine;
 public class BestagonScript : MonoBehaviour
 {
     float timeTillDrop = 5f;
+    float totalStageTime;
     void dropFloor(){
-        if (Time.time >= timeTillDrop){
-            
+        float currentStageTime = GameObject.Find("StageManager").GetComponent<StageManager>().stageTime;
+        if (totalStageTime - currentStageTime > timeTillDrop){    
             GetComponent<Rigidbody>().useGravity = true;
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        totalStageTime = GameObject.Find("StageManager").GetComponent<StageManager>().stageTime;
     }
 
     // Update is called once per frame
