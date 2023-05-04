@@ -35,7 +35,9 @@ namespace GroupX
         private void FixedUpdate()
         {
             float maxSpeedChange = maxAcceleration * Time.fixedDeltaTime;
+            Vector3 calculatedVelocity = _rigidbody.velocity;
             Vector3 velocity = Vector3.MoveTowards(_rigidbody.velocity, _desiredVelocity, maxSpeedChange);
+            velocity.y = calculatedVelocity.y;
             _rigidbody.velocity = velocity;
 
             Jump();
