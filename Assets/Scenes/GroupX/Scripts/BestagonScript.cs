@@ -8,7 +8,8 @@ public class BestagonScript : MonoBehaviour
     float totalStageTime;
     void dropFloor(){
         float currentStageTime = GameObject.Find("StageManager").GetComponent<StageManager>().stageTime;
-        if (totalStageTime - currentStageTime > timeTillDrop){    
+        if (totalStageTime - currentStageTime > timeTillDrop){  
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;  
             GetComponent<Rigidbody>().useGravity = true;
         }
     }
