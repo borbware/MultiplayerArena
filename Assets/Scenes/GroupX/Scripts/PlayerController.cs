@@ -23,7 +23,7 @@ namespace GroupX
 
         private Vector3 _desiredVelocity;
         private bool isJumping = false;
-        private float thrust = 30f;
+        [SerializeField] private float thrust = 10f;
 
         private void Awake()
         {
@@ -63,7 +63,7 @@ namespace GroupX
         private void Jump(){
             if (isJumping){
                 Debug.Log("i jumped");
-                _rigidbody.AddForce(transform.up * thrust);
+                _rigidbody.AddForce(transform.up * thrust, ForceMode.Impulse);
                 isJumping = false;
             }
             

@@ -443,6 +443,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1204217840}
     m_Modifications:
+    - target: {fileID: 221921317995498435, guid: d06414f449e5b014dbcb2e7d2be29e53, type: 3}
+      propertyPath: thrust
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5019379259740175051, guid: d06414f449e5b014dbcb2e7d2be29e53, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -489,6 +493,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5019379259740175052, guid: d06414f449e5b014dbcb2e7d2be29e53, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019379259740175054, guid: d06414f449e5b014dbcb2e7d2be29e53, type: 3}
+      propertyPath: shootInput
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1518,9 +1526,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1899043093}
     m_Modifications:
+    - target: {fileID: 504783589698482653, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 984426679024551940, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1231094404182644337, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788855801914953541, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438911302584135246, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2569301245441163848, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
       propertyPath: m_RootOrder
@@ -1562,6 +1586,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5947762049090788543, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6514044216249567159, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1573,6 +1601,10 @@ PrefabInstance:
     - target: {fileID: 7686502778202439560, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8509316760974205437, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8988923566894651428, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
       propertyPath: m_Enabled
@@ -1625,6 +1657,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: stageTime
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: UIManagers.Array.data[0]
       value: 
