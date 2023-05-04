@@ -11,7 +11,11 @@ namespace GroupZ
         MeshFilter meshf;
         [SerializeField] Mesh intact, broken1, broken2;
         [SerializeField] GameObject brokenPlatform;
-        float platformHP = 5f;
+        float platformHP;
+        [SerializeField]float platformMaxHP = 5f;
+        [SerializeField]float standingDamage = 1f;
+        [SerializeField]float respawnAccelerator = 1f;
+        [SerializeField]float hammerDamage = 2f;
         bool playerTouching = false;
         bool platformFallen = false;
         Vector3 startPos;
@@ -30,7 +34,7 @@ namespace GroupZ
         {
             GameObject platformBroke = Instantiate(brokenPlatform, transform.position, transform.rotation);
             Destroy(platformBroke, 2f);
-            transform.position = new Vector3(transform.position.x, -10, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -100, transform.position.z);
             platformFallen = true;
             
         }
@@ -39,7 +43,7 @@ namespace GroupZ
         {
             if (other.gameObject.tag == "Bullet")
             {
-                platformHP -= 1.7f;
+                platformHP -= hammerDamage;
                 CameraShake.instance.TriggerShake(0.1f);
             }
         }
@@ -68,6 +72,7 @@ namespace GroupZ
             startPos = transform.position;
             childstartPos = meshChild.transform.localPosition;
             meshf = meshChild.GetComponent<MeshFilter>();
+            platformHP = platformMaxHP;
         }
 
         // Update is called once per frame
@@ -78,26 +83,26 @@ namespace GroupZ
                 if (playerTouching == true)
                 {
                     Shaking(20, 0.05f);
-                    platformHP -= Time.deltaTime;
+                    platformHP -= standingDamage * Time.deltaTime;
                 }
 
                 if (platformFallen == true)
                 {
-                    platformHP += Time.deltaTime;
+                    platformHP += respawnAccelerator * Time.deltaTime;
                 }
 
                 if (platformHP <= 0)
                 {
                     Falling();
-                } else if (platformHP <= 1.666f)
+                } else if (platformHP <= platformMaxHP / 3)
                 {
                     meshf.mesh = broken2;
-                } else if (platformHP <= 3.444f)
+                } else if (platformHP <= (platformMaxHP /3) * 2)
                 {
                     meshf.mesh = broken1;
-                } else if (platformHP >= 5f && platformFallen == true)
+                } else if (platformHP >= platformMaxHP && platformFallen == true)
                 {
-                    platformHP = 5f;
+                    platformHP = platformMaxHP;
                     meshf.mesh = intact;
                     transform.position = startPos;
                     platformFallen = false;
