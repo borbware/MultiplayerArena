@@ -100,9 +100,6 @@ namespace GroupZ
                     platformHP = 5f;
                     meshf.mesh = intact;
                     transform.position = startPos;
-                    //lerpTemp = lerpMax;
-                    //lerpMax = lerpMin;
-                    //lerpMin = lerpTemp;
                     platformFallen = false;
                 }
             }
