@@ -741,6 +741,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathPlane
       objectReference: {fileID: 0}
+    - target: {fileID: 5125450636443232040, guid: e7416ad2a10312b448dd7b8fe6ec8ae9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7416ad2a10312b448dd7b8fe6ec8ae9, type: 3}
 --- !u!1001 &1123234410
