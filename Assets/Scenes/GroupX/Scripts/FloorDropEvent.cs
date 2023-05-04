@@ -14,14 +14,17 @@ public class FloorDropEvent : MonoBehaviour
     [SerializeField] List<GameObject> outerHexes;
 
     StageManager stageManager;
+    List<MeshRenderer> meshRenderers = new();
 
     void eventTrigger(){
         float currentStageTime = stageManager.stageTime;
 
-        //warning sounds
+        //warning sounds & colors
         if (totalStageTime - currentStageTime >= timeTillDrop - 2.9 && !warningSounded){
             warningSounded = true;
             InvokeRepeating("playWarningSound", 0.1f, 1f);
+            foreach (var meshRenderer in meshRenderers)
+                StartCoroutine(FlashReddish(meshRenderer));
         }
 
         //the event
@@ -45,11 +48,34 @@ public class FloorDropEvent : MonoBehaviour
         if (!eventTriggered){dropWarningAudio.Play();}   
     }
 
+    IEnumerator FlashReddish(MeshRenderer meshRenderer)
+    {
+        float startTime = Time.time;
+        Material material = meshRenderer.material;
+        Color originalColor = material.color;
+
+        Color reddish = Color.Lerp(originalColor, Color.red, 0.3f);
+
+        while (!eventTriggered)
+        {
+            float delta = (Time.time - startTime) % 1f;
+            float deltaDiffFromHalf = Mathf.Abs(0.5f - delta);
+            float howFarFromReddish = Mathf.InverseLerp(0, 0.5f, deltaDiffFromHalf);
+            material.color = Color.Lerp(reddish, originalColor, howFarFromReddish);
+            yield return null;
+        }
+
+        material.color = originalColor;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         stageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
         totalStageTime = stageManager.stageTime;
+
+        foreach (GameObject hex in outerHexes)
+            meshRenderers.AddRange(hex.GetComponentsInChildren<MeshRenderer>());
     }
 
     // Update is called once per frame
