@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BestagonScript : MonoBehaviour
 {
-    float timeTillDrop = 5f;
+    float timeTillDrop = 3f;
     float totalStageTime;
     void dropFloor(){
         float currentStageTime = GameObject.Find("StageManager").GetComponent<StageManager>().stageTime;
