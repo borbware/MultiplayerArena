@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MoleSpawner : MonoBehaviour
 {   
-    [SerializeField] float spawnInterval = 3;
-    [SerializeField] int maxMoles = 3; //this should be less than the no of players 
-                                        //to create tension
+    [SerializeField] float spawnInterval = 2;
+    [SerializeField] int maxMoles = 7; //this should be less than the no of players 
+                                        //to create tension (not true - more testing needed)
     [SerializeField] GameObject mole;
     [SerializeField] GameObject hole;
 
@@ -61,7 +61,7 @@ public class MoleSpawner : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        // start spawning moles after 2 seconds
+        // start spawning moles after 3 seconds
         InvokeRepeating("spawnMole", 3f, spawnInterval);
     }
 

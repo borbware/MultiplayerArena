@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoleScript : MonoBehaviour
 {   
-    [SerializeField] public float moleLifetime = 5f;
+    [SerializeField] public float moleLifetime = 3f;
     public int iAmInHoleNo = 0;
 
     // public enum moleState
