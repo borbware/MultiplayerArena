@@ -13,9 +13,11 @@ public class ShootProjectile : MonoBehaviour
     public GameObject bullet;
 
     Player _player;
+    PlatformerController _platformerController;
     private void Start()
     {
         _player = GetComponent<Player>();
+        _platformerController = GetComponent<PlatformerController>();
     }
     void Update()
     {
@@ -42,6 +44,15 @@ public class ShootProjectile : MonoBehaviour
                     Quaternion.identity
                 );
                 newBullet.GetComponent<ShockWave>().shooter = _player.player;
+                ParticleSystemRenderer particleRender = 
+                                            newBullet.GetComponent<ParticleSystemRenderer>();
+                if (!_platformerController.onGround)
+                {
+                    particleRender.enabled = false;
+                } else {
+                    particleRender.enabled = true;
+                }
+                
                 // if want projectile to hurt the target it touches
                 Hurt _hurt = newBullet.GetComponent<Hurt>();
                 if (_hurt != null)
