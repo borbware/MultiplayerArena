@@ -6,15 +6,12 @@ namespace GroupZ
 {
     public class PlatformScript : MonoBehaviour
     {
-        MeshCollider platformMesh;
+        BoxCollider platformCollider;
         GameObject meshChild;
         MeshFilter meshf;
         [SerializeField] Mesh intact, broken1, broken2;
+        [SerializeField] GameObject brokenPlatform;
         float platformHP = 5f;
-        //float lerpMax = 0f;
-        //float lerpMin = -10f;
-        //float fallLerptime;
-        //float lerpTemp;
         bool playerTouching = false;
         bool platformFallen = false;
         Vector3 startPos;
@@ -31,24 +28,19 @@ namespace GroupZ
 
         void Falling()
         {
+            GameObject platformBroke = Instantiate(brokenPlatform, transform.position, transform.rotation);
+            Destroy(platformBroke, 2f);
             transform.position = new Vector3(transform.position.x, -10, transform.position.z);
             platformFallen = true;
+            
         }
 
         void OnTriggerEnter(Collider other) 
         {
             if (other.gameObject.tag == "Bullet")
             {
-                platformHP -= 1.5f;
+                platformHP -= 1.7f;
                 CameraShake.instance.TriggerShake(0.1f);
-            }
-        }
-
-        void OnTriggerExit(Collider other) 
-        {
-            if (other.gameObject.tag == "Bullet")
-            {
-                meshChild.transform.localPosition = childstartPos;
             }
         }
 
@@ -72,7 +64,7 @@ namespace GroupZ
         void Start()
         {
             meshChild = gameObject.transform.GetChild(0).gameObject;
-            platformMesh = meshChild.GetComponent<MeshCollider>();
+            platformCollider = meshChild.GetComponent<BoxCollider>();
             startPos = transform.position;
             childstartPos = meshChild.transform.localPosition;
             meshf = meshChild.GetComponent<MeshFilter>();
@@ -85,7 +77,7 @@ namespace GroupZ
             {
                 if (playerTouching == true)
                 {
-                    Shaking(20, 0.1f);
+                    Shaking(20, 0.05f);
                     platformHP -= Time.deltaTime;
                 }
 
@@ -96,7 +88,6 @@ namespace GroupZ
 
                 if (platformHP <= 0)
                 {
-                    //fallLerptime += Time.deltaTime;
                     Falling();
                 } else if (platformHP <= 1.666f)
                 {
