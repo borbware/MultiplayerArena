@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+
+using UnityEngine;
 
 namespace GroupX
 {
@@ -10,14 +12,12 @@ namespace GroupX
         private void Awake()
         {
             _player = transform.parent.GetComponent<Player>();
-            Debug.Log(_player.name);
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent<MoleScript>(out var mole))
             {
-                Debug.Log("Mole hit");
                 Destroy(mole.gameObject);
                 _player.UIManager.AddScore(1);
             }
@@ -25,6 +25,7 @@ namespace GroupX
             else if (other.TryGetComponent<PlayerController>(out var player))
             {
                 Debug.Log($"Player {player.name} has been hit!");
+                throw new NotImplementedException("Players hitting other players not yet implemented");
             }
         }
     }
