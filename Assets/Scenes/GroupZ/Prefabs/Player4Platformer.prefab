@@ -71,6 +71,10 @@ PrefabInstance:
       propertyPath: player
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6087035657005527507, guid: 29fdac101f9e0f54d8809fe9271dc36a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e7053b7112706334bbf586159a51e88a, type: 2}
     - target: {fileID: 6998032162388474064, guid: 29fdac101f9e0f54d8809fe9271dc36a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9999956
