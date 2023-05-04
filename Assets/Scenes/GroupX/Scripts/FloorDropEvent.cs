@@ -13,8 +13,10 @@ public class FloorDropEvent : MonoBehaviour
     [SerializeField] AudioSource floorDropAudio;
     [SerializeField] List<GameObject> outerHexes;
 
+    StageManager stageManager;
+
     void eventTrigger(){
-        float currentStageTime = GameObject.Find("StageManager").GetComponent<StageManager>().stageTime;
+        float currentStageTime = stageManager.stageTime;
 
         //warning sounds
         if (totalStageTime - currentStageTime >= timeTillDrop - 2.9 && !warningSounded){
@@ -46,7 +48,8 @@ public class FloorDropEvent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        totalStageTime = GameObject.Find("StageManager").GetComponent<StageManager>().stageTime;
+        stageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
+        totalStageTime = stageManager.stageTime;
     }
 
     // Update is called once per frame
