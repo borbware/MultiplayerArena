@@ -8,10 +8,14 @@ public class ShockWave : MonoBehaviour
 {
     public int shooter;
     float force = 400f;
+    public AudioSource audioUse;
+    public AudioClip playerHit;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        audioUse = gameObject.GetComponent<AudioSource>();
+        
+        // audioUse.PlayOneShot(playerHit, 1f);
     }
 
     // Update is called once per frame
@@ -24,6 +28,8 @@ public class ShockWave : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            //Debug.Log("TAke hit!");
+            //Debug.Log(audioUse);
             Player otherPlayer = other.GetComponent<Player>();
             Vector3 direction = other.transform.position - transform.position;
             direction = direction.normalized;
@@ -32,6 +38,7 @@ public class ShockWave : MonoBehaviour
             {
             StageManager.instance.UIManagers[shooter - 1].AddScore(10);
             rb.AddForce(direction * force);
+            audioUse.PlayOneShot(playerHit, 1f);
             }
         }
     }

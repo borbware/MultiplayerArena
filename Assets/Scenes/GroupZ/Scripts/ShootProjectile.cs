@@ -16,6 +16,7 @@ public class ShootProjectile : MonoBehaviour
     PlatformerController _platformerController;
     AudioSource audioUse;
     public AudioClip hammerSwoosh;
+    public AudioClip hammerHit;
 
     private void Start()
     {
@@ -56,6 +57,7 @@ public class ShootProjectile : MonoBehaviour
                     particleRender.enabled = false;
                 } else {
                     particleRender.enabled = true;
+                    audioUse.PlayOneShot(hammerHit, 1f);
                 }
                 
                 _player.Hurt(0);
