@@ -34,7 +34,8 @@ namespace GroupX
         private enum State
         {
             Default,
-            Dazed
+            Dazed,
+            Iframe
         }
         private State _state = State.Default;
 
@@ -46,6 +47,9 @@ namespace GroupX
 
         private void FixedUpdate()
         {
+            if (_desiredVelocity != Vector3.zero)
+                transform.forward = _desiredVelocity;
+
             Vector3 calculatedVelocity = _rigidbody.velocity;
             Vector3 velocity = default;
 
@@ -53,7 +57,7 @@ namespace GroupX
             {
                 velocity = _desiredVelocity;
             }
-            else if (_state == State.Default)
+            else if (_state == State.Default || _state == State.Iframe)
             {
                 float maxSpeedChange = maxAcceleration * Time.fixedDeltaTime;
                 velocity = Vector3.MoveTowards(_rigidbody.velocity, _desiredVelocity, maxSpeedChange);
@@ -89,9 +93,6 @@ namespace GroupX
             }
 
             Vector3 movementVector = new(_player.axisInput.x, 0f, _player.axisInput.y);
-            if (movementVector != Vector3.zero)
-                transform.forward = movementVector;
-
             _desiredVelocity = movementVector * maxSpeed;
         }
 
@@ -110,7 +111,7 @@ namespace GroupX
 
         public void Daze()
         {
-            if (_state == State.Dazed)
+            if (_state == State.Dazed || _state == State.Iframe)
                 return;
 
             _state = State.Dazed;
@@ -123,6 +124,7 @@ namespace GroupX
 
             IEnumerator SetDefaultStateAfterIframeDuration()
             {
+                _state = State.Iframe;
                 yield return new WaitForSeconds(dazeIframeDuration);
                 _state = State.Default;
             }
