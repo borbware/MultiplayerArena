@@ -20,6 +20,10 @@ namespace GroupZ
         bool platformFallen = false;
         Vector3 startPos;
         Vector3 childstartPos;
+        AudioSource audioOut;
+        public AudioClip tileShatter;
+        public AudioClip tileCrack;
+
         // Start is called before the first frame update
 
         void Shaking(float speed, float amount)
@@ -36,6 +40,7 @@ namespace GroupZ
             Destroy(platformBroke, 2f);
             transform.position = new Vector3(transform.position.x, -100, transform.position.z);
             platformFallen = true;
+            audioOut.PlayOneShot(tileShatter, 0.5f);
             
         }
 
@@ -73,6 +78,7 @@ namespace GroupZ
             childstartPos = meshChild.transform.localPosition;
             meshf = meshChild.GetComponent<MeshFilter>();
             platformHP = platformMaxHP;
+            audioOut = GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
@@ -91,15 +97,17 @@ namespace GroupZ
                     platformHP += respawnAccelerator * Time.deltaTime;
                 }
 
-                if (platformHP <= 0)
+                if (platformHP <= 0 && platformFallen == false)
                 {
                     Falling();
                 } else if (platformHP <= platformMaxHP / 3)
                 {
                     meshf.mesh = broken2;
+                  //  audioOut.PlayOneShot(tileCrack, 0.2f);
                 } else if (platformHP <= (platformMaxHP /3) * 2)
                 {
                     meshf.mesh = broken1;
+                 //   audioOut.PlayOneShot(tileCrack, 0.2f);
                 } else if (platformHP >= platformMaxHP && platformFallen == true)
                 {
                     platformHP = platformMaxHP;
