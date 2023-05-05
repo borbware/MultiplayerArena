@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 1
+  rb: {fileID: 0}
   state: 0
   axisInput: {x: 0, y: 0}
   jumpInput: 0
@@ -89,7 +90,7 @@ MonoBehaviour:
   continuousJumpInput: 0
   continuousShootInput: 0
   hurtDisablesInput: 0
-  swingInputremovetime: 0.6
+  swingInputremovetime: 0.4
   UIManager: {fileID: 0}
 --- !u!114 &1294720277601711638
 MonoBehaviour:
