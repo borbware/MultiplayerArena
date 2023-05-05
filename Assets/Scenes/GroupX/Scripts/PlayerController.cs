@@ -7,7 +7,6 @@ namespace GroupX
 {
     [RequireComponent(typeof(Player))]
     [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(Animator))]
     public class PlayerController : MonoBehaviour
     {
         [field: SerializeField]
@@ -18,14 +17,20 @@ namespace GroupX
         [field: Range(0f, 300f)]
         public float maxAcceleration { get; private set; } = 3.5f;
 
+        [field: SerializeField]
+        public float dazeIframeDuration { get; private set; }
+
+        [field: SerializeField]
+        public Animator animator { get; private set; }
+
         private Player _player;
         private Rigidbody _rigidbody;
-        private Animator _animator;
 
         private Vector3 _desiredVelocity;
         private bool isJumping = false;
         private bool jumpReady = true;
         private float thrust = 5f;
+
 
         [SerializeField] AudioSource attackAudio;
         [SerializeField] AudioSource isHitAudio;
@@ -34,7 +39,8 @@ namespace GroupX
         private enum State
         {
             Default,
-            Dazed
+            Dazed,
+            Iframe
         }
         private State _state = State.Default;
 
@@ -42,11 +48,13 @@ namespace GroupX
         {
             _player = GetComponent<Player>();
             _rigidbody = GetComponent<Rigidbody>();
-            _animator = GetComponent<Animator>();
         }
 
         private void FixedUpdate()
         {
+            if (_desiredVelocity != Vector3.zero)
+                transform.forward = _desiredVelocity;
+
             Vector3 calculatedVelocity = _rigidbody.velocity;
             Vector3 velocity = default;
 
@@ -54,10 +62,15 @@ namespace GroupX
             {
                 velocity = _desiredVelocity;
             }
-            else if (_state == State.Default)
+            else if (_state == State.Default || _state == State.Iframe)
             {
                 float maxSpeedChange = maxAcceleration * Time.fixedDeltaTime;
                 velocity = Vector3.MoveTowards(_rigidbody.velocity, _desiredVelocity, maxSpeedChange);
+
+                if (velocity.x == 0f || velocity.z == 0f)
+                    animator.SetBool("playerIsWalking", false);
+                else
+                    animator.SetBool("playerIsWalking", true);
             }
 
             velocity.y = calculatedVelocity.y;
@@ -88,16 +101,12 @@ namespace GroupX
             }
 
             Vector3 movementVector = new(_player.axisInput.x, 0f, _player.axisInput.y);
-            if (movementVector != Vector3.zero)
-                transform.forward = movementVector;
-
             _desiredVelocity = movementVector * maxSpeed;
         }
 
         private void Attack()
         {
-            _animator.SetTrigger("Attack"); // TODO remove once actual animations are in
-            StartCoroutine(SetAnimatorBoolOnFor("playerIsAttacking", null));
+            animator.SetTrigger("bonk");
         }
 
         private void Jump(){
@@ -110,21 +119,29 @@ namespace GroupX
 
         public void Daze()
         {
+            if (_state == State.Dazed || _state == State.Iframe)
+                return;
+
             _state = State.Dazed;
+            animator.SetTrigger("getHit");
             isHitAudio.Play();
             StartCoroutine(SetAnimatorBoolOnFor("playerIsHit", null));
             Invoke(nameof(Undaze), 5f);
 
         }
-        private void Undaze() => _state = State.Default;
 
-        private IEnumerator SetAnimatorBoolOnFor(string animatorBoolName, YieldInstruction duration)
+        public void EndDaze()
         {
-            _animator.SetBool(animatorBoolName, true);
-            yield return duration;
-            _animator.SetBool(animatorBoolName, false);
+            StartCoroutine(SetDefaultStateAfterIframeDuration());
+
+            IEnumerator SetDefaultStateAfterIframeDuration()
+            {
+                _state = State.Iframe;
+                yield return new WaitForSeconds(dazeIframeDuration);
+                _state = State.Default;
+            }
         }
-    
+
         private void SetJumpReady(){
             jumpReady = true;
         }
