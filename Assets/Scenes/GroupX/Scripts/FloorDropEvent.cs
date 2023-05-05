@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class FloorDropEvent : MonoBehaviour
 {
-    float timeTillDrop = 5f;
-    float totalStageTime;
+    double timeTillDrop;
+    double totalStageTime;
+    float dropAfterPercent = 0.6f;  //the stage drop after this amount of the total stage time has elapsed
     bool eventTriggered = false;
     bool warningSounded = false;
     
@@ -103,6 +104,7 @@ public class FloorDropEvent : MonoBehaviour
     {
         stageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
         totalStageTime = stageManager.stageTime;
+        timeTillDrop = totalStageTime * dropAfterPercent;
 
         foreach (GameObject hex in outerHexes)
             meshRenderers.AddRange(hex.GetComponentsInChildren<MeshRenderer>());
