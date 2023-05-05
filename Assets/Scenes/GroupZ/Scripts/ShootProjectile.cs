@@ -85,7 +85,7 @@ public class ShootProjectile : MonoBehaviour
                 {
                     _anim.Play("FrogoSmash");
                 }
-                Invoke("HammerHit", 0.15f);
+                Invoke("HammerHit", 0.2f);
                 Invoke("ThumpSound", 0.08f);
                 Invoke("WhooshSound", 0.03f);
                 _player.rb.velocity = Vector3.zero;
