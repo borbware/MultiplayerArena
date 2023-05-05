@@ -6,6 +6,7 @@ public class MoleScript : MonoBehaviour
 {   
     [SerializeField] public float moleLifetime = 3f;
     public int iAmInHoleNo = 0;
+    GameObject runningScripts;
 
     // public enum moleState
     // {
@@ -16,15 +17,17 @@ public class MoleScript : MonoBehaviour
 
     private void OnDestroy() {
         // we set call the MoleSpawner script to set the hole the mole was in to empty
-        if (iAmInHoleNo < GameObject.Find("RunningScripts").GetComponent<MoleSpawner>().listOfHoles.Count - 1){
-            GameObject.Find("RunningScripts").GetComponent<MoleSpawner>()
-            .listOfHoles[iAmInHoleNo].setEmpty();
+        if (iAmInHoleNo < runningScripts.GetComponent<MoleSpawner>().listOfHoles.Count - 1){
+            runningScripts.GetComponent<MoleSpawner>().listOfHoles[iAmInHoleNo].setEmpty();
             //Debug.Log($"hole no {iAmInHoleNo} is empty");
         }
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player"){Destroy(gameObject);}
+        if (other.gameObject.tag == "Player"){
+            runningScripts.GetComponent<MoleSpawner>().playVirusHitAudio();
+            Destroy(gameObject);
+        }
     }
 
     // float moleWaitingTimer = 0f;
@@ -84,6 +87,7 @@ public class MoleScript : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
+        runningScripts = GameObject.Find("RunningScripts");
         moveUp();
     }
 

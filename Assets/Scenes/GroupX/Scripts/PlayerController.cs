@@ -31,6 +31,11 @@ namespace GroupX
         private bool jumpReady = true;
         private float thrust = 5f;
 
+
+        [SerializeField] AudioSource attackAudio;
+        [SerializeField] AudioSource isHitAudio;
+        
+
         private enum State
         {
             Default,
@@ -83,8 +88,11 @@ namespace GroupX
                 return;
             }
 
-            if (_player.shootInput)
+            if (_player.shootInput){
                 Attack();
+                attackAudio.Play();
+            }
+                
             
             if (_player.jumpInput && jumpReady){
                 isJumping = true;
@@ -116,6 +124,10 @@ namespace GroupX
 
             _state = State.Dazed;
             animator.SetTrigger("getHit");
+            isHitAudio.Play();
+            StartCoroutine(SetAnimatorBoolOnFor("playerIsHit", null));
+            Invoke(nameof(Undaze), 5f);
+
         }
 
         public void EndDaze()

@@ -20,6 +20,7 @@ public class MoleSpawner : MonoBehaviour
     static MoleHole hole_3 = new MoleHole(-2.5f, 0f, 2.5f);*/
 
     [SerializeField] public MoleHole[] arrayOfHoles; // = {hole_0, hole_1, hole_2, hole_3};
+    [SerializeField] AudioSource virusHitAudio;
 
     public List<MoleHole> listOfHoles = new List<MoleHole>();
 
@@ -45,6 +46,10 @@ public class MoleSpawner : MonoBehaviour
             listOfHoles[holeNumber].isEmpty = false;
             //Debug.Log($"hole no {holeNumber} is full");
         }
+    }
+
+    public void playVirusHitAudio(){
+        virusHitAudio.Play();
     }
 
     void Awake() {

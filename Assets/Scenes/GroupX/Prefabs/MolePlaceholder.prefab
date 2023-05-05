@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moleLifetime: 3
+  virusHitAudio: {fileID: 0}
   iAmInHoleNo: 0
 --- !u!135 &8066801337220236587
 SphereCollider:
