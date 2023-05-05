@@ -14,14 +14,10 @@ GameObject:
   - component: {fileID: 1993708639174095737}
   - component: {fileID: 1993708639174095736}
   - component: {fileID: 6707854244112401013}
-  - component: {fileID: 512528392355397087}
-<<<<<<< HEAD
   - component: {fileID: 8434369075050490485}
   - component: {fileID: 8919367646123149063}
-=======
   - component: {fileID: 3209042397719396692}
   - component: {fileID: 1090690064563728330}
->>>>>>> a976d803cac44d52c6ede71e042049b0140d3107
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -122,13 +118,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <maxSpeed>k__BackingField: 10
   <maxAcceleration>k__BackingField: 30
-<<<<<<< HEAD
-  attackAudio: {fileID: 8434369075050490485}
-  isHitAudio: {fileID: 8919367646123149063}
-=======
   <dazeIframeDuration>k__BackingField: 1
   <animator>k__BackingField: {fileID: 4520546275745923096}
->>>>>>> a976d803cac44d52c6ede71e042049b0140d3107
+  attackAudio: {fileID: 8434369075050490485}
+  isHitAudio: {fileID: 8919367646123149063}
 --- !u!95 &512528392355397087
 Animator:
   serializedVersion: 5
@@ -150,7 +143,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
-<<<<<<< HEAD
 --- !u!82 &8434369075050490485
 AudioSource:
   m_ObjectHideFlags: 0
@@ -343,12 +335,8 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &5280406174282640078
-GameObject:
-=======
 --- !u!198 &3209042397719396692
 ParticleSystem:
->>>>>>> a976d803cac44d52c6ede71e042049b0140d3107
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

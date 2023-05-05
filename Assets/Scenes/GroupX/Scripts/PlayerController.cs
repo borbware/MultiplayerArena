@@ -125,8 +125,6 @@ namespace GroupX
             _state = State.Dazed;
             animator.SetTrigger("getHit");
             isHitAudio.Play();
-            StartCoroutine(SetAnimatorBoolOnFor("playerIsHit", null));
-            Invoke(nameof(Undaze), 5f);
 
         }
 
