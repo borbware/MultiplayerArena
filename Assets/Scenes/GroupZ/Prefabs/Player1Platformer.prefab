@@ -122,6 +122,8 @@ MonoBehaviour:
   shootPeriod: 1
   shootForce: 0
   bullet: {fileID: 2202141161920212100, guid: 093a889d2339b864e9daf04e4bacd85e, type: 3}
+  hammerSwoosh: {fileID: 8300000, guid: 3f33ee600a7f9694ea338997473cfb4e, type: 3}
+  hammerHit: {fileID: 0}
 --- !u!82 &-5881531619330172348
 AudioSource:
   m_ObjectHideFlags: 0
