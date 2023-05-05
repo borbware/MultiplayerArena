@@ -445,7 +445,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 221921317995498435, guid: d06414f449e5b014dbcb2e7d2be29e53, type: 3}
       propertyPath: thrust
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5019379259740175051, guid: d06414f449e5b014dbcb2e7d2be29e53, type: 3}
       propertyPath: m_Name

@@ -1,5 +1,5 @@
 using System;
-
+using System.Threading;
 using UnityEngine;
 
 namespace GroupX
@@ -23,7 +23,9 @@ namespace GroupX
 
         private Vector3 _desiredVelocity;
         private bool isJumping = false;
-        [SerializeField] private float thrust = 10f;
+        private bool jumpReady = true;
+        private float thrust = 5f;
+        
 
         private void Awake()
         {
@@ -48,7 +50,11 @@ namespace GroupX
             if (_player.shootInput)
                 Attack();
             
-            if (_player.jumpInput){isJumping = true;}
+            if (_player.jumpInput && jumpReady){
+                isJumping = true;
+                jumpReady = false;
+                Invoke("SetJumpReady", 1f);
+            }
 
             Vector3 movementVector = new(_player.axisInput.x, 0f, _player.axisInput.y);
             if (movementVector != Vector3.zero)
@@ -64,11 +70,15 @@ namespace GroupX
 
         private void Jump(){
             if (isJumping){
-                Debug.Log("i jumped");
+                //Debug.Log("i jumped");
                 _rigidbody.AddForce(transform.up * thrust, ForceMode.Impulse);
                 isJumping = false;
             }
             
+        }
+    
+        private void SetJumpReady(){
+            jumpReady = true;
         }
     }
 }
