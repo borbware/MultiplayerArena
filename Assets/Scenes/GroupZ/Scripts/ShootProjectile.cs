@@ -53,6 +53,7 @@ public class ShootProjectile : MonoBehaviour
                     particleRender.enabled = true;
                 }
                 
+                _player.Hurt(0);
                 // if want projectile to hurt the target it touches
                 Hurt _hurt = newBullet.GetComponent<Hurt>();
                 if (_hurt != null)
