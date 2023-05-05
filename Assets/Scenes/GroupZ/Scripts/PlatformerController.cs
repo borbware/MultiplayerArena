@@ -16,6 +16,9 @@ public class PlatformerController : MonoBehaviour
     Player _player;
 	public bool onGround;
 
+	AudioSource audioOut;
+	public AudioClip jump;
+
 	void OnCollisionStay () {
 		onGround = true;
 	}
@@ -24,6 +27,7 @@ public class PlatformerController : MonoBehaviour
 	{
         _player = GetComponent<Player>();
 		_rigidbody = GetComponent<Rigidbody>();
+		audioOut = GetComponent<AudioSource>();
 	}
 
     private void Update() {
@@ -50,6 +54,7 @@ public class PlatformerController : MonoBehaviour
 	}
 	void Jump() {
 		velocity.y += Mathf.Sqrt(-2f * Physics.gravity.y * jumpHeight);
+		audioOut.PlayOneShot(jump, 1f);
 	}
 }
 }
