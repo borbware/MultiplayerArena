@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17137995, g: 0.162359, b: 0.29427043, a: 1}
+  m_IndirectSpecularColor: {r: 0.1700117, g: 0.1608372, b: 0.29258454, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -752,6 +752,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9221812174066719547, guid: 37b0c6e1245e1dd4b87b0dda736c933d, type: 3}
   m_PrefabInstance: {fileID: 634272397}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &459535544 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2881440894303160370, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
+  m_PrefabInstance: {fileID: 176866088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &459535549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459535544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dde72e7e8bd5b942b997d75e357ebf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 2.66
+  speed: 1.24
 --- !u!1001 &467072318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -817,6 +836,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d06414f449e5b014dbcb2e7d2be29e53, type: 3}
+--- !u!1 &480802679 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2881440895101929526, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
+  m_PrefabInstance: {fileID: 176866088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &480802684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480802679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dde72e7e8bd5b942b997d75e357ebf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 2.66
+  speed: 1.24
 --- !u!114 &535985698 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5179417008739446715, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
@@ -1710,6 +1748,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14f661ae028447b4b9fc3975718ba9ee, type: 3}
+--- !u!1 &1037373616 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7094368706927792618, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
+  m_PrefabInstance: {fileID: 176866088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1037373621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037373616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dde72e7e8bd5b942b997d75e357ebf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 2.66
+  speed: 1.24
 --- !u!114 &1073667055 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3485392690654182681, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
@@ -2055,6 +2112,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+--- !u!1 &1248930882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2881440895386062574, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
+  m_PrefabInstance: {fileID: 176866088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1248930887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248930882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dde72e7e8bd5b942b997d75e357ebf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 2.66
+  speed: 1.24
 --- !u!1 &1282779843 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 54366018220066847, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
