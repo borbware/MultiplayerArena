@@ -38,6 +38,42 @@ public class ShootProjectile : MonoBehaviour
         }
     }
 
+    void WhooshSound()
+    {
+        audioUse.PlayOneShot(hammerSwoosh, 1f);
+    }
+
+    void ThumpSound()
+    {
+        if (_platformerController.onGround)
+            audioUse.PlayOneShot(hammerHit, 1f);
+    }
+    void HammerHit()
+    {
+        var newBullet = Instantiate(
+        bullet,
+        transform.position + transform.forward * shootRange,
+        Quaternion.identity
+        );
+        newBullet.GetComponent<ShockWave>().shooter = _player.player;
+
+        ParticleSystemRenderer particleRender = newBullet.GetComponent<ParticleSystemRenderer>();
+        if (!_platformerController.onGround)
+        {
+            particleRender.enabled = false;
+        } else {
+            particleRender.enabled = true;
+        }
+
+        // if want projectile to hurt the target it touches
+        Hurt _hurt = newBullet.GetComponent<Hurt>();
+        if (_hurt != null)
+            _hurt.shooter = gameObject;
+        newBullet.GetComponent<Rigidbody>().AddForce(
+            transform.forward * shootForce * Time.fixedDeltaTime);
+        Destroy(newBullet, shootPeriod);
+        nextShootTime = Time.time + shootPeriod;
+    }
     void FixedUpdate()
     {
         if (desiredShoot)
@@ -49,34 +85,14 @@ public class ShootProjectile : MonoBehaviour
                 {
                     _anim.Play("FrogoSmash");
                 }
-                var newBullet = Instantiate(
-                    bullet,
-                    transform.position + transform.forward * shootRange,
-                    Quaternion.identity
-                );
-                audioUse.PlayOneShot(hammerSwoosh, 1f);
+                Invoke("HammerHit", 0.15f);
+                Invoke("ThumpSound", 0.08f);
+                Invoke("WhooshSound", 0.03f);
                 _player.rb.velocity = Vector3.zero;
                 _player.rb.angularVelocity = Vector3.zero;
-                newBullet.GetComponent<ShockWave>().shooter = _player.player;
-                ParticleSystemRenderer particleRender = 
-                                            newBullet.GetComponent<ParticleSystemRenderer>();
-                if (!_platformerController.onGround)
-                {
-                    particleRender.enabled = false;
-                } else {
-                    particleRender.enabled = true;
-                    audioUse.PlayOneShot(hammerHit, 1f);
-                }
                 
+
                 _player.Hurt(0);
-                // if want projectile to hurt the target it touches
-                Hurt _hurt = newBullet.GetComponent<Hurt>();
-                if (_hurt != null)
-                    _hurt.shooter = gameObject;
-                newBullet.GetComponent<Rigidbody>().AddForce(
-                    transform.forward * shootForce * Time.fixedDeltaTime);
-                Destroy(newBullet, shootPeriod);
-                nextShootTime = Time.time + shootPeriod;
             }
         }
     }
