@@ -30,9 +30,10 @@ namespace GroupY
             if(other.gameObject.tag == "Player")
             {
                 Player player = other.gameObject.GetComponent<Player>();
-                BankerManager.instance.Bank(player.player);
+                GridManager.instance.Bank(player.player);
 
-                pos++;
+                int newpos = (pos + Random.Range(1,positions.Count))%positions.Count;
+                pos = newpos;
                 StartCoroutine(Teleport(0.25f, positions[pos%positions.Count].position));
             }
         }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace GroupY
 {
-    public class BankerManager : MonoBehaviour
+    public class GridManager : MonoBehaviour
     {
-        public static BankerManager instance;
+        public static GridManager instance;
 
         public List<ProceduralGrid> grids;
         // Start is called before the first frame update
@@ -39,6 +39,22 @@ namespace GroupY
 
             }
             StageManager.instance.UIManagers[player - 1].AddScore(total);
+        }
+
+        public void ClearGrids(int player)
+        {
+            foreach(ProceduralGrid grid in grids)
+            {
+                platformColorChange[] tiles = grid.GetComponentsInChildren<platformColorChange>();
+                foreach(platformColorChange tile in tiles)
+                {
+                    if(tile.affiliation == player)
+                    {
+                        tile.SetAffiliation(0);
+                    }
+                }
+
+            }
         }
     }
 }

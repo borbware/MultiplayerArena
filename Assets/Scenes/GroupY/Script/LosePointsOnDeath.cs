@@ -13,6 +13,6 @@ public class LosePointsOnDeath : MonoBehaviour
 
     void OnDestroy()
     {
-        player.UIManager.AddScore(-player.UIManager.score);
+        player.UIManager.AddScore(-player.UIManager.score / 2);
     }
 }
