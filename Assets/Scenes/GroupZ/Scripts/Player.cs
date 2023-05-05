@@ -15,11 +15,13 @@ public class Player : MonoBehaviour
     }
     public int player;
     PlayerData _playerData;
+    Rigidbody rb;
     public PlayerState state = PlayerState.Active;
     public Vector2 axisInput;
     public bool jumpInput, shootInput, continuousJumpInput, continuousShootInput;
 
     public bool hurtDisablesInput;
+    [SerializeField] float swingInputremovetime = 0.4f;
 
     public PlayerUIManager UIManager;
 
@@ -27,6 +29,8 @@ public class Player : MonoBehaviour
     {
         UIManager = StageManager.instance.UIManagers[player - 1];
         _playerData = GameManager.instance.players[player - 1];
+        rb = GetComponent<Rigidbody>();
+        hurtDisablesInput = true;
     }
 
     void Update()
@@ -60,13 +64,15 @@ public class Player : MonoBehaviour
         continuousJumpInput = Input.GetButton($"P{_playerData.controller}A");
         continuousShootInput = Input.GetButton($"P{_playerData.controller}B");
     }
-    void Hurt(int damage)
+    public void Hurt(int damage)
     {
         if (state != PlayerState.Active)
             return;
         UIManager.AddHP(-damage);
         state = PlayerState.Hurt;
-        Invoke("Active", 1.0f);
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        Invoke("Active", swingInputremovetime);
         InvokeRepeating("HurtFlicker",0f,0.1f);
     }
     void HurtFlicker()
