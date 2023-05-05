@@ -23,21 +23,21 @@ namespace GroupY
         {
         if (other.gameObject.tag == "Player")
             {   Player player = other.collider.GetComponent<Player>();
-                if(affiliation != player.player)OnCapture(player.player);
+                if(affiliation != player.player)SetAffiliation(player.player);
             }    
         }
 
-        void OnCapture(int newAffiliation)
+        public void SetAffiliation(int newAffiliation)
         {
             affiliation = newAffiliation;
-            //Add points to the capturer
-            if(affiliation != 0)StageManager.instance.UIManagers[affiliation - 1].AddScore(1);
-            //Take points from previous capturer
-            if(lastAffiliation != 0)StageManager.instance.UIManagers[lastAffiliation - 1].AddScore(-1);
-            //change the material
             meshRenderer.material = materials.materials[affiliation];
             lastAffiliation = affiliation;
             
+        }
+
+        void Reset()
+        {
+            affiliation = 0;
         }
 
         // Update is called once per frame

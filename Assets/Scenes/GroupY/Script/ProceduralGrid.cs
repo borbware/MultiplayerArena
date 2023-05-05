@@ -11,7 +11,53 @@ namespace GroupY
         public float spacing = 1;
         int tileCount;
 
-        public GameObject[] tiles;
+        public List<GameObject> tiles;
+
+        public bool TryGetTile(int column, int row, out GameObject gameObject)
+        {
+            int index = column * row;
+            bool withinRange = ( index >= 0 &&
+                                index < tiles.Count &&
+                                column > width &&
+                                row > depth);
+            if(!withinRange)
+            {
+                gameObject = tiles[index];
+                return true;
+            }
+            else
+            {
+                gameObject = null;
+                Debug.LogWarning("Index out of range, returning null");
+                return false;
+            }
+        }
+
+        public struct tileCoordinate
+        {
+            public int column, row;
+        }
+
+        public tileCoordinate GetCoordinate(int index)
+        {
+            tileCoordinate coords;
+            coords.column = index%width;
+            coords.row = index/width;
+            return coords;
+        }
+
+
+
+        public int GetIndexOf(GameObject gameObject)
+        {
+            if(tiles.Contains(gameObject))
+            {
+                int index = tiles.IndexOf(gameObject);
+                return index;
+            }
+            else return -1;
+        }
+
         // Start is called before the first frame update
         void Start()
         {
@@ -29,7 +75,7 @@ namespace GroupY
             if(tile)
             {
                 tileCount = width * depth;
-                tiles = new GameObject[width * depth];
+                tiles = new List<GameObject>();
 
                 //center the generated grid
                 Vector3 offset = new Vector3(((float)width/2)* spacing - spacing * 0.5f,0,((float)depth/2)* spacing - spacing * 0.5f);
@@ -39,7 +85,7 @@ namespace GroupY
                     for(int j = 0; j < depth; j++)
                     {
                         
-                        tiles[i*j] = GameObject.Instantiate(tile, transform.position + new Vector3((float)i * spacing,0,(float)j * spacing) - offset, Quaternion.Euler(0,0,0),this.transform);
+                        tiles.Add(GameObject.Instantiate(tile, transform.position + new Vector3((float)i * spacing,0,(float)j * spacing) - offset, Quaternion.Euler(0,0,0),this.transform));
                         
                     }
                 }
