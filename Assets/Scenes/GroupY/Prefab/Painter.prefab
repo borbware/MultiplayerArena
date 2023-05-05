@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Painter
       objectReference: {fileID: 0}
+    - target: {fileID: 2345306565705809894, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 44c93d9b759fabb409dac20caf1f2591, type: 2}
     - target: {fileID: 2345306565705809895, guid: 19ed7d9eb52c4ee4cb91e2a9c87829ea, type: 3}
       propertyPath: m_RootOrder
       value: 0
