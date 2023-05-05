@@ -48,6 +48,8 @@ public class ShootProjectile : MonoBehaviour
                     Quaternion.identity
                 );
                 audioUse.PlayOneShot(hammerSwoosh, 1f);
+                _player.rb.velocity = Vector3.zero;
+                _player.rb.angularVelocity = Vector3.zero;
                 newBullet.GetComponent<ShockWave>().shooter = _player.player;
                 ParticleSystemRenderer particleRender = 
                                             newBullet.GetComponent<ParticleSystemRenderer>();

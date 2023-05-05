@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     }
     public int player;
     PlayerData _playerData;
-    Rigidbody rb;
+    public Rigidbody rb;
     public PlayerState state = PlayerState.Active;
     public Vector2 axisInput;
     public bool jumpInput, shootInput, continuousJumpInput, continuousShootInput;
