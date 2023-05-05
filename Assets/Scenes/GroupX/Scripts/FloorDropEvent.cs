@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class FloorDropEvent : MonoBehaviour
 {
-    float timeTillDrop = 5f;
-    float totalStageTime;
+    double timeTillDrop;
+    double totalStageTime;
+    float dropAfterPercent = 0.6f;  //the stage drop after this amount of the total stage time has elapsed
     bool eventTriggered = false;
     bool warningSounded = false;
     
@@ -15,6 +16,17 @@ public class FloorDropEvent : MonoBehaviour
 
     StageManager stageManager;
     List<MeshRenderer> meshRenderers = new();
+
+    //feel free to change these 4 vectors and experiment with them
+    Vector3 mainCameraFarPosition = new Vector3(-339.5f, -200f, 41f);
+    Quaternion mainCameraFarRotation = Quaternion.Euler(66.5f, 0f, 0f);
+    Vector3 mainCameraClosePosition = new Vector3(-340f, -207f, 43f);
+    Quaternion mainCameraCloseRotation = Quaternion.Euler(45f, 0f, 0f);
+
+    GameObject mainCamera;
+    float lerpTimePassed = 0f;
+    float lerpDuration = 3f;
+
 
     void eventTrigger(){
         float currentStageTime = stageManager.stageTime;
@@ -68,19 +80,49 @@ public class FloorDropEvent : MonoBehaviour
         material.color = originalColor;
     }
 
+    private void moveCamera(){
+        if (eventTriggered && mainCamera.transform.position != mainCameraClosePosition){
+            if (lerpTimePassed < lerpDuration){
+                mainCamera.transform.localPosition =
+                    Vector3.Lerp(mainCameraFarPosition, mainCameraClosePosition, lerpTimePassed/lerpDuration);
+
+                mainCamera.transform.localRotation = 
+                    Quaternion.Lerp(mainCameraFarRotation, mainCameraCloseRotation, lerpTimePassed/lerpDuration);
+
+                lerpTimePassed += Time.deltaTime;
+            }
+            else{
+                mainCamera.transform.localPosition = mainCameraClosePosition;
+                mainCamera.transform.localRotation = mainCameraCloseRotation;
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         stageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
         totalStageTime = stageManager.stageTime;
+        timeTillDrop = totalStageTime * dropAfterPercent;
 
         foreach (GameObject hex in outerHexes)
             meshRenderers.AddRange(hex.GetComponentsInChildren<MeshRenderer>());
+        
+        mainCamera = GameObject.Find("Main Camera");
+    }
+
+    private void getCameraPosition(){   //for debug purposes only
+        if (Input.GetKeyDown(KeyCode.C)){
+            Debug.Log(mainCamera.transform.position);
+            Debug.Log(mainCamera.transform.rotation.eulerAngles);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         eventTrigger();
+        moveCamera();
+        getCameraPosition();
     }
 }
