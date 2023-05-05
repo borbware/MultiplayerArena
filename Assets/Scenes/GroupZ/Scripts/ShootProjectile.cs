@@ -14,10 +14,14 @@ public class ShootProjectile : MonoBehaviour
 
     Player _player;
     PlatformerController _platformerController;
+    AudioSource audioUse;
+    public AudioClip hammerSwoosh;
+
     private void Start()
     {
         _player = GetComponent<Player>();
         _platformerController = GetComponent<PlatformerController>();
+        audioUse = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -43,6 +47,7 @@ public class ShootProjectile : MonoBehaviour
                     transform.position + transform.forward * shootRange,
                     Quaternion.identity
                 );
+                audioUse.PlayOneShot(hammerSwoosh, 1f);
                 newBullet.GetComponent<ShockWave>().shooter = _player.player;
                 ParticleSystemRenderer particleRender = 
                                             newBullet.GetComponent<ParticleSystemRenderer>();
