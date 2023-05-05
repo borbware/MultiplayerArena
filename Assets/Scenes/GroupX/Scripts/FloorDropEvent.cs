@@ -18,9 +18,9 @@ public class FloorDropEvent : MonoBehaviour
     List<MeshRenderer> meshRenderers = new();
 
     //feel free to change these 4 vectors and experiment with them
-    Vector3 mainCameraFarPosition = new Vector3(-339.5f, -200f, 38.9f);    
+    Vector3 mainCameraFarPosition = new Vector3(-339.5f, -200f, 41f);
     Quaternion mainCameraFarRotation = Quaternion.Euler(66.5f, 0f, 0f);
-    Vector3 mainCameraClosePosition = new Vector3(-340f, -207f, 40f);
+    Vector3 mainCameraClosePosition = new Vector3(-340f, -207f, 43f);
     Quaternion mainCameraCloseRotation = Quaternion.Euler(45f, 0f, 0f);
 
     GameObject mainCamera;
@@ -83,18 +83,17 @@ public class FloorDropEvent : MonoBehaviour
     private void moveCamera(){
         if (eventTriggered && mainCamera.transform.position != mainCameraClosePosition){
             if (lerpTimePassed < lerpDuration){
-                mainCamera.transform.position =
+                mainCamera.transform.localPosition =
                     Vector3.Lerp(mainCameraFarPosition, mainCameraClosePosition, lerpTimePassed/lerpDuration);
-                Debug.Log(mainCamera.transform.position);
 
-                mainCamera.transform.rotation = 
+                mainCamera.transform.localRotation = 
                     Quaternion.Lerp(mainCameraFarRotation, mainCameraCloseRotation, lerpTimePassed/lerpDuration);
 
                 lerpTimePassed += Time.deltaTime;
             }
             else{
-                mainCamera.transform.position = mainCameraClosePosition;
-                mainCamera.transform.rotation = mainCameraCloseRotation;
+                mainCamera.transform.localPosition = mainCameraClosePosition;
+                mainCamera.transform.localRotation = mainCameraCloseRotation;
             }
         }
     }
@@ -112,10 +111,18 @@ public class FloorDropEvent : MonoBehaviour
         mainCamera = GameObject.Find("Main Camera");
     }
 
+    private void getCameraPosition(){   //for debug purposes only
+        if (Input.GetKeyDown(KeyCode.C)){
+            Debug.Log(mainCamera.transform.position);
+            Debug.Log(mainCamera.transform.rotation.eulerAngles);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         eventTrigger();
         moveCamera();
+        getCameraPosition();
     }
 }
