@@ -13,13 +13,16 @@ public class ShootProjectile : MonoBehaviour
     public GameObject bullet;
 
     Player _player;
+    Animator _anim;
     PlatformerController _platformerController;
     AudioSource audioUse;
     public AudioClip hammerSwoosh;
+    public AudioClip hammerHit;
 
     private void Start()
     {
         _player = GetComponent<Player>();
+        _anim = transform.GetChild(0).GetComponent<Animator>();
         _platformerController = GetComponent<PlatformerController>();
         audioUse = GetComponent<AudioSource>();
     }
@@ -42,6 +45,10 @@ public class ShootProjectile : MonoBehaviour
             desiredShoot = false;
             if (bullet != null && Time.time >= nextShootTime)
             {
+                if(_anim != null)
+                {
+                    _anim.Play("FrogoSmash");
+                }
                 var newBullet = Instantiate(
                     bullet,
                     transform.position + transform.forward * shootRange,
@@ -58,6 +65,7 @@ public class ShootProjectile : MonoBehaviour
                     particleRender.enabled = false;
                 } else {
                     particleRender.enabled = true;
+                    audioUse.PlayOneShot(hammerHit, 1f);
                 }
                 
                 _player.Hurt(0);

@@ -24,12 +24,16 @@ public class Player : MonoBehaviour
     [SerializeField] float swingInputremovetime = 0.4f;
 
     public PlayerUIManager UIManager;
+    PlatformerController _platformerController;
+    Animator _anim;
 
     void Start()
     {
         UIManager = StageManager.instance.UIManagers[player - 1];
         _playerData = GameManager.instance.players[player - 1];
         rb = GetComponent<Rigidbody>();
+        _platformerController = GetComponent<PlatformerController>();
+        _anim = transform.GetChild(0).GetComponent<Animator>();
         hurtDisablesInput = true;
     }
 
@@ -45,6 +49,12 @@ public class Player : MonoBehaviour
         {
             if (!hurtDisablesInput)
                 GetInput();
+        }
+        _anim.SetBool("onGround", _platformerController.onGround);
+        _anim.SetBool("isMoving", (axisInput.magnitude > 0));
+        if(jumpInput)
+        {
+            _anim.Play("FrogoJumpStart");
         }
     }
 
@@ -63,6 +73,7 @@ public class Player : MonoBehaviour
 
         continuousJumpInput = Input.GetButton($"P{_playerData.controller}A");
         continuousShootInput = Input.GetButton($"P{_playerData.controller}B");
+
     }
     public void Hurt(int damage)
     {
@@ -73,7 +84,7 @@ public class Player : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         Invoke("Active", swingInputremovetime);
-        InvokeRepeating("HurtFlicker",0f,0.1f);
+        //InvokeRepeating("HurtFlicker",0f,0.1f);
     }
     void HurtFlicker()
     {
