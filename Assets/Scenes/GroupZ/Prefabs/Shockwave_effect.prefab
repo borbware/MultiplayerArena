@@ -9787,6 +9787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shooter: 0
+  force: 600
 --- !u!1 &2202141162840556821
 GameObject:
   m_ObjectHideFlags: 0

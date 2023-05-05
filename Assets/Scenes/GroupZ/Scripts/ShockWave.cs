@@ -7,7 +7,7 @@ namespace GroupZ
 public class ShockWave : MonoBehaviour
 {
     public int shooter;
-    float force = 400f;
+    [SerializeField] float force = 400f;
     // Start is called before the first frame update
     void Start()
     {

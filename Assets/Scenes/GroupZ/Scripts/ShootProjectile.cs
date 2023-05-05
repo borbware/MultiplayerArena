@@ -13,10 +13,12 @@ public class ShootProjectile : MonoBehaviour
     public GameObject bullet;
 
     Player _player;
+    Animator _anim;
     PlatformerController _platformerController;
     private void Start()
     {
         _player = GetComponent<Player>();
+        _anim = transform.GetChild(0).GetComponent<Animator>();
         _platformerController = GetComponent<PlatformerController>();
     }
     void Update()
@@ -38,6 +40,10 @@ public class ShootProjectile : MonoBehaviour
             desiredShoot = false;
             if (bullet != null && Time.time >= nextShootTime)
             {
+                if(_anim != null)
+                {
+                    _anim.Play("FrogoSmash");
+                }
                 var newBullet = Instantiate(
                     bullet,
                     transform.position + transform.forward * shootRange,
