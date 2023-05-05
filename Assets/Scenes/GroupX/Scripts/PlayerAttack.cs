@@ -1,18 +1,11 @@
-﻿using System;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GroupX
 {
     [RequireComponent(typeof(Collider))]
     public class PlayerAttack : MonoBehaviour
     {
-        private Player _player;
-
-        private void Awake()
-        {
-            _player = transform.parent.GetComponent<Player>();
-        }
+        [SerializeField] private Player _player;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -22,9 +15,9 @@ namespace GroupX
                 _player.UIManager.AddScore(1);
             }
 
-            else if (other.TryGetComponent<PlayerController>(out var player))
+            else if (other.TryGetComponent<PlayerController>(out var otherPlayer))
             {
-                player.Daze();
+                otherPlayer.Daze();
             }
         }
     }
