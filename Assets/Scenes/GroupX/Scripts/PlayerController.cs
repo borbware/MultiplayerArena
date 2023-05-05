@@ -1,5 +1,6 @@
 using System;
-using System.Threading;
+using System.Collections;
+
 using UnityEngine;
 
 namespace GroupX
@@ -27,6 +28,13 @@ namespace GroupX
         private float thrust = 5f;
         
 
+        private enum State
+        {
+            Default,
+            Dazed
+        }
+        private State _state = State.Default;
+
         private void Awake()
         {
             _player = GetComponent<Player>();
@@ -36,17 +44,34 @@ namespace GroupX
 
         private void FixedUpdate()
         {
-            float maxSpeedChange = maxAcceleration * Time.fixedDeltaTime;
             Vector3 calculatedVelocity = _rigidbody.velocity;
-            Vector3 velocity = Vector3.MoveTowards(_rigidbody.velocity, _desiredVelocity, maxSpeedChange);
+            Vector3 velocity = default;
+
+            if (_state == State.Dazed)
+            {
+                velocity = _desiredVelocity;
+            }
+            else if (_state == State.Default)
+            {
+                float maxSpeedChange = maxAcceleration * Time.fixedDeltaTime;
+                velocity = Vector3.MoveTowards(_rigidbody.velocity, _desiredVelocity, maxSpeedChange);
+            }
+
             velocity.y = calculatedVelocity.y;
             _rigidbody.velocity = velocity;
 
-            Jump();
+            if (_state == State.Default)
+                Jump();
         }
 
         private void Update()
         {
+            if (_state == State.Dazed)
+            {
+                _desiredVelocity = Vector3.zero;
+                return;
+            }
+
             if (_player.shootInput)
                 Attack();
             
@@ -65,7 +90,8 @@ namespace GroupX
 
         private void Attack()
         {
-            _animator.SetTrigger("Attack");
+            _animator.SetTrigger("Attack"); // TODO remove once actual animations are in
+            StartCoroutine(SetAnimatorBoolOnFor("playerIsAttacking", null));
         }
 
         private void Jump(){
@@ -74,7 +100,22 @@ namespace GroupX
                 _rigidbody.AddForce(transform.up * thrust, ForceMode.Impulse);
                 isJumping = false;
             }
-            
+        }
+
+        public void Daze()
+        {
+            _state = State.Dazed;
+            StartCoroutine(SetAnimatorBoolOnFor("playerIsHit", null));
+            Invoke(nameof(Undaze), 5f);
+
+        }
+        private void Undaze() => _state = State.Default;
+
+        private IEnumerator SetAnimatorBoolOnFor(string animatorBoolName, YieldInstruction duration)
+        {
+            _animator.SetBool(animatorBoolName, true);
+            yield return duration;
+            _animator.SetBool(animatorBoolName, false);
         }
     
         private void SetJumpReady(){

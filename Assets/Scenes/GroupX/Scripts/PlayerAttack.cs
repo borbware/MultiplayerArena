@@ -24,8 +24,7 @@ namespace GroupX
 
             else if (other.TryGetComponent<PlayerController>(out var player))
             {
-                Debug.Log($"Player {player.name} has been hit!");
-                throw new NotImplementedException("Players hitting other players not yet implemented");
+                player.Daze();
             }
         }
     }
