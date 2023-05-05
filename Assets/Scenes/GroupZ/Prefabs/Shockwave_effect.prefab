@@ -9788,9 +9788,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shooter: 0
-<<<<<<< HEAD
-  force: 600
-=======
   audioUse: {fileID: 0}
   playerHit: {fileID: 8300000, guid: 71650b7889f7f1b47b8f53836e64e334, type: 3}
 --- !u!82 &6084965280520150286
@@ -9889,7 +9886,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
->>>>>>> c1ab720f114b4b999121f0528ce67a9dc1b9e3cb
 --- !u!1 &2202141162840556821
 GameObject:
   m_ObjectHideFlags: 0
