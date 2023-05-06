@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -30,12 +31,12 @@ namespace GroupX
         private Rigidbody _rigidbody;
 
         private Vector3 _desiredVelocity;
-        private bool isJumping = false;
         private bool jumpReady = true;
         private float thrust = 5f;
         public float knockbackStrength { get; private set; } = 3.5f;
 
         private Action? singularPhysicsAction = null;
+        private Queue<Action> stackingPhysicsActions = new();
 
         [SerializeField] AudioSource attackAudio;
         [SerializeField] AudioSource isHitAudio;
@@ -62,34 +63,44 @@ namespace GroupX
             {
                 singularPhysicsAction();
                 singularPhysicsAction = null;
-                return;
             }
 
-            if (_state == State.Dazed)
-                return;
-
-            if (_desiredVelocity != Vector3.zero)
-                transform.forward = _desiredVelocity;
-
-            Vector3 calculatedVelocity = _rigidbody.velocity;
-            Vector3 velocity = default;
-
-            if (_state == State.Default || _state == State.Iframe)
+            else
             {
-                float maxSpeedChange = maxAcceleration * Time.fixedDeltaTime;
-                velocity = Vector3.MoveTowards(_rigidbody.velocity, _desiredVelocity, maxSpeedChange);
+                if (_state == State.Dazed)
+                    return;
 
-                if (velocity.x == 0f || velocity.z == 0f)
-                    animator.SetBool("playerIsWalking", false);
-                else
-                    animator.SetBool("playerIsWalking", true);
+                Move();
+
+                while (stackingPhysicsActions.Count > 0)
+                {
+                    var physicsAction = stackingPhysicsActions.Dequeue();
+                    physicsAction();
+                }
             }
 
-            velocity.y = calculatedVelocity.y;
-            _rigidbody.velocity = velocity;
+            void Move()
+            {
+                if (_desiredVelocity != Vector3.zero)
+                    transform.forward = _desiredVelocity;
 
-            if (_state == State.Default)
-                Jump();
+                Vector3 calculatedVelocity = _rigidbody.velocity;
+                Vector3 velocity = default;
+
+                if (_state == State.Default || _state == State.Iframe)
+                {
+                    float maxSpeedChange = maxAcceleration * Time.fixedDeltaTime;
+                    velocity = Vector3.MoveTowards(_rigidbody.velocity, _desiredVelocity, maxSpeedChange);
+
+                    if (velocity.x == 0f || velocity.z == 0f)
+                        animator.SetBool("playerIsWalking", false);
+                    else
+                        animator.SetBool("playerIsWalking", true);
+                }
+
+                velocity.y = calculatedVelocity.y;
+                _rigidbody.velocity = velocity;
+            }
         }
 
         private void Update()
@@ -101,7 +112,7 @@ namespace GroupX
                 
             
             if (_player.jumpInput && jumpReady){
-                isJumping = true;
+                stackingPhysicsActions.Enqueue(Jump);
                 jumpReady = false;
                 Invoke("SetJumpReady", 1f);
             }
@@ -116,11 +127,7 @@ namespace GroupX
         }
 
         private void Jump(){
-            if (isJumping){
-                //Debug.Log("i jumped");
-                _rigidbody.AddForce(transform.up * thrust, ForceMode.Impulse);
-                isJumping = false;
-            }
+            _rigidbody.AddForce(transform.up * thrust, ForceMode.Impulse);
         }
 
         public void Daze(Vector3 attackerDirection, float attackerKnockbackStrength)
