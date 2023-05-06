@@ -7,6 +7,7 @@ public class MoleScript : MonoBehaviour
     [SerializeField] public float moleLifetime = 3f;
     public int iAmInHoleNo = 0;
     GameObject runningScripts;
+    private ParticleSystem moleParticles;
 
     // public enum moleState
     // {
@@ -26,8 +27,12 @@ public class MoleScript : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Player"){
             runningScripts.GetComponent<MoleSpawner>().playVirusHitAudio();
-            Destroy(gameObject);
+            moleParticles.Play();
+            Invoke("DestroyThisVirus" , 5f);
         }
+    }
+    void DestroyThisVirus() {
+        Destroy(gameObject);
     }
 
     // float moleWaitingTimer = 0f;
@@ -88,6 +93,7 @@ public class MoleScript : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         runningScripts = GameObject.Find("RunningScripts");
+        moleParticles = GetComponent<ParticleSystem>();
         moveUp();
     }
 

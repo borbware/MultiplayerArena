@@ -24,6 +24,7 @@ namespace GroupX
 
         [field: SerializeField]
         public Animator animator { get; private set; }
+        private ParticleSystem _playerParticles;
 
         private Player _player;
         private Rigidbody _rigidbody;
@@ -52,6 +53,7 @@ namespace GroupX
         {
             _player = GetComponent<Player>();
             _rigidbody = GetComponent<Rigidbody>();
+            _playerParticles = GetComponent<ParticleSystem>();
         }
 
         private void FixedUpdate()
@@ -130,6 +132,7 @@ namespace GroupX
             singularPhysicsAction = GetKnockedBack;
             animator.SetTrigger("getHit");
             isHitAudio.Play();
+            _playerParticles.Play();
 
             void GetKnockedBack()
             {
