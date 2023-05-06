@@ -31,7 +31,7 @@ public class MoleScript : MonoBehaviour
             Invoke("DestroyThisVirus" , 5f);
         }
     }
-    private void DestroyThisVirus() {
+    void DestroyThisVirus() {
         Destroy(gameObject);
     }
 
