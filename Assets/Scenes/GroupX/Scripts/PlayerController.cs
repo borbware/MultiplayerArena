@@ -46,7 +46,7 @@ namespace GroupX
 
         [SerializeField] AudioSource attackAudio;
         [SerializeField] AudioSource isHitAudio;
-        
+
 
         private enum State
         {
@@ -116,13 +116,15 @@ namespace GroupX
 
         private void Update()
         {
-            if (_player.shootInput){
+            if (_player.shootInput)
+            {
                 Attack();
                 attackAudio.Play();
             }
-                
-            
-            if (_player.jumpInput && jumpReady){
+
+
+            if (_player.jumpInput && jumpReady)
+            {
                 stackingPhysicsActions.Enqueue(Jump);
                 jumpReady = false;
                 Invoke("SetJumpReady", 1f);
@@ -150,7 +152,8 @@ namespace GroupX
 
         public void ResetState() => _state = State.Default;
 
-        private void Jump(){
+        private void Jump()
+        {
             _rigidbody.AddForce(transform.up * thrust, ForceMode.Impulse);
         }
 
@@ -192,7 +195,8 @@ namespace GroupX
             }
         }
 
-        private void SetJumpReady(){
+        private void SetJumpReady()
+        {
             jumpReady = true;
         }
     }

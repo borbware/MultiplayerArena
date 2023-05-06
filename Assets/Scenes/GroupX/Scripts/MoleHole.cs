@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 
-public class MoleHole : MonoBehaviour
+namespace GroupX
 {
-    /* this clss is a container for a position (Vector3) and a bool which keeps track 
-    whether there is a mole already spawned*/
-
-    public Vector3 position;
-    public bool isEmpty = true;
-
-    private void Awake()
+    public class MoleHole : MonoBehaviour
     {
-        position = transform.position;
-    }
+        /* this clss is a container for a position (Vector3) and a bool which keeps track 
+        whether there is a mole already spawned*/
 
-    public void setEmpty()
-    {
-        isEmpty = true;
+        public Vector3 position;
+        public bool isEmpty = true;
+
+        private void Awake()
+        {
+            position = transform.position;
+        }
+
+        public void setEmpty()
+        {
+            isEmpty = true;
+        }
     }
 }
