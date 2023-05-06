@@ -3,6 +3,8 @@ using System.Collections;
 
 using UnityEngine;
 
+#nullable enable
+
 namespace GroupX
 {
     [RequireComponent(typeof(Player))]
@@ -30,7 +32,9 @@ namespace GroupX
         private bool isJumping = false;
         private bool jumpReady = true;
         private float thrust = 5f;
+        private float knockbackStrength = 2.5f;
 
+        private Action? singularPhysicsAction = null;
 
         [SerializeField] AudioSource attackAudio;
         [SerializeField] AudioSource isHitAudio;
@@ -52,17 +56,23 @@ namespace GroupX
 
         private void FixedUpdate()
         {
+            if (singularPhysicsAction != null)
+            {
+                singularPhysicsAction();
+                singularPhysicsAction = null;
+                return;
+            }
+
+            if (_state == State.Dazed)
+                return;
+
             if (_desiredVelocity != Vector3.zero)
                 transform.forward = _desiredVelocity;
 
             Vector3 calculatedVelocity = _rigidbody.velocity;
             Vector3 velocity = default;
 
-            if (_state == State.Dazed)
-            {
-                velocity = _desiredVelocity;
-            }
-            else if (_state == State.Default || _state == State.Iframe)
+            if (_state == State.Default || _state == State.Iframe)
             {
                 float maxSpeedChange = maxAcceleration * Time.fixedDeltaTime;
                 velocity = Vector3.MoveTowards(_rigidbody.velocity, _desiredVelocity, maxSpeedChange);
@@ -82,12 +92,6 @@ namespace GroupX
 
         private void Update()
         {
-            if (_state == State.Dazed)
-            {
-                _desiredVelocity = Vector3.zero;
-                return;
-            }
-
             if (_player.shootInput){
                 Attack();
                 attackAudio.Play();
@@ -117,15 +121,24 @@ namespace GroupX
             }
         }
 
-        public void Daze()
+        public void Daze(Vector3 attackerDirection)
         {
             if (_state == State.Dazed || _state == State.Iframe)
                 return;
 
             _state = State.Dazed;
+            singularPhysicsAction = GetKnockedBack;
             animator.SetTrigger("getHit");
             isHitAudio.Play();
 
+            void GetKnockedBack()
+            {
+                Vector3 horizontalDirection = -attackerDirection;
+                horizontalDirection.y = 0f;
+
+                Vector3 knockbackDirection = horizontalDirection.normalized + transform.up;
+                _rigidbody.AddForce(knockbackDirection.normalized * knockbackStrength, ForceMode.Impulse);
+            }
         }
 
         public void EndDaze()

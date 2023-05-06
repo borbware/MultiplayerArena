@@ -17,7 +17,7 @@ namespace GroupX
 
             else if (other.TryGetComponent<PlayerController>(out var otherPlayer))
             {
-                otherPlayer.Daze();
+                otherPlayer.Daze(_player.transform.position - otherPlayer.transform.position);
             }
         }
     }
