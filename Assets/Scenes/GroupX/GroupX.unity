@@ -258,6 +258,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1204217840}
     m_Modifications:
+    - target: {fileID: 6469644389163616913, guid: 3ef585c181e65b84787d85443bb4beef, type: 3}
+      propertyPath: UIManager
+      value: 
+      objectReference: {fileID: 1439791064}
     - target: {fileID: 6469644389163616915, guid: 3ef585c181e65b84787d85443bb4beef, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -732,6 +736,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52b4000945960141854acf8e370a208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &293226552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5019379259740175051, guid: d06414f449e5b014dbcb2e7d2be29e53, type: 3}
+  m_PrefabInstance: {fileID: 467072318}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &374444879 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5947762049090788543, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
@@ -830,6 +839,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5019379259740175054, guid: d06414f449e5b014dbcb2e7d2be29e53, type: 3}
+      propertyPath: UIManager
+      value: 
+      objectReference: {fileID: 562817341}
     - target: {fileID: 5019379259740175054, guid: d06414f449e5b014dbcb2e7d2be29e53, type: 3}
       propertyPath: shootInput
       value: 0
@@ -1290,6 +1303,11 @@ AudioSource:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1788855801914953541, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
   m_PrefabInstance: {fileID: 1123951964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &736497214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5249233875677826622, guid: db2d2a69bc8659b4899829daa73d6018, type: 3}
+  m_PrefabInstance: {fileID: 1826269522}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &759267907
 GameObject:
@@ -1850,6 +1868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 1937395839649222981, guid: a1a68769a8d1dfb4980fd5352b6a4751, type: 3}
+      propertyPath: UIManager
+      value: 
+      objectReference: {fileID: 1566778745}
     - target: {fileID: 1937395839649222983, guid: a1a68769a8d1dfb4980fd5352b6a4751, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2070,6 +2092,26 @@ PrefabInstance:
       propertyPath: UIManagers.Array.data[3]
       value: 
       objectReference: {fileID: 863608848}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 293226552}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1850848434}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 1872533941}
+    - target: {fileID: 3733942775869018904, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
+      propertyPath: playerGameObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: 736497214}
     - target: {fileID: 3733942775869018905, guid: cb8853b8d6013c4479ef63f05d9ec9f6, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2823,6 +2865,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5249233875677826619, guid: db2d2a69bc8659b4899829daa73d6018, type: 3}
+      propertyPath: UIManager
+      value: 
+      objectReference: {fileID: 863608848}
     - target: {fileID: 5249233875677826622, guid: db2d2a69bc8659b4899829daa73d6018, type: 3}
       propertyPath: m_Name
       value: Player4
@@ -2844,6 +2890,16 @@ MonoBehaviour:
 MeshCollider:
   m_CorrespondingSourceObject: {fileID: 5125450636443232041, guid: e7416ad2a10312b448dd7b8fe6ec8ae9, type: 3}
   m_PrefabInstance: {fileID: 1115665955}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1850848434 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1937395839649222976, guid: a1a68769a8d1dfb4980fd5352b6a4751, type: 3}
+  m_PrefabInstance: {fileID: 1123234410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1872533941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6469644389163616916, guid: 3ef585c181e65b84787d85443bb4beef, type: 3}
+  m_PrefabInstance: {fileID: 131540257}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1899043093 stripped
 Transform:
