@@ -6,6 +6,12 @@ namespace GroupX
     public class PlayerAttack : MonoBehaviour
     {
         [SerializeField] private Player _player;
+        private PlayerController _playerController;
+
+        private void Awake()
+        {
+            _playerController = _player.GetComponent<PlayerController>();
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -15,9 +21,11 @@ namespace GroupX
                 _player.UIManager.AddScore(1);
             }
 
-            else if (other.TryGetComponent<PlayerController>(out var otherPlayer))
+            else if (other.TryGetComponent<PlayerController>(out var otherPlayerController))
             {
-                otherPlayer.Daze(_player.transform.position - otherPlayer.transform.position);
+                otherPlayerController.Daze(
+                    _playerController.transform.position - otherPlayerController.transform.position,
+                    _playerController.knockbackStrength);
             }
         }
     }

@@ -33,7 +33,7 @@ namespace GroupX
         private bool isJumping = false;
         private bool jumpReady = true;
         private float thrust = 5f;
-        private float knockbackStrength = 2.5f;
+        public float knockbackStrength { get; private set; } = 3.5f;
 
         private Action? singularPhysicsAction = null;
 
@@ -123,7 +123,7 @@ namespace GroupX
             }
         }
 
-        public void Daze(Vector3 attackerDirection)
+        public void Daze(Vector3 attackerDirection, float attackerKnockbackStrength)
         {
             if (_state == State.Dazed || _state == State.Iframe)
                 return;
@@ -140,7 +140,7 @@ namespace GroupX
                 horizontalDirection.y = 0f;
 
                 Vector3 knockbackDirection = horizontalDirection.normalized + transform.up;
-                _rigidbody.AddForce(knockbackDirection.normalized * knockbackStrength, ForceMode.Impulse);
+                _rigidbody.AddForce(knockbackDirection.normalized * attackerKnockbackStrength, ForceMode.Impulse);
             }
         }
 
