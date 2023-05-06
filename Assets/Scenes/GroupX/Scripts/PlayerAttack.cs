@@ -15,18 +15,8 @@ namespace GroupX
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<MoleScript>(out var mole))
-            {
-                Destroy(mole.gameObject);
-                _player.UIManager.AddScore(1);
-            }
-
-            else if (other.TryGetComponent<PlayerController>(out var otherPlayerController))
-            {
-                otherPlayerController.Daze(
-                    _playerController.transform.position - otherPlayerController.transform.position,
-                    _playerController.knockbackStrength);
-            }
+            if (other.TryGetComponent<IHittableByPlayer>(out var hittable))
+                hittable.GetHitBy(_playerController);
         }
     }
 }

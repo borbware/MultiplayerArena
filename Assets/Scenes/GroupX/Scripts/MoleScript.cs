@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+
+using GroupX;
+
 using UnityEngine;
 
-public class MoleScript : MonoBehaviour
+public class MoleScript : MonoBehaviour, IHittableByPlayer
 {   
     [SerializeField] public float moleLifetime = 3f;
     public int iAmInHoleNo = 0;
     GameObject runningScripts;
     private ParticleSystem moleParticles;
+
+    private bool _dying = false;
 
     // public enum moleState
     // {
@@ -24,11 +29,18 @@ public class MoleScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player"){
+    public void GetHitBy(PlayerController player)
+    {
+        if (!_dying)
+        {
+            _dying = true;
+
             runningScripts.GetComponent<MoleSpawner>().playVirusHitAudio();
+            GetComponent<MeshRenderer>().enabled = false;
             moleParticles.Play();
-            Invoke("DestroyThisVirus" , 5f);
+            player.GetComponent<Player>().UIManager.AddScore(1);
+
+            Invoke("DestroyThisVirus", 5f);
         }
     }
     void DestroyThisVirus() {

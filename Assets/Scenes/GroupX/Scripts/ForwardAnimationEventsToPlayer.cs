@@ -11,5 +11,7 @@ namespace GroupX
         [SerializeField] private PlayerController player;
 
         public void EndDaze() => player.EndDaze();
+
+        public void EndBonk() => player.ResetState();
     }
 }

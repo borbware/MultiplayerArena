@@ -10,7 +10,7 @@ namespace GroupX
 {
     [RequireComponent(typeof(Player))]
     [RequireComponent(typeof(Rigidbody))]
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IHittableByPlayer
     {
         [field: SerializeField]
         [field: Range(0f, 100f)]
@@ -19,6 +19,12 @@ namespace GroupX
         [field: SerializeField]
         [field: Range(0f, 300f)]
         public float maxAcceleration { get; private set; } = 3.5f;
+
+        [field: SerializeField]
+        public float maxTurnsPerSecond { get; private set; }
+
+        [field: SerializeField]
+        public AimAssist aimAssist { get; private set; }
 
         [field: SerializeField]
         public float dazeIframeDuration { get; private set; }
@@ -46,7 +52,8 @@ namespace GroupX
         {
             Default,
             Dazed,
-            Iframe
+            Iframe,
+            Attacking
         }
         private State _state = State.Default;
 
@@ -70,7 +77,7 @@ namespace GroupX
                 if (_state == State.Dazed)
                     return;
 
-                Move();
+                MoveAndRotate();
 
                 while (stackingPhysicsActions.Count > 0)
                 {
@@ -79,26 +86,30 @@ namespace GroupX
                 }
             }
 
-            void Move()
+            void MoveAndRotate()
             {
-                if (_desiredVelocity != Vector3.zero)
-                    transform.forward = _desiredVelocity;
-
-                Vector3 calculatedVelocity = _rigidbody.velocity;
-                Vector3 velocity = default;
-
-                if (_state == State.Default || _state == State.Iframe)
+                if (_state == State.Attacking)
                 {
-                    float maxSpeedChange = maxAcceleration * Time.fixedDeltaTime;
-                    velocity = Vector3.MoveTowards(_rigidbody.velocity, _desiredVelocity, maxSpeedChange);
-
-                    if (velocity.x == 0f || velocity.z == 0f)
-                        animator.SetBool("playerIsWalking", false);
-                    else
-                        animator.SetBool("playerIsWalking", true);
+                    _rigidbody.velocity = Vector3.zero;
+                    return;
                 }
 
-                velocity.y = calculatedVelocity.y;
+                if (!(_state == State.Default || _state == State.Iframe))
+                    return;
+
+                if (_desiredVelocity != Vector3.zero)
+                {
+                    float maxTurnChange = Mathf.PI * maxTurnsPerSecond * Time.fixedDeltaTime;
+                    transform.forward = Vector3.RotateTowards(transform.forward, _desiredVelocity.normalized, maxTurnChange, 0f);
+                }
+
+                float maxSpeedChange = maxAcceleration * Time.fixedDeltaTime;
+                Vector3 velocityWithoutRotation = Vector3.MoveTowards(_rigidbody.velocity, _desiredVelocity, maxSpeedChange);
+                Vector3 velocity = new(velocityWithoutRotation.x, _rigidbody.velocity.y, velocityWithoutRotation.z);
+
+                bool isWalking = (velocity.x != 0f || velocity.z != 0f);
+                animator.SetBool("playerIsWalking", isWalking);
+
                 _rigidbody.velocity = velocity;
             }
         }
@@ -123,11 +134,29 @@ namespace GroupX
 
         private void Attack()
         {
+            _state = State.Attacking;
             animator.SetTrigger("bonk");
+
+            if (aimAssist.TryGetClosest(out var closestTarget))
+            {
+                stackingPhysicsActions.Enqueue(() =>
+                {
+                    Vector3 lookDir = closestTarget.transform.position - transform.position;
+                    lookDir.y = 0f;
+                    transform.forward = lookDir;
+                });
+            }
         }
+
+        public void ResetState() => _state = State.Default;
 
         private void Jump(){
             _rigidbody.AddForce(transform.up * thrust, ForceMode.Impulse);
+        }
+
+        public void GetHitBy(PlayerController otherPlayer)
+        {
+            Daze(otherPlayer.transform.position - transform.position, otherPlayer.knockbackStrength);
         }
 
         public void Daze(Vector3 attackerDirection, float attackerKnockbackStrength)
