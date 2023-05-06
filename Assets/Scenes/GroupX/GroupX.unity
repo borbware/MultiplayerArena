@@ -1952,7 +1952,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2569301245441163849, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
-      propertyPath: collidersToIgnore.Array.data[0]
+      propertyPath: _collidersToIgnore.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569301245441163849, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
+      propertyPath: _collidersToIgnore.Array.data[0]
       value: 
       objectReference: {fileID: 1842020715}
     - target: {fileID: 2569301245441163855, guid: 3060abe42140bdd40b1ad267b5e1084f, type: 3}
@@ -2185,10 +2189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e8c8854627a3245a7fcbc011eb7205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 2
-  maxMoles: 7
-  mole: {fileID: 8075797068476980383, guid: 2748805fbd9d23c40b0d2f9e4d3b53ae, type: 3}
-  hole: {fileID: 1283521480252124002, guid: 7740c608cae0df241a6b2be93e337f63, type: 3}
+  _spawnInterval: 2
+  _maxMoles: 7
+  _mole: {fileID: 8075797068476980383, guid: 2748805fbd9d23c40b0d2f9e4d3b53ae, type: 3}
+  _hole: {fileID: 1283521480252124002, guid: 7740c608cae0df241a6b2be93e337f63, type: 3}
   arrayOfHoles:
   - {fileID: 205259337}
   - {fileID: 1171560613}
@@ -2203,7 +2207,7 @@ MonoBehaviour:
   - {fileID: 1370083639}
   - {fileID: 1832026701}
   - {fileID: 604524407}
-  virusHitAudio: {fileID: 1434007962}
+  _virusHitAudio: {fileID: 1434007962}
   listOfHoles: []
 --- !u!4 &1434007958
 Transform:
@@ -2232,9 +2236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f5fe115e5685145aca084ff27d5b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropWarningAudio: {fileID: 1434007961}
-  floorDropAudio: {fileID: 1434007960}
-  outerHexes:
+  _dropWarningAudio: {fileID: 1434007961}
+  _floorDropAudio: {fileID: 1434007960}
+  _outerHexes:
   - {fileID: 687569747}
   - {fileID: 995393777}
   - {fileID: 1914108967}
@@ -2663,7 +2667,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae5ea6f03e2dd74fbf47abef4d318d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 0.35
 --- !u!1 &1711087632
 GameObject:
   m_ObjectHideFlags: 0

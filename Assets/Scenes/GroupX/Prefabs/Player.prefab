@@ -123,8 +123,8 @@ MonoBehaviour:
   <aimAssist>k__BackingField: {fileID: 3291888780337104422}
   <dazeIframeDuration>k__BackingField: 1
   <animator>k__BackingField: {fileID: 4520546275745923096}
-  attackAudio: {fileID: 8434369075050490485}
-  isHitAudio: {fileID: 8919367646123149063}
+  _attackAudio: {fileID: 8434369075050490485}
+  _isHitAudio: {fileID: 8919367646123149063}
 --- !u!82 &8434369075050490485
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5449,7 +5449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb3570ba59977a4ba74a7e78cd49a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 6707854244112401013}
+  _player: {fileID: 6707854244112401013}
 --- !u!1 &6558896794366405688 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2601354891198450577, guid: b5d9a2b14c0dcff4c9ad1ff5af24d3a5, type: 3}
