@@ -9,17 +9,17 @@ public class MoleScript : MonoBehaviour, IHittableByPlayer
 {
     [SerializeField] public float moleLifetime = 3f;
     public int iAmInHoleNo = 0;
-    GameObject runningScripts;
-    private ParticleSystem moleParticles;
+    private GameObject _runningScripts;
+    private ParticleSystem _moleParticles;
 
     private bool _dying = false;
 
     private void OnDestroy()
     {
         // we set call the MoleSpawner script to set the hole the mole was in to empty
-        if (iAmInHoleNo < runningScripts.GetComponent<MoleSpawner>().listOfHoles.Count - 1)
+        if (iAmInHoleNo < _runningScripts.GetComponent<MoleSpawner>().listOfHoles.Count - 1)
         {
-            runningScripts.GetComponent<MoleSpawner>().listOfHoles[iAmInHoleNo].setEmpty();
+            _runningScripts.GetComponent<MoleSpawner>().listOfHoles[iAmInHoleNo].setEmpty();
             //Debug.Log($"hole no {iAmInHoleNo} is empty");
         }
     }
@@ -30,51 +30,52 @@ public class MoleScript : MonoBehaviour, IHittableByPlayer
         {
             _dying = true;
 
-            runningScripts.GetComponent<MoleSpawner>().playVirusHitAudio();
+            _runningScripts.GetComponent<MoleSpawner>().PlayVirusHitAudio();
             GetComponent<MeshRenderer>().enabled = false;
-            moleParticles.Play();
+            _moleParticles.Play();
             player.GetComponent<Player>().UIManager.AddScore(1);
 
             Invoke("DestroyThisVirus", 5f);
         }
     }
-    void DestroyThisVirus()
+
+    private void DestroyThisVirus()
     {
         Destroy(gameObject);
     }
 
-
-    void moveUp()
+    private void moveUp()
     {
         GetComponent<Rigidbody>().velocity = new Vector3(0f, 1.2f, 0f);
     }
 
-    void moveDown()
+    private void moveDown()
     {
         GetComponent<Rigidbody>().velocity = new Vector3(0f, -1.2f, 0f);
     }
 
-    bool stopped = false;
-    void checkStopped()
+    private bool _stopped = false;
+
+    private void checkStopped()
     {
-        if (!stopped && transform.position.y >= 0.5)
+        if (!_stopped && transform.position.y >= 0.5)
         {
-            stopped = true;
+            _stopped = true;
             GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
             Invoke("moveDown", moleLifetime - 1);
         }
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        runningScripts = GameObject.Find("RunningScripts");
-        moleParticles = GetComponent<ParticleSystem>();
+        _runningScripts = GameObject.Find("RunningScripts");
+        _moleParticles = GetComponent<ParticleSystem>();
         moveUp();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         checkStopped();
     }

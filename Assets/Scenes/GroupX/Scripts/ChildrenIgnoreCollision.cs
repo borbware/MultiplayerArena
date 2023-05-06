@@ -6,8 +6,8 @@ namespace GroupX
 {
     public class ChildrenIgnoreCollision : MonoBehaviour
     {
-        [SerializeField] private Collider[] collidersToIgnore;
-        [SerializeField] bool childrenIgnoreEachOther = true;
+        [SerializeField] private Collider[] _collidersToIgnore;
+        [SerializeField] private bool _childrenIgnoreEachOther = true;
 
         private void Awake()
         {
@@ -17,7 +17,7 @@ namespace GroupX
 
             collisionIgnorePairs.AddRange(PairCollidersWithCollisionsToIgnore(childColliders));
 
-            if (childrenIgnoreEachOther)
+            if (_childrenIgnoreEachOther)
                 collisionIgnorePairs.AddRange(PairCollidersWithEachOther(childColliders));
 
             foreach (var pair in collisionIgnorePairs)
@@ -28,7 +28,7 @@ namespace GroupX
                 List<(Collider, Collider)> pairs = new();
 
                 foreach (var collider in colliders)
-                    foreach (Collider colliderToIgnore in collidersToIgnore)
+                    foreach (Collider colliderToIgnore in _collidersToIgnore)
                         pairs.Add((collider, colliderToIgnore));
 
                 return pairs;

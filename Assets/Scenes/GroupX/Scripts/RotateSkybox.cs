@@ -4,11 +4,11 @@ namespace GroupX
 {
     public class RotateSkybox : MonoBehaviour
     {
-        public float rotateSpeed = 1f;
+        private float _rotateSpeed = 1f;
 
-        void Update()
+        private void Update()
         {
-            RenderSettings.skybox.SetFloat("_Rotation", Time.time * rotateSpeed);
+            RenderSettings.skybox.SetFloat("_Rotation", Time.time * _rotateSpeed);
         }
     }
 }

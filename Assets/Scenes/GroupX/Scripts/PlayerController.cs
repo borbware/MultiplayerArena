@@ -37,15 +37,15 @@ namespace GroupX
         private Rigidbody _rigidbody;
 
         private Vector3 _desiredVelocity;
-        private bool jumpReady = true;
-        private float thrust = 5f;
+        private bool _jumpReady = true;
+        private float _thrust = 5f;
         public float knockbackStrength { get; private set; } = 3.5f;
 
-        private Action? singularPhysicsAction = null;
-        private Queue<Action> stackingPhysicsActions = new();
+        private Action? _singularPhysicsAction = null;
+        private Queue<Action> _stackingPhysicsActions = new();
 
-        [SerializeField] AudioSource attackAudio;
-        [SerializeField] AudioSource isHitAudio;
+        [SerializeField] private AudioSource _attackAudio;
+        [SerializeField] private AudioSource _isHitAudio;
 
 
         private enum State
@@ -66,10 +66,10 @@ namespace GroupX
 
         private void FixedUpdate()
         {
-            if (singularPhysicsAction != null)
+            if (_singularPhysicsAction != null)
             {
-                singularPhysicsAction();
-                singularPhysicsAction = null;
+                _singularPhysicsAction();
+                _singularPhysicsAction = null;
             }
 
             else
@@ -79,9 +79,9 @@ namespace GroupX
 
                 MoveAndRotate();
 
-                while (stackingPhysicsActions.Count > 0)
+                while (_stackingPhysicsActions.Count > 0)
                 {
-                    var physicsAction = stackingPhysicsActions.Dequeue();
+                    var physicsAction = _stackingPhysicsActions.Dequeue();
                     physicsAction();
                 }
             }
@@ -119,14 +119,14 @@ namespace GroupX
             if (_player.shootInput)
             {
                 Attack();
-                attackAudio.Play();
+                _attackAudio.Play();
             }
 
 
-            if (_player.jumpInput && jumpReady)
+            if (_player.jumpInput && _jumpReady)
             {
-                stackingPhysicsActions.Enqueue(Jump);
-                jumpReady = false;
+                _stackingPhysicsActions.Enqueue(Jump);
+                _jumpReady = false;
                 Invoke("SetJumpReady", 1f);
             }
 
@@ -141,7 +141,7 @@ namespace GroupX
 
             if (aimAssist.TryGetClosest(out var closestTarget))
             {
-                stackingPhysicsActions.Enqueue(() =>
+                _stackingPhysicsActions.Enqueue(() =>
                 {
                     Vector3 lookDir = closestTarget.transform.position - transform.position;
                     lookDir.y = 0f;
@@ -154,7 +154,7 @@ namespace GroupX
 
         private void Jump()
         {
-            _rigidbody.AddForce(transform.up * thrust, ForceMode.Impulse);
+            _rigidbody.AddForce(transform.up * _thrust, ForceMode.Impulse);
         }
 
         public void GetHitBy(PlayerController otherPlayer)
@@ -168,9 +168,9 @@ namespace GroupX
                 return;
 
             _state = State.Dazed;
-            singularPhysicsAction = GetKnockedBack;
+            _singularPhysicsAction = GetKnockedBack;
             animator.SetTrigger("getHit");
-            isHitAudio.Play();
+            _isHitAudio.Play();
             _playerParticles.Play();
 
             void GetKnockedBack()
@@ -197,7 +197,7 @@ namespace GroupX
 
         private void SetJumpReady()
         {
-            jumpReady = true;
+            _jumpReady = true;
         }
     }
 }

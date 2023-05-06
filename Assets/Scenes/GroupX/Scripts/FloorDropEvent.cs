@@ -7,54 +7,51 @@ namespace GroupX
 {
     public class FloorDropEvent : MonoBehaviour
     {
-        double timeTillDrop;
-        double totalStageTime;
-        float dropAfterPercent = 0.6f;  //the stage drop after this amount of the total stage time has elapsed
-        bool eventTriggered = false;
-        bool warningSounded = false;
+        private double _timeTillDrop;
+        private double _totalStageTime;
+        private float _dropAfterPercent = 0.6f;  //the stage drop after this amount of the total stage time has elapsed
+        private bool _eventTriggered = false;
+        private bool _warningSounded = false;
 
-        [SerializeField] AudioSource dropWarningAudio;
-        [SerializeField] AudioSource floorDropAudio;
-        [SerializeField] List<GameObject> outerHexes;
-
-        StageManager stageManager;
-        List<MeshRenderer> meshRenderers = new();
+        [SerializeField] private AudioSource _dropWarningAudio;
+        [SerializeField] private AudioSource _floorDropAudio;
+        [SerializeField] private List<GameObject> _outerHexes;
+        private StageManager _stageManager;
+        private List<MeshRenderer> _meshRenderers = new();
 
         //feel free to change these 4 vectors and experiment with them
-        Vector3 mainCameraFarPosition = new Vector3(-339.5f, -200f, 41f);
-        Quaternion mainCameraFarRotation = Quaternion.Euler(66.5f, 0f, 0f);
-        Vector3 mainCameraClosePosition = new Vector3(-340f, -207f, 43f);
-        Quaternion mainCameraCloseRotation = Quaternion.Euler(45f, 0f, 0f);
+        private Vector3 _mainCameraFarPosition = new Vector3(-339.5f, -200f, 41f);
+        private Quaternion _mainCameraFarRotation = Quaternion.Euler(66.5f, 0f, 0f);
+        private Vector3 _mainCameraClosePosition = new Vector3(-340f, -207f, 43f);
+        private Quaternion _mainCameraCloseRotation = Quaternion.Euler(45f, 0f, 0f);
+        private GameObject _mainCamera;
+        private float _lerpTimePassed = 0f;
+        private float _lerpDuration = 3f;
 
-        GameObject mainCamera;
-        float lerpTimePassed = 0f;
-        float lerpDuration = 3f;
-
-
-        void eventTrigger()
+        private void eventTrigger()
         {
-            float currentStageTime = stageManager.stageTime;
+            float currentStageTime = _stageManager.stageTime;
 
             //warning sounds & colors
-            if (totalStageTime - currentStageTime >= timeTillDrop - 2.9 && !warningSounded)
+            if (_totalStageTime - currentStageTime >= _timeTillDrop - 2.9 && !_warningSounded)
             {
-                warningSounded = true;
+                _warningSounded = true;
                 InvokeRepeating("playWarningSound", 0.1f, 1f);
-                foreach (var meshRenderer in meshRenderers)
+                foreach (var meshRenderer in _meshRenderers)
                     StartCoroutine(FlashReddish(meshRenderer));
             }
 
             //the event
-            if (totalStageTime - currentStageTime > timeTillDrop && !eventTriggered)
+            if (_totalStageTime - currentStageTime > _timeTillDrop && !_eventTriggered)
             {
-                eventTriggered = true;
+                _eventTriggered = true;
 
                 //remove the extra moleholes - removes 6 elements starting from index 7 (these are the last 6 holes)
                 GetComponent<MoleSpawner>().listOfHoles.RemoveRange(7, 6);
 
                 //drop outer hexes
-                floorDropAudio.Play();
-                foreach (GameObject hex in outerHexes)
+                _floorDropAudio.Play();
+                foreach (GameObject hex in _outerHexes)
                 {
                     hex.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     hex.GetComponent<Rigidbody>().useGravity = true;
@@ -62,12 +59,12 @@ namespace GroupX
             }
         }
 
-        void playWarningSound()
+        private void playWarningSound()
         {
-            if (!eventTriggered) { dropWarningAudio.Play(); }
+            if (!_eventTriggered) { _dropWarningAudio.Play(); }
         }
 
-        IEnumerator FlashReddish(MeshRenderer meshRenderer)
+        private IEnumerator FlashReddish(MeshRenderer meshRenderer)
         {
             float startTime = Time.time;
             Material material = meshRenderer.material;
@@ -75,7 +72,7 @@ namespace GroupX
 
             Color reddish = Color.Lerp(originalColor, Color.red, 0.3f);
 
-            while (!eventTriggered)
+            while (!_eventTriggered)
             {
                 float delta = (Time.time - startTime) % 1f;
                 float deltaDiffFromHalf = Mathf.Abs(0.5f - delta);
@@ -89,50 +86,50 @@ namespace GroupX
 
         private void moveCamera()
         {
-            if (eventTriggered && mainCamera.transform.position != mainCameraClosePosition)
+            if (_eventTriggered && _mainCamera.transform.position != _mainCameraClosePosition)
             {
-                if (lerpTimePassed < lerpDuration)
+                if (_lerpTimePassed < _lerpDuration)
                 {
-                    mainCamera.transform.localPosition =
-                        Vector3.Lerp(mainCameraFarPosition, mainCameraClosePosition, lerpTimePassed / lerpDuration);
+                    _mainCamera.transform.localPosition =
+                        Vector3.Lerp(_mainCameraFarPosition, _mainCameraClosePosition, _lerpTimePassed / _lerpDuration);
 
-                    mainCamera.transform.localRotation =
-                        Quaternion.Lerp(mainCameraFarRotation, mainCameraCloseRotation, lerpTimePassed / lerpDuration);
+                    _mainCamera.transform.localRotation =
+                        Quaternion.Lerp(_mainCameraFarRotation, _mainCameraCloseRotation, _lerpTimePassed / _lerpDuration);
 
-                    lerpTimePassed += Time.deltaTime;
+                    _lerpTimePassed += Time.deltaTime;
                 }
                 else
                 {
-                    mainCamera.transform.localPosition = mainCameraClosePosition;
-                    mainCamera.transform.localRotation = mainCameraCloseRotation;
+                    _mainCamera.transform.localPosition = _mainCameraClosePosition;
+                    _mainCamera.transform.localRotation = _mainCameraCloseRotation;
                 }
             }
         }
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
-            stageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
-            totalStageTime = stageManager.stageTime;
-            timeTillDrop = totalStageTime * dropAfterPercent;
+            _stageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
+            _totalStageTime = _stageManager.stageTime;
+            _timeTillDrop = _totalStageTime * _dropAfterPercent;
 
-            foreach (GameObject hex in outerHexes)
-                meshRenderers.AddRange(hex.GetComponentsInChildren<MeshRenderer>());
+            foreach (GameObject hex in _outerHexes)
+                _meshRenderers.AddRange(hex.GetComponentsInChildren<MeshRenderer>());
 
-            mainCamera = GameObject.Find("Main Camera");
+            _mainCamera = GameObject.Find("Main Camera");
         }
 
         private void getCameraPosition()
         {   //for debug purposes only
             if (Input.GetKeyDown(KeyCode.C))
             {
-                Debug.Log(mainCamera.transform.position);
-                Debug.Log(mainCamera.transform.rotation.eulerAngles);
+                Debug.Log(_mainCamera.transform.position);
+                Debug.Log(_mainCamera.transform.rotation.eulerAngles);
             }
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             eventTrigger();
             moveCamera();

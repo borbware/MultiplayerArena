@@ -9,17 +9,17 @@ namespace GroupX
         public float rotationSpeed = 10f;
         public Transform centerObject;
 
-        private Vector3 startPosition;
+        private Vector3 _startPosition;
 
-        void Start()
+        private void Start()
         {
-            startPosition = transform.position;
+            _startPosition = transform.position;
         }
 
-        void Update()
+        private void Update()
         {
             float yOffset = Mathf.Sin(Time.time * speed) * amplitude;
-            transform.position = startPosition + new Vector3(0f, yOffset, 0f);
+            transform.position = _startPosition + new Vector3(0f, yOffset, 0f);
 
             if (centerObject != null)
             {

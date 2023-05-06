@@ -6,16 +6,15 @@ namespace GroupX
 {
     public class MoleSpawner : MonoBehaviour
     {
-        [SerializeField] float spawnInterval = 2;
-        [SerializeField] int maxMoles = 7; //this should be less than the no of players 
+        [SerializeField] private float _spawnInterval = 2;
+        [SerializeField] private int _maxMoles = 7; //this should be less than the no of players 
                                            //to create tension (not true - more testing needed)
-        [SerializeField] GameObject mole;
-        [SerializeField] GameObject hole;
-
-        System.Random rand = new System.Random();
+        [SerializeField] private GameObject _mole;
+        [SerializeField] private GameObject _hole;
+        private System.Random _rand = new System.Random();
 
         [SerializeField] public MoleHole[] arrayOfHoles;
-        [SerializeField] AudioSource virusHitAudio;
+        [SerializeField] private AudioSource _virusHitAudio;
 
         public List<MoleHole> listOfHoles = new List<MoleHole>();
 
@@ -26,16 +25,16 @@ namespace GroupX
             the new mole remembers the index of the hole where it spawned*/
 
             int number_of_moles = GameObject.FindGameObjectsWithTag("Mole").Length;
-            if (number_of_moles < maxMoles)
+            if (number_of_moles < _maxMoles)
             {
-                int holeNumber = rand.Next(0, listOfHoles.Count);
+                int holeNumber = _rand.Next(0, listOfHoles.Count);
                 while (!listOfHoles[holeNumber].isEmpty)
                 {
-                    holeNumber = rand.Next(0, listOfHoles.Count);
+                    holeNumber = _rand.Next(0, listOfHoles.Count);
                 }
 
                 GameObject newMole = Instantiate<GameObject>(
-                    mole,
+                    _mole,
                     listOfHoles[holeNumber].position + new Vector3(0f, -0.1f, 0f),
                     Quaternion.Euler(0f, 0f, 0f)
                 );
@@ -45,18 +44,18 @@ namespace GroupX
             }
         }
 
-        public void playVirusHitAudio()
+        public void PlayVirusHitAudio()
         {
-            virusHitAudio.Play();
+            _virusHitAudio.Play();
         }
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             listOfHoles.AddRange(arrayOfHoles);
 
             // start spawning moles after 3 seconds
-            InvokeRepeating("spawnMole", 3f, spawnInterval);
+            InvokeRepeating("spawnMole", 3f, _spawnInterval);
         }
     }
 }
