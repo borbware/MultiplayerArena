@@ -56,7 +56,6 @@ public class PlayerUIManager : MonoBehaviour
     public void AddScore(int newScore)
     {
         score += newScore;
-        score = Mathf.Clamp(score, 0, 20);
         scoreText.text = score.ToString();
         if (StageManager.instance.loseWhenScoreZero && score == 0)
             StageManager.instance.LosePlayer(player);
