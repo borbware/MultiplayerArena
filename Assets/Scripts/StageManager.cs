@@ -115,7 +115,7 @@ public class StageManager : MonoBehaviour
     {
         int MostHP()
         {
-            var topPlayers = UIManagers.GroupBy(p => p.hp).OrderByDescending(g => g.Key).FirstOrDefault();
+            var topPlayers = UIManagers.Where(p => activePlayers.Contains(p.player)).GroupBy(p => p.hp).OrderByDescending(g => g.Key).FirstOrDefault();
             if (topPlayers?.Count() == 1)
                 return topPlayers.First().player;
             return -1; // tie
@@ -123,7 +123,7 @@ public class StageManager : MonoBehaviour
 
         int MostScore()
         {
-            var topPlayers = UIManagers.GroupBy(p => p.score).OrderByDescending(g => g.Key).FirstOrDefault();
+            var topPlayers = UIManagers.Where(p => activePlayers.Contains(p.player)).GroupBy(p => p.score).OrderByDescending(g => g.Key).FirstOrDefault();
             if (topPlayers?.Count() == 1)
                 return topPlayers.First().player;
             return -1; // tie
