@@ -383,6 +383,14 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: ab8473da13946534091f6e95767ee1f7, type: 3}
+    - target: {fileID: 1981897779680298594, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1981897779680298594, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
+      propertyPath: m_UseGraphicAlpha
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2492803293815851479, guid: 14531e55895b5b34f870e47796ce4ce6, type: 3}
       propertyPath: m_Color.b
       value: 1
