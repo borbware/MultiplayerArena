@@ -30,6 +30,27 @@ namespace GroupX
         private float _lerpTimePassed = 0f;
         private float _lerpDuration = 3f;
 
+        // Start is called before the first frame update
+        private void Start()
+        {
+            _stageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
+            _totalStageTime = _stageManager.stageTime;
+            _timeTillDrop = _totalStageTime * _dropAfterPercent;
+
+            foreach (GameObject hex in _outerHexes)
+                _meshRenderers.AddRange(hex.GetComponentsInChildren<MeshRenderer>());
+
+            _mainCamera = GameObject.Find("Main Camera");
+        }
+
+        // Update is called once per frame
+        private void Update()
+        {
+            eventTrigger();
+            moveCamera();
+            getCameraPosition();
+        }
+
         private void eventTrigger()
         {
             float currentStageTime = _stageManager.stageTime;
@@ -115,19 +136,6 @@ namespace GroupX
             }
         }
 
-        // Start is called before the first frame update
-        private void Start()
-        {
-            _stageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
-            _totalStageTime = _stageManager.stageTime;
-            _timeTillDrop = _totalStageTime * _dropAfterPercent;
-
-            foreach (GameObject hex in _outerHexes)
-                _meshRenderers.AddRange(hex.GetComponentsInChildren<MeshRenderer>());
-
-            _mainCamera = GameObject.Find("Main Camera");
-        }
-
         private void getCameraPosition()
         {   //for debug purposes only
             if (Input.GetKeyDown(KeyCode.C))
@@ -135,14 +143,6 @@ namespace GroupX
                 Debug.Log(_mainCamera.transform.position);
                 Debug.Log(_mainCamera.transform.rotation.eulerAngles);
             }
-        }
-
-        // Update is called once per frame
-        private void Update()
-        {
-            eventTrigger();
-            moveCamera();
-            getCameraPosition();
         }
     }
 }

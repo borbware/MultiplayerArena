@@ -19,6 +19,20 @@ namespace GroupX
         public List<MoleHole> listOfHoles = new List<MoleHole>();
         private List<GameObject> listofMoles = new List<GameObject>();
 
+        // Start is called before the first frame update
+        private void Start()
+        {
+            listOfHoles.AddRange(arrayOfHoles);
+
+            // start spawning moles after 3 seconds
+            InvokeRepeating("spawnMole", 3f, _spawnInterval);
+        }
+
+        public void PlayVirusHitAudio()
+        {
+            _virusHitAudio.Play();
+        }
+
         private void spawnMole()
         {
             /*picks a random index from the array of holes repeatedly until it finds
@@ -45,22 +59,8 @@ namespace GroupX
                 newMole.GetComponent<OnDestroyDispatcher>().OnDestroyed += Mole_OnDestroyed;
                 listOfHoles[holeNumber].isEmpty = false;
             }
-        }
 
-        private void Mole_OnDestroyed(GameObject obj) => listofMoles.Remove(obj);
-
-        public void PlayVirusHitAudio()
-        {
-            _virusHitAudio.Play();
-        }
-
-        // Start is called before the first frame update
-        private void Start()
-        {
-            listOfHoles.AddRange(arrayOfHoles);
-
-            // start spawning moles after 3 seconds
-            InvokeRepeating("spawnMole", 3f, _spawnInterval);
+            void Mole_OnDestroyed(GameObject obj) => listofMoles.Remove(obj);
         }
     }
 }
