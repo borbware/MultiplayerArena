@@ -50,12 +50,8 @@ namespace GroupX
 
         public static T PickRandomItem<T>(this IEnumerable<T> source)
         {
-            var matchingItemsWithIndex = list
-                .Select((item, index) => (item, index))
-                .Where(x => predicate(x.item))
-                .ToList();
-            int randomMatchingIndex = Random.Range(0, matchingItemsWithIndex.Count());
-            return matchingItemsWithIndex[randomMatchingIndex].index;
+            int randomIndex = Random.Range(0, source.Count());
+            return source.ElementAt(randomIndex);
         }
     }
 }
