@@ -48,8 +48,11 @@ namespace GroupX
         /// <returns></returns>
         public static int PickRandomIndexFromListMatching<T>(this IList<T> list, Func<T, bool> predicate)
         {
-            var matchingItemsWithIndex = list.Where(predicate).Select((item, index) => (item, index)).ToList();
-            int randomMatchingIndex = Random.Range(0, matchingItemsWithIndex.Count() - 1);
+            var matchingItemsWithIndex = list
+                .Select((item, index) => (item, index))
+                .Where(x => predicate(x.item))
+                .ToList();
+            int randomMatchingIndex = Random.Range(0, matchingItemsWithIndex.Count());
             return matchingItemsWithIndex[randomMatchingIndex].index;
         }
     }

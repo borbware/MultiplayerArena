@@ -27,7 +27,7 @@ namespace GroupX
 
         private void OnDestroy()
         {
-            if (occupiedHoleNo < _moleSpawner.listOfHoles.Count - 1)
+            if (occupiedHoleNo < _moleSpawner.listOfHoles.Count)
             {
                 _moleSpawner.listOfHoles[occupiedHoleNo].SetEmpty();
             }
