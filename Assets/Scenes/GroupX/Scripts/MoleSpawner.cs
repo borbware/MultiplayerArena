@@ -20,12 +20,10 @@ namespace GroupX
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "Readonly would be misleading")]
         private List<GameObject> _listofMoles = new();
 
-        // Start is called before the first frame update
-        private void Start()
+        private void Awake()
         {
             listOfHoles.AddRange(arrayOfHoles);
 
-            // start spawning moles after 3 seconds
             InvokeRepeating(nameof(SpawnMoleInEmptyHole), 3f, _spawnInterval);
         }
 
