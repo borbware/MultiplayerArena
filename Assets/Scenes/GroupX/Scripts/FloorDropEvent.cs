@@ -15,6 +15,8 @@ namespace GroupX
 
         [SerializeField] private AudioSource _dropWarningAudio;
         [SerializeField] private AudioSource _floorDropAudio;
+        [SerializeField] private AudioSource _musicAudio;
+        [SerializeField] private AudioClip _musicSpedUpClip;
         [SerializeField] private List<GameObject> _outerHexes;
         private StageManager _stageManager;
         private List<MeshRenderer> _meshRenderers = new();
@@ -56,6 +58,13 @@ namespace GroupX
                     hex.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     hex.GetComponent<Rigidbody>().useGravity = true;
                 }
+
+                //change music to sped up version
+                _musicAudio.Pause();
+                float audioPosition = Mathf.InverseLerp(0, _musicAudio.clip.samples, _musicAudio.timeSamples);
+                _musicAudio.clip = _musicSpedUpClip;
+                _musicAudio.timeSamples = Mathf.RoundToInt(Mathf.Lerp(0, _musicAudio.clip.samples, audioPosition));
+                _musicAudio.Play();
             }
         }
 

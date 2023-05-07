@@ -2376,6 +2376,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dropWarningAudio: {fileID: 1434007961}
   _floorDropAudio: {fileID: 1434007960}
+  _musicAudio: {fileID: 774196784}
+  _musicSpedUpClip: {fileID: 8300000, guid: b706a2475441bce4a8e917065e5b1deb, type: 3}
   _outerHexes:
   - {fileID: 687569747}
   - {fileID: 995393777}
