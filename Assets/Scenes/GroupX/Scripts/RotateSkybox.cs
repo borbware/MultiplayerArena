@@ -4,7 +4,7 @@ namespace GroupX
 {
     public class RotateSkybox : MonoBehaviour
     {
-        private float _rotateSpeed = 1f;
+        private float _rotateSpeed = 0.3f;
 
         private void Update()
         {
