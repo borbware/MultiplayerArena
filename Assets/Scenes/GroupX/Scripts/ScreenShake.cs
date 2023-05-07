@@ -1,14 +1,12 @@
 using UnityEngine;
 
-
-
 public class ScreenShake : MonoBehaviour
 {
     public float duration = 0.5f; // The duration of the screen shake
     public float magnitude = 0.1f; // The magnitude of the screen shake
 
     private Vector3 originalPosition; // The original position of the camera
-    private float elapsed; // The amount of time that has elapsed since the screen shake started
+    private float elapsed = 99999f; // The amount of time that has elapsed since the screen shake started
 
     private void Start()
     {
