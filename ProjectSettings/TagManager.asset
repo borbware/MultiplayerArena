@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Death
   - Projectile
-  - Mole
   layers:
   - Default
   - TransparentFX

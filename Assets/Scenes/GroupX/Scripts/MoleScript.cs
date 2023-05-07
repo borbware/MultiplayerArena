@@ -5,6 +5,7 @@ using GroupX;
 
 using UnityEngine;
 
+[RequireComponent(typeof(OnDestroyDispatcher))]
 public class MoleScript : MonoBehaviour, IHittableByPlayer
 {
     [SerializeField] public float moleLifetime = 3f;

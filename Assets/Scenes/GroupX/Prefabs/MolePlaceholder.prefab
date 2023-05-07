@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5764119336033956873}
   - component: {fileID: 8954147896896860129}
   - component: {fileID: 686081230774500859}
+  - component: {fileID: 2910603011329622425}
   - component: {fileID: -8184139731568674877}
   - component: {fileID: 8066801337220236587}
   - component: {fileID: -4068614224787343284}
@@ -18,7 +19,7 @@ GameObject:
   - component: {fileID: -5201211586563244075}
   m_Layer: 0
   m_Name: MolePlaceholder
-  m_TagString: Mole
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,6 +89,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2910603011329622425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8075797068476980383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77522a89d965ab943943ea0423b19041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-8184139731568674877
 MonoBehaviour:
   m_ObjectHideFlags: 0

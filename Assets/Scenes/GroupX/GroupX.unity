@@ -2253,7 +2253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnInterval: 2
   _maxMoles: 7
-  _mole: {fileID: 8075797068476980383, guid: 2748805fbd9d23c40b0d2f9e4d3b53ae, type: 3}
+  _mole: {fileID: -8184139731568674877, guid: 2748805fbd9d23c40b0d2f9e4d3b53ae, type: 3}
   _hole: {fileID: 1283521480252124002, guid: 7740c608cae0df241a6b2be93e337f63, type: 3}
   arrayOfHoles:
   - {fileID: 205259337}
