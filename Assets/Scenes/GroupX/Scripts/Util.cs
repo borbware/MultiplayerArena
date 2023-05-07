@@ -41,6 +41,12 @@ namespace GroupX
         }
 
         // https://stackoverflow.com/questions/15905515/getting-indexes-of-all-matching-items
+        /// <summary>
+        /// Like Where, but returns indices of matching items instead of the items themselves.
+        /// </summary>
+        /// <param name="source">An IList<T> to filter.</param>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        /// <returns></returns>
         public static IEnumerable<int> IndecesWhere<T>(this IList<T> source, Func<T, bool> predicate)
         {
             for (int i = 0; i < source.Count; i++)
@@ -48,6 +54,11 @@ namespace GroupX
                     yield return i;
         }
 
+        /// <summary>
+        /// Picks a random item from a list.
+        /// </summary>
+        /// <param name="source">An IEnumerable<T> to pick from.</param>
+        /// <returns></returns>
         public static T PickRandomItem<T>(this IEnumerable<T> source)
         {
             int randomIndex = Random.Range(0, source.Count());
