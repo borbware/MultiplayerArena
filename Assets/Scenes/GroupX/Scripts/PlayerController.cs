@@ -24,13 +24,13 @@ namespace GroupX
         public float maxTurnsPerSecond { get; private set; }
 
         [field: SerializeField]
-        public AimAssist aimAssist { get; private set; }
+        public AimAssist aimAssist { get; private set; } = null!;
 
         [field: SerializeField]
         public float dazeIframeDuration { get; private set; }
 
         [field: SerializeField]
-        public Animator animator { get; private set; }
+        public Animator animator { get; private set; } = null!;
         private ParticleSystem _playerParticles;
 
         private Player _player;
@@ -38,10 +38,11 @@ namespace GroupX
 
         private Vector3 _desiredVelocity;
         private bool _jumpReady = true;
-        private float _thrust = 5f;
+        private readonly float _thrust = 5f;
         public float knockbackStrength { get; private set; } = 3.5f;
 
         private Action? _singularPhysicsAction = null;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "Readonly would be misleading")]
         private Queue<Action> _stackingPhysicsActions = new();
 
         [SerializeField] private AudioSource _attackAudio;
@@ -127,7 +128,7 @@ namespace GroupX
             {
                 _stackingPhysicsActions.Enqueue(Jump);
                 _jumpReady = false;
-                Invoke("SetJumpReady", 1f);
+                Invoke(nameof(SetJumpReady), 1f);
             }
 
             Vector3 movementVector = new(_player.axisInput.x, 0f, _player.axisInput.y);
@@ -191,5 +192,7 @@ namespace GroupX
                 _state = State.Default;
             }
         }
+
+        private void SetJumpReady() => _jumpReady = true;
     }
 }

@@ -16,6 +16,7 @@ namespace GroupX
         [Tooltip("-1 = 360 degrees, 0 = 180 degrees, 1 = 0 degrees")]
         private float _attackAngle = 0f;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "Readonly would be misleading")]
         private List<Collider> _hittablesWithinTrigger = new();
 
         private void OnTriggerEnter(Collider other)

@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(OnDestroyDispatcher))]
 public class MoleScript : MonoBehaviour, IHittableByPlayer
 {
-    [SerializeField] public float moleLifetime = 3f;
+    public float moleLifetime = 3f;
     public int iAmInHoleNo = 0;
     private GameObject _runningScripts;
     private ParticleSystem _moleParticles;
@@ -20,7 +20,7 @@ public class MoleScript : MonoBehaviour, IHittableByPlayer
         // we set call the MoleSpawner script to set the hole the mole was in to empty
         if (iAmInHoleNo < _runningScripts.GetComponent<MoleSpawner>().listOfHoles.Count - 1)
         {
-            _runningScripts.GetComponent<MoleSpawner>().listOfHoles[iAmInHoleNo].setEmpty();
+            _runningScripts.GetComponent<MoleSpawner>().listOfHoles[iAmInHoleNo].SetEmpty();
             //Debug.Log($"hole no {iAmInHoleNo} is empty");
         }
     }
@@ -36,7 +36,7 @@ public class MoleScript : MonoBehaviour, IHittableByPlayer
             _moleParticles.Play();
             player.GetComponent<Player>().UIManager.AddScore(1);
 
-            Invoke("DestroyThisVirus", 5f);
+            Invoke(nameof(DestroyThisVirus), 5f);
         }
     }
 
@@ -63,7 +63,7 @@ public class MoleScript : MonoBehaviour, IHittableByPlayer
         {
             _stopped = true;
             GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
-            Invoke("moveDown", moleLifetime - 1);
+            Invoke(nameof(moveDown), moleLifetime - 1);
         }
     }
 

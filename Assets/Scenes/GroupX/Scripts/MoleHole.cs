@@ -15,7 +15,7 @@ namespace GroupX
             position = transform.position;
         }
 
-        public void setEmpty()
+        public void SetEmpty()
         {
             isEmpty = true;
         }

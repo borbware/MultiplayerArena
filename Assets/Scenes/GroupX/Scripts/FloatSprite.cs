@@ -7,17 +7,17 @@ namespace GroupX
         public float amplitude = 0.1f;
         public float speed = 1f;
 
-        private Vector3 startPosition;
+        private Vector3 _startPosition;
 
         private void Start()
         {
-            startPosition = transform.position;
+            _startPosition = transform.position;
         }
 
         private void Update()
         {
             float yOffset = Mathf.Sin(Time.time * speed) * amplitude;
-            transform.position = startPosition + new Vector3(0f, yOffset, 0f);
+            transform.position = _startPosition + new Vector3(0f, yOffset, 0f);
         }
     }
 }

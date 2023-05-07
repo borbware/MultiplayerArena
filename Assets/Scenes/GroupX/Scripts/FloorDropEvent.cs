@@ -9,7 +9,7 @@ namespace GroupX
     {
         private double _timeTillDrop;
         private double _totalStageTime;
-        private float _dropAfterPercent = 0.6f;  //the stage drop after this amount of the total stage time has elapsed
+        private readonly float _dropAfterPercent = 0.6f;  //the stage drop after this amount of the total stage time has elapsed
         private bool _eventTriggered = false;
         private bool _warningSounded = false;
 
@@ -19,16 +19,17 @@ namespace GroupX
         [SerializeField] private AudioClip _musicSpedUpClip;
         [SerializeField] private List<GameObject> _outerHexes;
         private StageManager _stageManager;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "Readonly would be misleading")]
         private List<MeshRenderer> _meshRenderers = new();
 
         //feel free to change these 4 vectors and experiment with them
-        private Vector3 _mainCameraFarPosition = new Vector3(-339.5f, -200f, 41f);
+        private Vector3 _mainCameraFarPosition = new(-339.5f, -200f, 41f);
         private Quaternion _mainCameraFarRotation = Quaternion.Euler(66.5f, 0f, 0f);
-        private Vector3 _mainCameraClosePosition = new Vector3(-340f, -207f, 43f);
+        private Vector3 _mainCameraClosePosition = new(-340f, -207f, 43f);
         private Quaternion _mainCameraCloseRotation = Quaternion.Euler(45f, 0f, 0f);
         private GameObject _mainCamera;
         private float _lerpTimePassed = 0f;
-        private float _lerpDuration = 3f;
+        private readonly float _lerpDuration = 3f;
 
         // Start is called before the first frame update
         private void Start()
@@ -59,7 +60,7 @@ namespace GroupX
             if (_totalStageTime - currentStageTime >= _timeTillDrop - 2.9 && !_warningSounded)
             {
                 _warningSounded = true;
-                InvokeRepeating("playWarningSound", 0.1f, 1f);
+                InvokeRepeating(nameof(playWarningSound), 0.1f, 1f);
                 foreach (var meshRenderer in _meshRenderers)
                     StartCoroutine(FlashReddish(meshRenderer));
             }
@@ -120,18 +121,18 @@ namespace GroupX
             {
                 if (_lerpTimePassed < _lerpDuration)
                 {
-                    _mainCamera.transform.localPosition =
-                        Vector3.Lerp(_mainCameraFarPosition, _mainCameraClosePosition, _lerpTimePassed / _lerpDuration);
 
-                    _mainCamera.transform.localRotation =
-                        Quaternion.Lerp(_mainCameraFarRotation, _mainCameraCloseRotation, _lerpTimePassed / _lerpDuration);
+                    _mainCamera.transform.SetLocalPositionAndRotation(
+                        Vector3.Lerp(_mainCameraFarPosition, _mainCameraClosePosition, _lerpTimePassed / _lerpDuration),
+                        Quaternion.Lerp(_mainCameraFarRotation, _mainCameraCloseRotation, _lerpTimePassed / _lerpDuration));
 
                     _lerpTimePassed += Time.deltaTime;
                 }
                 else
                 {
-                    _mainCamera.transform.localPosition = _mainCameraClosePosition;
-                    _mainCamera.transform.localRotation = _mainCameraCloseRotation;
+                    _mainCamera.transform.SetLocalPositionAndRotation(
+                        _mainCameraClosePosition,
+                        _mainCameraCloseRotation);
                 }
             }
         }

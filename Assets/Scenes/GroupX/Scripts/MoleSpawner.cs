@@ -11,13 +11,14 @@ namespace GroupX
                                            //to create tension (not true - more testing needed)
         [SerializeField] private MoleScript _mole;
         [SerializeField] private GameObject _hole;
-        private System.Random _rand = new System.Random();
+        private readonly System.Random _rand = new();
 
-        [SerializeField] public MoleHole[] arrayOfHoles;
+        public MoleHole[] arrayOfHoles;
         [SerializeField] private AudioSource _virusHitAudio;
 
-        public List<MoleHole> listOfHoles = new List<MoleHole>();
-        private List<GameObject> listofMoles = new List<GameObject>();
+        public List<MoleHole> listOfHoles = new();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "Readonly would be misleading")]
+        private List<GameObject> _listofMoles = new();
 
         // Start is called before the first frame update
         private void Start()
@@ -25,7 +26,7 @@ namespace GroupX
             listOfHoles.AddRange(arrayOfHoles);
 
             // start spawning moles after 3 seconds
-            InvokeRepeating("spawnMole", 3f, _spawnInterval);
+            InvokeRepeating(nameof(spawnMole), 3f, _spawnInterval);
         }
 
         public void PlayVirusHitAudio()
@@ -39,7 +40,7 @@ namespace GroupX
             an empty hole, then it spawns a new mole at that position
             the new mole remembers the index of the hole where it spawned*/
 
-            int number_of_moles = listofMoles.Count;
+            int number_of_moles = _listofMoles.Count;
             if (number_of_moles < _maxMoles)
             {
                 int holeNumber = _rand.Next(0, listOfHoles.Count);
@@ -55,12 +56,12 @@ namespace GroupX
                 );
                 newMole.iAmInHoleNo = holeNumber;
                 Destroy(newMole.gameObject, newMole.moleLifetime);
-                listofMoles.Add(newMole.gameObject);
+                _listofMoles.Add(newMole.gameObject);
                 newMole.GetComponent<OnDestroyDispatcher>().OnDestroyed += Mole_OnDestroyed;
                 listOfHoles[holeNumber].isEmpty = false;
             }
 
-            void Mole_OnDestroyed(GameObject obj) => listofMoles.Remove(obj);
+            void Mole_OnDestroyed(GameObject obj) => _listofMoles.Remove(obj);
         }
     }
 }
