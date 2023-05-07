@@ -37,7 +37,7 @@ namespace GroupX
             if (_listofMoles.Count >= _maxMoles)
                 return;
 
-            int holeNumber = listOfHoles.PickRandomIndexFromListMatching(hole => hole.isEmpty);
+            int holeNumber = listOfHoles.IndecesWhere(hole => hole.isEmpty).PickRandomItem();
 
             MoleScript newMole = Instantiate<MoleScript>(
                 _mole,

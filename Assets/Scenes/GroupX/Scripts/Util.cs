@@ -40,13 +40,15 @@ namespace GroupX
             return Mathf.Lerp(oMin, oMax, t);
         }
 
-        /// <summary>
-        /// Picks the index for a random matching item in list
-        /// </summary>
-        /// <param name="list">List to pick from</param>
-        /// <param name="predicate">What condition items should fulfill to be allowed to be picked</param>
-        /// <returns></returns>
-        public static int PickRandomIndexFromListMatching<T>(this IList<T> list, Func<T, bool> predicate)
+        // https://stackoverflow.com/questions/15905515/getting-indexes-of-all-matching-items
+        public static IEnumerable<int> IndecesWhere<T>(this IList<T> source, Func<T, bool> predicate)
+        {
+            for (int i = 0; i < source.Count; i++)
+                if (predicate(source[i]))
+                    yield return i;
+        }
+
+        public static T PickRandomItem<T>(this IEnumerable<T> source)
         {
             var matchingItemsWithIndex = list
                 .Select((item, index) => (item, index))
