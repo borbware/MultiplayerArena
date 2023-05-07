@@ -24,7 +24,7 @@ namespace GroupX
             if (centerObject != null)
             {
                 Vector3 pivot = centerObject.position;
-                Vector3 axis = new Vector3(1f, 0f, 0f);
+                Vector3 axis = new Vector3(0f, 1f, 1f);
                 float angle = rotationSpeed * Time.deltaTime;
                 transform.RotateAround(pivot, axis, angle);
             }
