@@ -12,7 +12,6 @@ namespace GroupX
         private void Awake()
         {
             Collider[] childColliders = transform.GetComponentsInChildren<Collider>();
-
             List<(Collider, Collider)> collisionIgnorePairs = new();
 
             collisionIgnorePairs.AddRange(PairCollidersWithCollisionsToIgnore(childColliders));
@@ -22,6 +21,8 @@ namespace GroupX
 
             foreach (var pair in collisionIgnorePairs)
                 Physics.IgnoreCollision(pair.Item1, pair.Item2);
+
+            return;
 
             List<(Collider, Collider)> PairCollidersWithCollisionsToIgnore(Collider[] colliders)
             {

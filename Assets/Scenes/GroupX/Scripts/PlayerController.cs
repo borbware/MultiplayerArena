@@ -31,10 +31,10 @@ namespace GroupX
 
         [field: SerializeField]
         public Animator animator { get; private set; } = null!;
-        private ParticleSystem _playerParticles;
+        private ParticleSystem _playerParticles = null!;
 
-        private Player _player;
-        private Rigidbody _rigidbody;
+        private Player _player = null!;
+        private Rigidbody _rigidbody = null!;
 
         private Vector3 _desiredVelocity;
         private bool _jumpReady = true;
@@ -45,9 +45,8 @@ namespace GroupX
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "Readonly would be misleading")]
         private Queue<Action> _stackingPhysicsActions = new();
 
-        [SerializeField] private AudioSource _attackAudio;
-        [SerializeField] private AudioSource _isHitAudio;
-
+        [SerializeField] private AudioSource _attackAudio = null!;
+        [SerializeField] private AudioSource _isHitAudio = null!;
 
         private enum State
         {
@@ -86,6 +85,8 @@ namespace GroupX
                     physicsAction();
                 }
             }
+
+            return;
 
             void MoveAndRotate()
             {

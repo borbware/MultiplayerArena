@@ -1,83 +1,67 @@
-using System.Collections;
-using System.Collections.Generic;
-
-using GroupX;
-
 using UnityEngine;
 
-[RequireComponent(typeof(OnDestroyDispatcher))]
-public class MoleScript : MonoBehaviour, IHittableByPlayer
+namespace GroupX
 {
-    public float moleLifetime = 3f;
-    public int iAmInHoleNo = 0;
-    private GameObject _runningScripts;
-    private ParticleSystem _moleParticles;
-
-    private bool _dying = false;
-
-    private void OnDestroy()
+    [RequireComponent(typeof(OnDestroyDispatcher))]
+    public class MoleScript : MonoBehaviour, IHittableByPlayer
     {
-        // we set call the MoleSpawner script to set the hole the mole was in to empty
-        if (iAmInHoleNo < _runningScripts.GetComponent<MoleSpawner>().listOfHoles.Count - 1)
+        public float moleLifetime = 3f;
+        public int occupiedHoleNo { get; set; } = 0;
+        private MoleSpawner _moleSpawner;
+        private ParticleSystem _moleParticles;
+
+        private bool _dying = false;
+        private bool _stopped = false;
+
+        private void Awake()
         {
-            _runningScripts.GetComponent<MoleSpawner>().listOfHoles[iAmInHoleNo].SetEmpty();
-            //Debug.Log($"hole no {iAmInHoleNo} is empty");
+            _moleSpawner = FindObjectOfType<MoleSpawner>();
+            _moleParticles = GetComponent<ParticleSystem>();
+            MoveUp();
         }
-    }
 
-    public void GetHitBy(PlayerController player)
-    {
-        if (!_dying)
+        private void Update()
         {
+            StopIfFinishedMovingUp();
+        }
+
+        private void OnDestroy()
+        {
+            if (occupiedHoleNo < _moleSpawner.listOfHoles.Count - 1)
+            {
+                _moleSpawner.listOfHoles[occupiedHoleNo].SetEmpty();
+            }
+        }
+
+        public void GetHitBy(PlayerController player)
+        {
+            if (_dying)
+                return;
+
             _dying = true;
 
-            _runningScripts.GetComponent<MoleSpawner>().PlayVirusHitAudio();
+            _moleSpawner.PlayVirusHitAudio();
             GetComponent<MeshRenderer>().enabled = false;
             _moleParticles.Play();
             player.GetComponent<Player>().UIManager.AddScore(1);
 
             Invoke(nameof(DestroyThisVirus), 5f);
         }
-    }
 
-    private void DestroyThisVirus()
-    {
-        Destroy(gameObject);
-    }
+        private void DestroyThisVirus() => Destroy(gameObject);
 
-    private void moveUp()
-    {
-        GetComponent<Rigidbody>().velocity = new Vector3(0f, 1.2f, 0f);
-    }
+        private void MoveUp() => GetComponent<Rigidbody>().velocity = new Vector3(0f, 1.2f, 0f);
 
-    private void moveDown()
-    {
-        GetComponent<Rigidbody>().velocity = new Vector3(0f, -1.2f, 0f);
-    }
+        private void MoveDown() => GetComponent<Rigidbody>().velocity = new Vector3(0f, -1.2f, 0f);
 
-    private bool _stopped = false;
-
-    private void checkStopped()
-    {
-        if (!_stopped && transform.position.y >= 0.5)
+        private void StopIfFinishedMovingUp()
         {
+            if (_stopped || transform.position.y < 0.5)
+                return;
+
             _stopped = true;
             GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
-            Invoke(nameof(moveDown), moleLifetime - 1);
+            Invoke(nameof(MoveDown), moleLifetime - 1);
         }
-    }
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        _runningScripts = GameObject.Find("RunningScripts");
-        _moleParticles = GetComponent<ParticleSystem>();
-        moveUp();
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        checkStopped();
     }
 }

@@ -7,137 +7,164 @@ namespace GroupX
 {
     public class FloorDropEvent : MonoBehaviour
     {
+        [SerializeField] private AudioSource _dropWarningAudio;
+        [SerializeField] private AudioSource _floorDropAudio;
+        [SerializeField] private AudioSource _musicAudio;
+        [SerializeField] private AudioClip _musicSpedUpClip;
+        [SerializeField] private List<GameObject> _outerHexes;
+
         private double _timeTillDrop;
         private double _totalStageTime;
         private readonly float _dropAfterPercent = 0.6f;  //the stage drop after this amount of the total stage time has elapsed
         private bool _eventTriggered = false;
         private bool _warningSounded = false;
 
-        [SerializeField] private AudioSource _dropWarningAudio;
-        [SerializeField] private AudioSource _floorDropAudio;
-        [SerializeField] private AudioSource _musicAudio;
-        [SerializeField] private AudioClip _musicSpedUpClip;
-        [SerializeField] private List<GameObject> _outerHexes;
-        private StageManager _stageManager;
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "Readonly would be misleading")]
         private List<MeshRenderer> _meshRenderers = new();
 
-        //feel free to change these 4 vectors and experiment with them
-        private Vector3 _mainCameraFarPosition = new(-339.5f, -200f, 41f);
-        private Quaternion _mainCameraFarRotation = Quaternion.Euler(66.5f, 0f, 0f);
-        private Vector3 _mainCameraClosePosition = new(-340f, -207f, 43f);
-        private Quaternion _mainCameraCloseRotation = Quaternion.Euler(45f, 0f, 0f);
-        private GameObject _mainCamera;
+        private Camera _mainCamera;
         private float _lerpTimePassed = 0f;
         private readonly float _lerpDuration = 3f;
 
-        // Start is called before the first frame update
-        private void Start()
+        private void Awake()
         {
-            _stageManager = GameObject.Find("StageManager").GetComponent<StageManager>();
-            _totalStageTime = _stageManager.stageTime;
-            _timeTillDrop = _totalStageTime * _dropAfterPercent;
-
             foreach (GameObject hex in _outerHexes)
                 _meshRenderers.AddRange(hex.GetComponentsInChildren<MeshRenderer>());
 
-            _mainCamera = GameObject.Find("Main Camera");
+            _mainCamera = Camera.main;
         }
 
-        // Update is called once per frame
+        private void Start()
+        {
+            // In start, because StageManager.instance is set in Awake
+            _totalStageTime = StageManager.instance.stageTime;
+            _timeTillDrop = _totalStageTime * _dropAfterPercent;
+        }
+
         private void Update()
         {
-            eventTrigger();
-            moveCamera();
-            getCameraPosition();
+            WarnIfNeeded();
+            TriggerEventIfNeeded();
+            Debug_GetCameraPosition();
         }
 
-        private void eventTrigger()
+        private void WarnIfNeeded()
         {
-            float currentStageTime = _stageManager.stageTime;
+            if (_warningSounded)
+                return;
 
-            //warning sounds & colors
-            if (_totalStageTime - currentStageTime >= _timeTillDrop - 2.9 && !_warningSounded)
+            float elapsedStageTime = (float)(_totalStageTime - StageManager.instance.stageTime);
+            if (elapsedStageTime >= _timeTillDrop - 2.9)
             {
                 _warningSounded = true;
-                InvokeRepeating(nameof(playWarningSound), 0.1f, 1f);
+                StartCoroutine(PlayWarningSounds());
                 foreach (var meshRenderer in _meshRenderers)
                     StartCoroutine(FlashReddish(meshRenderer));
             }
 
-            //the event
-            if (_totalStageTime - currentStageTime > _timeTillDrop && !_eventTriggered)
+            return;
+
+            IEnumerator PlayWarningSounds()
+            {
+                yield return new WaitForSeconds(0.1f);
+                while (!_eventTriggered)
+                {
+                    _dropWarningAudio.Play();
+                    yield return new WaitForSeconds(1f);
+                }
+            }
+
+            IEnumerator FlashReddish(MeshRenderer meshRenderer)
+            {
+                float startTime = Time.time;
+                Material material = meshRenderer.material;
+                Color originalColor = material.color;
+
+                Color reddish = Color.Lerp(originalColor, Color.red, 0.3f);
+
+                while (!_eventTriggered)
+                {
+                    float delta = (Time.time - startTime) % 1f;
+                    float deltaDiffFromHalf = Mathf.Abs(0.5f - delta);
+                    float howFarFromReddish = Mathf.InverseLerp(0, 0.5f, deltaDiffFromHalf);
+                    material.color = Color.Lerp(reddish, originalColor, howFarFromReddish);
+                    yield return null;
+                }
+
+                material.color = originalColor;
+            }
+        }
+
+        private void TriggerEventIfNeeded()
+        {
+            if (_eventTriggered)
+                return;
+
+            float elapsedStageTime = (float)(_totalStageTime - StageManager.instance.stageTime);
+            if (elapsedStageTime > _timeTillDrop)
             {
                 _eventTriggered = true;
 
-                //remove the extra moleholes - removes 6 elements starting from index 7 (these are the last 6 holes)
-                GetComponent<MoleSpawner>().listOfHoles.RemoveRange(7, 6);
+                RemoveOuterMoleHoles();
+                DropOuterHexes();
+                SpeedUpMusic();
+                StartCoroutine(MoveCamera());
+            }
 
-                //drop outer hexes
+            return;
+
+            void RemoveOuterMoleHoles() => GetComponent<MoleSpawner>().listOfHoles.RemoveLast(6);
+
+            void DropOuterHexes()
+            {
                 _floorDropAudio.Play();
                 foreach (GameObject hex in _outerHexes)
                 {
                     hex.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     hex.GetComponent<Rigidbody>().useGravity = true;
                 }
+            }
 
-                //change music to sped up version
+            void SpeedUpMusic()
+            {
                 _musicAudio.Pause();
-                float audioPosition = Mathf.InverseLerp(0, _musicAudio.clip.samples, _musicAudio.timeSamples);
+                float correspondingSpedUpSamples = Util.Remap(0, _musicAudio.clip.samples, 0, _musicSpedUpClip.samples, _musicAudio.timeSamples);
                 _musicAudio.clip = _musicSpedUpClip;
-                _musicAudio.timeSamples = Mathf.RoundToInt(Mathf.Lerp(0, _musicAudio.clip.samples, audioPosition));
+                _musicAudio.timeSamples = Mathf.RoundToInt(correspondingSpedUpSamples);
                 _musicAudio.Play();
             }
-        }
 
-        private void playWarningSound()
-        {
-            if (!_eventTriggered) { _dropWarningAudio.Play(); }
-        }
-
-        private IEnumerator FlashReddish(MeshRenderer meshRenderer)
-        {
-            float startTime = Time.time;
-            Material material = meshRenderer.material;
-            Color originalColor = material.color;
-
-            Color reddish = Color.Lerp(originalColor, Color.red, 0.3f);
-
-            while (!_eventTriggered)
+            IEnumerator MoveCamera()
             {
-                float delta = (Time.time - startTime) % 1f;
-                float deltaDiffFromHalf = Mathf.Abs(0.5f - delta);
-                float howFarFromReddish = Mathf.InverseLerp(0, 0.5f, deltaDiffFromHalf);
-                material.color = Color.Lerp(reddish, originalColor, howFarFromReddish);
-                yield return null;
-            }
+                //feel free to change these 4 vectors and experiment with them
+                Vector3 _mainCameraFarPosition = new(-339.5f, -200f, 41f);
+                Quaternion _mainCameraFarRotation = Quaternion.Euler(66.5f, 0f, 0f);
+                Vector3 _mainCameraClosePosition = new(-340f, -207f, 43f);
+                Quaternion _mainCameraCloseRotation = Quaternion.Euler(45f, 0f, 0f);
 
-            material.color = originalColor;
-        }
-
-        private void moveCamera()
-        {
-            if (_eventTriggered && _mainCamera.transform.position != _mainCameraClosePosition)
-            {
-                if (_lerpTimePassed < _lerpDuration)
+                while (_mainCamera.transform.position != _mainCameraClosePosition)
                 {
+                    if (_lerpTimePassed < _lerpDuration)
+                    {
 
-                    _mainCamera.transform.SetLocalPositionAndRotation(
-                        Vector3.Lerp(_mainCameraFarPosition, _mainCameraClosePosition, _lerpTimePassed / _lerpDuration),
-                        Quaternion.Lerp(_mainCameraFarRotation, _mainCameraCloseRotation, _lerpTimePassed / _lerpDuration));
+                        _mainCamera.transform.SetLocalPositionAndRotation(
+                            Vector3.Lerp(_mainCameraFarPosition, _mainCameraClosePosition, _lerpTimePassed / _lerpDuration),
+                            Quaternion.Lerp(_mainCameraFarRotation, _mainCameraCloseRotation, _lerpTimePassed / _lerpDuration));
 
-                    _lerpTimePassed += Time.deltaTime;
-                }
-                else
-                {
-                    _mainCamera.transform.SetLocalPositionAndRotation(
-                        _mainCameraClosePosition,
-                        _mainCameraCloseRotation);
+                        _lerpTimePassed += Time.deltaTime;
+                    }
+                    else
+                    {
+                        _mainCamera.transform.SetLocalPositionAndRotation(
+                            _mainCameraClosePosition,
+                            _mainCameraCloseRotation);
+                    }
+                    yield return null;
                 }
             }
         }
 
-        private void getCameraPosition()
+        private void Debug_GetCameraPosition()
         {   //for debug purposes only
             if (Input.GetKeyDown(KeyCode.C))
             {

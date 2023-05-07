@@ -11,7 +11,7 @@ namespace GroupX
 
         private Vector3 _startPosition;
 
-        private void Start()
+        private void Awake()
         {
             _startPosition = transform.position;
         }

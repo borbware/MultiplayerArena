@@ -26,7 +26,7 @@ namespace GroupX
             listOfHoles.AddRange(arrayOfHoles);
 
             // start spawning moles after 3 seconds
-            InvokeRepeating(nameof(spawnMole), 3f, _spawnInterval);
+            InvokeRepeating(nameof(SpawnMoleInEmptyHole), 3f, _spawnInterval);
         }
 
         public void PlayVirusHitAudio()
@@ -34,32 +34,25 @@ namespace GroupX
             _virusHitAudio.Play();
         }
 
-        private void spawnMole()
+        private void SpawnMoleInEmptyHole()
         {
-            /*picks a random index from the array of holes repeatedly until it finds
-            an empty hole, then it spawns a new mole at that position
-            the new mole remembers the index of the hole where it spawned*/
+            if (_listofMoles.Count >= _maxMoles)
+                return;
 
-            int number_of_moles = _listofMoles.Count;
-            if (number_of_moles < _maxMoles)
-            {
-                int holeNumber = _rand.Next(0, listOfHoles.Count);
-                while (!listOfHoles[holeNumber].isEmpty)
-                {
-                    holeNumber = _rand.Next(0, listOfHoles.Count);
-                }
+            int holeNumber = listOfHoles.PickRandomIndexFromListMatching(hole => hole.isEmpty);
 
-                MoleScript newMole = Instantiate<MoleScript>(
-                    _mole,
-                    listOfHoles[holeNumber].position + new Vector3(0f, -0.1f, 0f),
-                    Quaternion.Euler(0f, 0f, 0f)
-                );
-                newMole.iAmInHoleNo = holeNumber;
-                Destroy(newMole.gameObject, newMole.moleLifetime);
-                _listofMoles.Add(newMole.gameObject);
-                newMole.GetComponent<OnDestroyDispatcher>().OnDestroyed += Mole_OnDestroyed;
-                listOfHoles[holeNumber].isEmpty = false;
-            }
+            MoleScript newMole = Instantiate<MoleScript>(
+                _mole,
+                listOfHoles[holeNumber].position + new Vector3(0f, -0.1f, 0f),
+                Quaternion.Euler(0f, 0f, 0f)
+            );
+            newMole.occupiedHoleNo = holeNumber;
+            Destroy(newMole.gameObject, newMole.moleLifetime);
+            _listofMoles.Add(newMole.gameObject);
+            newMole.GetComponent<OnDestroyDispatcher>().OnDestroyed += Mole_OnDestroyed;
+            listOfHoles[holeNumber].isEmpty = false;
+
+            return;
 
             void Mole_OnDestroyed(GameObject obj) => _listofMoles.Remove(obj);
         }

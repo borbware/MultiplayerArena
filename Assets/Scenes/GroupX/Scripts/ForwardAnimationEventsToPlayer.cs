@@ -1,8 +1,4 @@
-﻿using System.Collections;
-
-using GroupX;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GroupX
 {
