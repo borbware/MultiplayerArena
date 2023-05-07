@@ -132,54 +132,51 @@ namespace GroupX
 
             Vector3 movementVector = new(_player.axisInput.x, 0f, _player.axisInput.y);
             _desiredVelocity = movementVector * maxSpeed;
-        }
 
-        private void Attack()
-        {
-            _state = State.Attacking;
-            animator.SetTrigger("bonk");
-
-            if (aimAssist.TryGetClosest(out var closestTarget))
+            void Attack()
             {
-                _stackingPhysicsActions.Enqueue(() =>
+                _state = State.Attacking;
+                animator.SetTrigger("bonk");
+
+                if (aimAssist.TryGetClosest(out var closestTarget))
                 {
-                    Vector3 lookDir = closestTarget.transform.position - transform.position;
-                    lookDir.y = 0f;
-                    transform.forward = lookDir;
-                });
+                    _stackingPhysicsActions.Enqueue(() =>
+                    {
+                        Vector3 lookDir = closestTarget.transform.position - transform.position;
+                        lookDir.y = 0f;
+                        transform.forward = lookDir;
+                    });
+                }
             }
+
+            void Jump() => _rigidbody.AddForce(transform.up * _thrust, ForceMode.Impulse);
         }
 
-        public void ResetState() => _state = State.Default;
-
-        private void Jump()
-        {
-            _rigidbody.AddForce(transform.up * _thrust, ForceMode.Impulse);
-        }
+        public void EndBonk() => _state = State.Default;
 
         public void GetHitBy(PlayerController otherPlayer)
         {
-            Daze(otherPlayer.transform.position - transform.position, otherPlayer.knockbackStrength);
-        }
+            GetDazed(otherPlayer.transform.position - transform.position, otherPlayer.knockbackStrength);
 
-        public void Daze(Vector3 attackerDirection, float attackerKnockbackStrength)
-        {
-            if (_state == State.Dazed || _state == State.Iframe)
-                return;
-
-            _state = State.Dazed;
-            _singularPhysicsAction = GetKnockedBack;
-            animator.SetTrigger("getHit");
-            _isHitAudio.Play();
-            _playerParticles.Play();
-
-            void GetKnockedBack()
+            void GetDazed(Vector3 attackerDirection, float attackerKnockbackStrength)
             {
-                Vector3 horizontalDirection = -attackerDirection;
-                horizontalDirection.y = 0f;
+                if (_state == State.Dazed || _state == State.Iframe)
+                    return;
 
-                Vector3 knockbackDirection = horizontalDirection.normalized + transform.up;
-                _rigidbody.AddForce(knockbackDirection.normalized * attackerKnockbackStrength, ForceMode.Impulse);
+                _state = State.Dazed;
+                _singularPhysicsAction = GetKnockedBack;
+                animator.SetTrigger("getHit");
+                _isHitAudio.Play();
+                _playerParticles.Play();
+
+                void GetKnockedBack()
+                {
+                    Vector3 horizontalDirection = -attackerDirection;
+                    horizontalDirection.y = 0f;
+
+                    Vector3 knockbackDirection = horizontalDirection.normalized + transform.up;
+                    _rigidbody.AddForce(knockbackDirection.normalized * attackerKnockbackStrength, ForceMode.Impulse);
+                }
             }
         }
 
@@ -193,11 +190,6 @@ namespace GroupX
                 yield return new WaitForSeconds(dazeIframeDuration);
                 _state = State.Default;
             }
-        }
-
-        private void SetJumpReady()
-        {
-            _jumpReady = true;
         }
     }
 }

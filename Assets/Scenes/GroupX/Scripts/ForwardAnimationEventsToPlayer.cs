@@ -12,6 +12,6 @@ namespace GroupX
 
         public void EndDaze() => _player.EndDaze();
 
-        public void EndBonk() => _player.ResetState();
+        public void EndBonk() => _player.EndBonk();
     }
 }
