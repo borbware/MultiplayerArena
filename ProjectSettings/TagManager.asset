@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Death
   - Projectile
-  - Bullet
   layers:
   - Default
   - TransparentFX
