@@ -61,7 +61,7 @@ MonoBehaviour:
   broken2: {fileID: 6155449382195079095, guid: ca7f9bdfbd6cda542ae495a7686de026, type: 3}
   brokenPlatform: {fileID: 7015738746321242277, guid: 1516615318fabcc418d265b3480c2ecc, type: 3}
   platformMaxHP: 6
-  standingDamage: 0.5
+  standingDamage: 1
   respawnAccelerator: 1
   hammerDamage: 2
   tileShatter: {fileID: 8300000, guid: 0a25b87a4ef81024fbb5a1ba25d81643, type: 3}
@@ -236,7 +236,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: ca7f9bdfbd6cda542ae495a7686de026, type: 3}
+  - {fileID: 2100000, guid: 7a6bc7b9ecacf7b44b7f83016bb4e580, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
