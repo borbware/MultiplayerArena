@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57213e43d6ef2e449adc17cfe169d57e, type: 3}
+  m_Name: TileTeamMaterials
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: 656b5658f88ed2a4883862597a2272ba, type: 2}
+  - {fileID: 2100000, guid: 45874ab6fdb2dd446a570a5c83e49f9e, type: 2}
+  - {fileID: 2100000, guid: c5b8e99a0877f524399ed3dac9f3914a, type: 2}
+  - {fileID: 2100000, guid: 711715930a52a2548aad19546753c0db, type: 2}
+  - {fileID: 2100000, guid: da1b3d305d90ecc4283e8387925aab85, type: 2}
