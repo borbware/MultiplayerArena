@@ -9773,7 +9773,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.2
   m_Center: {x: 0, y: -0.15, z: 0}
 --- !u!114 &6550287616788781382
 MonoBehaviour:
@@ -9788,6 +9788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shooter: 0
+  force: 600
   audioUse: {fileID: 0}
   playerHit: {fileID: 8300000, guid: 71650b7889f7f1b47b8f53836e64e334, type: 3}
 --- !u!82 &6084965280520150286
