@@ -12,9 +12,7 @@ GameObject:
   - component: {fileID: 2533170904743176862}
   - component: {fileID: 7490293505478432188}
   - component: {fileID: 2533170904743176867}
-  - component: {fileID: 7302941871105532797}
   - component: {fileID: 985622259322123276}
-  - component: {fileID: 5112088723464812442}
   - component: {fileID: 206107290918307599}
   - component: {fileID: 8114603644855189420}
   m_Layer: 2
@@ -47,7 +45,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2533170904743176856}
-  m_Material: {fileID: 13400000, guid: 44c93d9b759fabb409dac20caf1f2591, type: 2}
+  m_Material: {fileID: 13400000, guid: dc74367fd4cf79c40ab93c0ef88b7e42, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1
@@ -85,18 +83,6 @@ MonoBehaviour:
   maxSpeed: 10
   maxAcceleration: 10
   jumpHeight: 2
---- !u!114 &7302941871105532797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2533170904743176856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0010be7568186ce48b4eb0b63be81b67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &985622259322123276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,21 +104,6 @@ MonoBehaviour:
   continuousShootInput: 0
   hurtDisablesInput: 0
   UIManager: {fileID: 0}
---- !u!114 &5112088723464812442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2533170904743176856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68019aa0b988d6442ae87fab12f3b391, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootPeriod: 0.9
-  shootForce: 4387
-  bullet: {fileID: 8581939185569562706, guid: cc6314edba6be564686473507df40bf8, type: 3}
 --- !u!114 &206107290918307599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b43bacdbb0050af4b94f07ce77569f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPunishment: 5
+  pointsPunishment: 10
   fallBarrierName: FallBarrier
 --- !u!114 &8114603644855189420
 MonoBehaviour:
