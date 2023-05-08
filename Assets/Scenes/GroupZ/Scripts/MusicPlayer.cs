@@ -10,7 +10,7 @@ public class MusicPlayer : MonoBehaviour
 {
     AudioSource music;
     
-    public AudioClip[] songList = new AudioClip[6];
+    public AudioClip[] songList = new AudioClip[5];
    
     public float volume = 0.2f;
 
