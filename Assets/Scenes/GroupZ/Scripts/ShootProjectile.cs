@@ -76,7 +76,7 @@ public class ShootProjectile : MonoBehaviour
             _hurt.shooter = gameObject;
         newBullet.GetComponent<Rigidbody>().AddForce(
             transform.forward * shootForce * Time.fixedDeltaTime);
-        Destroy(newBullet, shootPeriod);
+        Destroy(newBullet, 0.4f);
     }
     void FixedUpdate()
     {
