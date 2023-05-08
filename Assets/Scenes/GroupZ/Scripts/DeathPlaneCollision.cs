@@ -19,10 +19,14 @@ public class DeathPlaneCollision : MonoBehaviour
         if (other.gameObject.tag == "Death")
         {
            // Destroy(gameObject, 3f);
-           transform.GetChild(0).gameObject.SetActive(false);
            
-           audioUse.PlayOneShot(playerDies, 1f);
+            transform.GetChild(0).gameObject.SetActive(false);
+           
+            audioUse.PlayOneShot(playerDies, 1f);
             var _player = GetComponent<Player>();
+            StageManager.instance.UIManagers[_player.player - 1].AddScore(
+                                        -(StageManager.instance.UIManagers[_player.player - 1].score)
+                                        );
             if (_player != null)
                 StageManager.instance.AddHP(_player.player, -100);
         }

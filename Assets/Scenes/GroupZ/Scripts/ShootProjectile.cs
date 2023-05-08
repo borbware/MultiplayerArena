@@ -18,6 +18,7 @@ public class ShootProjectile : MonoBehaviour
     AudioSource audioUse;
     public AudioClip hammerSwoosh;
     public AudioClip hammerHit;
+    ParticleSystem.EmissionModule debrisEmission;
 
     private void Start()
     {
@@ -58,11 +59,15 @@ public class ShootProjectile : MonoBehaviour
         newBullet.GetComponent<ShockWave>().shooter = _player.player;
 
         ParticleSystemRenderer particleRender = newBullet.GetComponent<ParticleSystemRenderer>();
+        GameObject debris = newBullet.transform.GetChild(1).gameObject;
+        debrisEmission = debris.GetComponent<ParticleSystem>().emission;
         if (!_platformerController.onGround)
         {
             particleRender.enabled = false;
+            debrisEmission.enabled = false;
         } else {
             particleRender.enabled = true;
+            debrisEmission.enabled = true;
         }
 
         // if want projectile to hurt the target it touches
