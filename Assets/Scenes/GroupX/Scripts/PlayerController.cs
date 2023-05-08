@@ -121,7 +121,6 @@ namespace GroupX
             if (_player.shootInput)
             {
                 Attack();
-                _attackAudio.Play();
             }
 
 
@@ -153,6 +152,8 @@ namespace GroupX
 
             void Jump() => _rigidbody.AddForce(transform.up * _thrust, ForceMode.Impulse);
         }
+
+        public void PlayBonkAudio() => _attackAudio.Play();
 
         public void EndBonk() => _state = State.Default;
 
