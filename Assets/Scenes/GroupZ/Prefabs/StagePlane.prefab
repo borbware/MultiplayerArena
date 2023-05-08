@@ -62,7 +62,7 @@ MonoBehaviour:
   brokenPlatform: {fileID: 7015738746321242277, guid: 1516615318fabcc418d265b3480c2ecc, type: 3}
   platformMaxHP: 6
   standingDamage: 1
-  respawnAccelerator: 0.75
+  respawnAccelerator: 0
   hammerDamage: 2
   tileShatter: {fileID: 8300000, guid: 0a25b87a4ef81024fbb5a1ba25d81643, type: 3}
   tileCrack: {fileID: 8300000, guid: 939aa8d54edaba744bde58fd4c6cf68d, type: 3}
