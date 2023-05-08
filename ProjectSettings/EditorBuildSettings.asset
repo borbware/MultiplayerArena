@@ -8,10 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AssignControls.unity
     guid: 1650d645392d1d44185ddda302271381
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LevelTemplate.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/GroupX/GroupX.unity
+    guid: 80296feac5943ed499a7bea9912bf367
+  - enabled: 1
     path: Assets/Scenes/GroupX2022/GroupX2022.unity
     guid: 422ae0fdefc1c3f48a6102f8542b17bf
+  - enabled: 1
+    path: Assets/Scenes/GroupY2022/GroupY2022.unity
+    guid: 382e289dd4537d64b910424b919c0dba
+  - enabled: 1
+    path: Assets/Scenes/GroupZ2022/GroupZ2022.unity
+    guid: 819a0f7a3a9846b488e2a6c6e6856446
   m_configObjects: {}

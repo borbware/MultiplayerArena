@@ -192,18 +192,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 833434270727555163, guid: e13f9f3c8f3fb8842a69840acbd5c17f, type: 3}
       propertyPath: stages.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 833434270727555163, guid: e13f9f3c8f3fb8842a69840acbd5c17f, type: 3}
       propertyPath: stages.Array.data[0]
-      value: GroupX2022
+      value: GroupX
       objectReference: {fileID: 0}
     - target: {fileID: 833434270727555163, guid: e13f9f3c8f3fb8842a69840acbd5c17f, type: 3}
       propertyPath: stages.Array.data[1]
-      value: GroupY2022
+      value: GroupX2022
       objectReference: {fileID: 0}
     - target: {fileID: 833434270727555163, guid: e13f9f3c8f3fb8842a69840acbd5c17f, type: 3}
       propertyPath: stages.Array.data[2]
+      value: GroupY2022
+      objectReference: {fileID: 0}
+    - target: {fileID: 833434270727555163, guid: e13f9f3c8f3fb8842a69840acbd5c17f, type: 3}
+      propertyPath: stages.Array.data[3]
       value: GroupZ2022
       objectReference: {fileID: 0}
     m_RemovedComponents: []
