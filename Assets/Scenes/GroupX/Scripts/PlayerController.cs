@@ -92,7 +92,7 @@ namespace GroupX
             {
                 if (_state == State.Attacking)
                 {
-                    _rigidbody.velocity = Vector3.zero;
+                    _rigidbody.velocity = new(0f, _rigidbody.velocity.y, 0f);
                     return;
                 }
 
