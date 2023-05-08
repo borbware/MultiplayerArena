@@ -23,15 +23,17 @@ namespace GroupZ
         AudioSource audioOut;
         public AudioClip tileShatter;
         public AudioClip tileCrack;
+        float randomShakeX, randomShakeY, randomShakeZ, minShake = 0.7f, maxShake = 1f;
+
 
         // Start is called before the first frame update
 
         void Shaking(float speed, float amount)
         {
             meshChild.transform.localPosition = new Vector3
-                                            (childstartPos.x + Mathf.Sin(Time.time * speed) * amount, 
-                                            childstartPos.y + Mathf.Sin(Time.time * speed) * amount,
-                                            0);
+                                            (childstartPos.x + Mathf.Sin(Time.time * speed * randomShakeX) * amount, 
+                                            childstartPos.y + Mathf.Sin(Time.time * speed * randomShakeY) * amount,
+                                            childstartPos.y + Mathf.Sin(Time.time * speed * randomShakeZ) * amount);
         }
 
         void Falling()
@@ -79,6 +81,9 @@ namespace GroupZ
             meshf = meshChild.GetComponent<MeshFilter>();
             platformHP = platformMaxHP;
             audioOut = GetComponent<AudioSource>();
+            randomShakeX = Random.Range(minShake, maxShake);
+            randomShakeY = Random.Range(minShake, maxShake);
+            randomShakeZ = Random.Range(minShake, maxShake);
         }
 
         // Update is called once per frame
