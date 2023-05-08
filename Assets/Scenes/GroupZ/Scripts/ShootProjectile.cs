@@ -77,7 +77,6 @@ public class ShootProjectile : MonoBehaviour
         newBullet.GetComponent<Rigidbody>().AddForce(
             transform.forward * shootForce * Time.fixedDeltaTime);
         Destroy(newBullet, shootPeriod);
-        nextShootTime = Time.time + shootPeriod;
     }
     void FixedUpdate()
     {
@@ -90,6 +89,7 @@ public class ShootProjectile : MonoBehaviour
                 {
                     _anim.Play("FrogoSmash");
                 }
+                nextShootTime = Time.time + shootPeriod;
                 Invoke("HammerHit", 0.2f);
                 Invoke("ThumpSound", 0.08f);
                 Invoke("WhooshSound", 0.03f);
