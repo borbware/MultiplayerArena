@@ -8,7 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AssignControls.unity
     guid: 1650d645392d1d44185ddda302271381
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LevelTemplate.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/GroupX/GroupX.unity
+    guid: 03c94c489a0cd8141913a0e2a6a6042e
+  - enabled: 1
+    path: Assets/Scenes/GroupY/GroupY.unity
+    guid: 382e289dd4537d64b910424b919c0dba
+  - enabled: 1
+    path: Assets/Scenes/GroupZ/GroupZ.unity
+    guid: 819a0f7a3a9846b488e2a6c6e6856446
   m_configObjects: {}
