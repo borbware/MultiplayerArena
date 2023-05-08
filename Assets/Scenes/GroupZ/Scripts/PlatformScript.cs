@@ -48,7 +48,7 @@ namespace GroupZ
 
         void OnTriggerEnter(Collider other) 
         {
-            if (other.gameObject.tag == "Bullet")
+            if (other.gameObject.tag == "Projectile")
             {
                 platformHP -= hammerDamage;
                 CameraShake.instance.TriggerShake(0.1f);

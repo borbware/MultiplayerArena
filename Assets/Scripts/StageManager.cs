@@ -100,7 +100,7 @@ public class StageManager : MonoBehaviour
     public void LosePlayer(int player)
     {
         activePlayers.Remove(player);
-        Destroy(playerGameObjects[player - 1], 1f);
+        Destroy(playerGameObjects[player - 1]);
         if (activePlayers.Count == 1)
             WinPlayer(activePlayers[0]);
     }

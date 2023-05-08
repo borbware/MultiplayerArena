@@ -29,7 +29,14 @@ public class DeathPlaneCollision : MonoBehaviour
                                         );
             if (_player != null)
                 StageManager.instance.AddHP(_player.player, -100);
+            Invoke("KillPlayer", 0.5f);
         }
+    }
+
+    void KillPlayer()
+    {
+        var _player = GetComponent<Player>();
+        StageManager.instance.LosePlayer(_player.player);
     }
 }
 }
