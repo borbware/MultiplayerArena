@@ -104,8 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd761f6b672f0642917447161520e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
-  maxAcceleration: 10
+  maxSpeed: 5
+  maxAcceleration: 40.6
   jumpHeight: 2
   onGround: 0
   jump: {fileID: 8300000, guid: 0ab43048f0401b643a245ccd20ff2c4f, type: 3}
